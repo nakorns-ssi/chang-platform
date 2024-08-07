@@ -19,6 +19,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Paginator::useBootstrap();
+        // 
+        if (\Request::server('HTTP_X_FORWARDED_PROTO') == 'https')
+        {
+            \URL::forceScheme('https');
+        }
     }
 }
