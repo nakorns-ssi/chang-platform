@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Manage\worker;
+namespace App\Http\Controllers\Manage\Worker;
   
 use App\Http\Controllers\Controller; 
 use Illuminate\Http\Request;
@@ -9,11 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
 use Session; 
-use App\Models\buddyapp\SaleOrder;
-use App\Models\buddyapp\ShipmentOrder;
-use App\Models\buddyapp\Customer;
-use App\helper\ssi_reward\helper_shop;
-
+use App\Models\chang_prompt\Posts; 
 class WorkerController  extends Controller
 { 
     protected $page_title = 'สำหรับช่าง';
@@ -32,7 +28,7 @@ class WorkerController  extends Controller
       $filter = $request->query('filter'); 
       
         //dd($model);
-       return view('buddyapp/myorder_index',compact('last_update','customer_code','filter','tab','master_filter','model','model_group','total_weight','total_weight_out_standing','page_title'));
+       return view('manage/worker/worker_index',compact('model','page_title'));
     }
      
     

@@ -16,33 +16,11 @@
     
           <nav id="navbar" class="navbar">
             <ul>
-              @if (session()->has('account')) 
-                <li class=" "><a href="{{url('/manage')}}" class="btn btn-outline-secondary bg-light px-4 mx-2"> 
-                  <div class="row g-0">
-                    <div class="col-4"> 
-                        <img src="{{(session('account')['display_url'])}}"
-                            class="  rounded  " height="48" alt="โปรไฟล์" loading="lazy" />  
-                         
-                    </div>
-                    <div class="col-8 px-2">
-                    
-                        {{session('account')['display_name']}}  
-                        <br/>
-                          โปรไฟล์  
-                      
-                    </div>
-                  </div>
-                   
-                </a> 
-                </li>
-              @else
-                <li><a class=" " href="/auth/login">
-                 <span><i class="bi bi-person fa-beat-fade"  style="font-size: larger;"></i>เข้าสู่ระบบ</a></span> </li>
-              @endif 
-              <li><a class="nav-link scrollto active" href="/auth/logout">ออกจากระบบ</a></li>
-              <li><a class="nav-link scrollto " href="/">ดูประกาศทั้งหมด</a></li> 
-              <li><a class="nav-link scrollto" href="#notification"><span><i class="bi bi-bell" style="font-size: larger;"></i>แจ้งเตือน</span></a></li> 
-          
+              
+              <li><a class="nav-link scrollto " href="/"><i class="bi bi-file-earmark-text" style="font-size: larger;"></i> ดูประกาศทั้งหมด</a></li>
+              <li><a class="nav-link scrollto" href="#notification"><span><i class="bi bi-bell" style="font-size: larger;"></i> แจ้งเตือน</span></a></li> 
+           
+              <li><a class="nav-link scrollto  " href="/auth/logout"><span><i class="bi bi-box-arrow-right" style="font-size: larger;"></i> ออกจากระบบ</span></a></li>
               
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>

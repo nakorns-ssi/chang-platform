@@ -44,7 +44,7 @@
     @include('layouts._GOOGLE_TAG_MANAGER_BODY') 
 
     
-    <main id="main">
+    <main id="main" class="bg-light">
 			 
 
      
