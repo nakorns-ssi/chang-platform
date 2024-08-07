@@ -25,9 +25,11 @@
                          
                     </div>
                     <div class="col-8 px-2">
+                    
                         {{session('account')['display_name']}}  
                         <br/>
-                          จัดการงาน 
+                          โปรไฟล์  
+                      
                     </div>
                   </div>
                    
@@ -37,9 +39,8 @@
                 <li><a class=" " href="/auth/login">
                  <span><i class="bi bi-person fa-beat-fade"  style="font-size: larger;"></i>เข้าสู่ระบบ</a></span> </li>
               @endif 
-              <li><a class="nav-link scrollto active" href="/">ประกาศทั้งหมด</a></li>
-              <li><a class="nav-link scrollto " href="/worker">รับงาน</a></li>
-              <li><a class="nav-link scrollto" href="/project_owner">หาช่าง</a></li> 
+              <li><a class="nav-link scrollto active" href="/auth/logout">ออกจากระบบ</a></li>
+              <li><a class="nav-link scrollto " href="/">ดูประกาศทั้งหมด</a></li> 
               <li><a class="nav-link scrollto" href="#notification"><span><i class="bi bi-bell" style="font-size: larger;"></i>แจ้งเตือน</span></a></li> 
           
               

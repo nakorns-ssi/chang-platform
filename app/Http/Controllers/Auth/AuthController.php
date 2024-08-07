@@ -89,7 +89,7 @@ class AuthController extends Controller
             if(isset( $login['page'])){
              return redirect($login['page']) ;
             }else{
-             return redirect('/') ;
+             return redirect('/manage') ;
             }
             
     }
@@ -117,7 +117,7 @@ class AuthController extends Controller
 
      public function  logout(Request $request)
      {   
-        $previous_url = url()->previous();
+        $previous_url = url('/') ;
         if(session()->has('account')) {
             session()->forget('account');  
         } 

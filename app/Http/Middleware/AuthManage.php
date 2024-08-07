@@ -18,7 +18,7 @@ class AuthManage
     public function handle(Request $request, Closure $next)
     { 
         $segments = $request->segments()[0];
-        dd('AuthManage admin_login',$request->path(),session()->all(),$segments);
+       // dd('AuthManage admin_login',$request->path(),session()->all(),$segments);
         
        
         if(!session()->has('account') && ($segments =='manage' )){
