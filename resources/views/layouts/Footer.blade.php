@@ -7,6 +7,7 @@
 
         <div class="col-lg-6 col-md-6 footer-contact text-center">
           <h3>{{env('APP_NAME')}}</h3>
+          <p>The Thailand's Steel Work Marketplace</p>
           <img class="me-3 img-fluid " src="{{ asset('chang_prompt/img/chang_prompt_logo.svg') }}"
            alt="{{env('APP_NAME')}} โลโก้" style="width: 7rem" >
           <p>

@@ -1,7 +1,7 @@
 <!-- ======= About Video Section ======= -->
 <section id="about-video" class="about-video">
 
-      <div class="container aos-init aos-animate" data-aos="fade-up">
+      <div class="container  position-relative  aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
 
         <div class="row">
 

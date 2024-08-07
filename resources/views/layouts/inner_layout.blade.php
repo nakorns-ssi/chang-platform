@@ -8,8 +8,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <title>@yield('title') - {{env('APP_NAME')}}</title>
 
-    <meta content="{{env('APP_NAME')}} ช่างหางาน …งานหาช่าง ช่างเหล็ก แพลตฟอร์มช่วยได้ @yield('description')" name="description">
-    <meta content="ช่างหางาน งานหาช่าง ช่างเหล็ก ช่างเชื่อม เหล็ก โครงสร้าง @yield('keywords')" name="keywords">
+    <meta content="@yield('description')" name="description">
+    <meta content="@yield('keywords')" name="keywords">
   
     
     <!-- Favicons -->

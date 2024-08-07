@@ -41,7 +41,7 @@
               <li><a class="nav-link scrollto " href="/worker">รับงาน</a></li>
               <li><a class="nav-link scrollto" href="/project_owner">หาช่าง</a></li> 
               <li><a class="nav-link scrollto" href="#notification"><span><i class="bi bi-bell" style="font-size: larger;"></i>แจ้งเตือน</span></a></li> 
-              <li><a class="nav-link scrollto" href="/about_us">เกี่ยวกับเรา</a></li> 
+          
               
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>

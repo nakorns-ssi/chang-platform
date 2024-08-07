@@ -1,8 +1,9 @@
 @extends('layouts.main_layout')
-@section('title', "หน้าหลัก")
-@section('description', "")
-@section('keywords', "")
-@section('content') 
+@section('title', "ช่างเหล็ก | The Thailand's Steel Work Marketplace")
+@section('description', "รับทำเหล็กดัด มุ้งลวด สแตนเลส หน้าต่างเหล็กดัด ประตูเหล็กดัด ราวบันไดเหล็กดัด ประตูรั้ว โครงหลังคา กันสาด")
+@section('keywords', "มุ้งลวด สแตนเลส หน้าต่างเหล็กดัด ประตูเหล็กดัด ราวบันไดเหล็กดัด ประตูรั้ว โครงหลังคา กันสาด งานเหล็ก โครงเหล็กโครงหลังคา งานหลังคา ช่างต่อเติมหลังคาโรงรถ")
+@section('content')
+    @include('layouts.Header') 
     @include('layouts.section.SearchHero')
     <main class="content" style="margin-top:80px">
 
@@ -17,6 +18,7 @@
     </main>
 
     @include('layouts.section.ScrollToTop') 
+    @include('layouts.Footer')
     <style>
        
     </style>

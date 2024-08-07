@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
-use App\Models\buddyapp\Account;
+use App\Models\Account;
 use App\helper\util;
 use Session;
 use Cookie;
