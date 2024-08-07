@@ -4,7 +4,7 @@
             <div class="flex-grow-1">
                 <a href="/posts">
                     <span class="float-start text-success text-bold" style=" border-bottom: 2px solid;">
-                        โพสต์ของฉัน
+                        โพสต์ของช่าง
                     </span>
                     <span class="float-end text-success text-bold">ดูทั้งหมด<i class="bi bi-chevron-right"
                             style="font-size: larger;"></i>

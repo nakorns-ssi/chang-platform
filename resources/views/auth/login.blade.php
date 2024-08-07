@@ -27,8 +27,11 @@
             </div>
 
             <div class="m-2 text-center"> 
-               <p><a class="link-offset-3 link-secondary link-underline-secondary link-underline-opacity-100" href="{{url('/')}}" >
-                <i class="bi bi-house-fill"></i> หน้าหลัก</a> </p> 
+               <p>
+                <a class="link-offset-3 link-secondary link-underline-secondary link-underline-opacity-100" href="{{url('/')}}"
+                style=" font-size: 1.3rem;" >
+                <i class="bi bi-house-fill"></i> หน้าหลัก</a>
+                </p> 
             </div>
     </main>
     <?php
