@@ -35,7 +35,7 @@
                   <li>
                     @if (session()->has('account')) 
                     <div class=" d-sm-block">
-                      @include('layouts.Btn_profile') 
+                      @include('layouts.Btn_Profile') 
                     </div> 
                     @endif
                     @if (!session()->has('account')) 
