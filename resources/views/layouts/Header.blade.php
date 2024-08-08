@@ -17,7 +17,7 @@
                      <div class="col-md-6">
                       @if (session()->has('account'))
                       <div class="d-sm-none">
-                          @include('layouts.Btn_profile') 
+                          @include('layouts.Btn_Profile') 
                       </div>
                       @endif
                      </div>
