@@ -9,8 +9,7 @@
             <div class="row g-2 border bg-light rounded justify-content-center">
               
                 <div class="col-12 col-md-12  text-center p-2 ">
-                    <h2>ยืนยัน ตัวตน</h2> 
-                    <p>เข้าสู่ระบบ</p> 
+                    <h2>เข้าสู่ระบบ</h2>  
                     <img class="  img-fluid " src="{{ asset('chang_prompt/img/chang_prompt_logo.svg') }}"
                     alt="{{env('APP_NAME')}} โลโก้" style="width: 7rem" >
                     

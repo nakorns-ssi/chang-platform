@@ -9,7 +9,13 @@ use Illuminate\Support\Facades\Session;
  
 use App\Http\Controllers\Manage\ManageController; 
 Route::controller(ManageController::class)->group(function () { 
-    Route::get('/manage', 'manage_index');     
+    Route::get('/manage', 'manage_index');      
+    
+});
+
+use App\Http\Controllers\Manage\ProfileController; 
+Route::controller(ProfileController::class)->group(function () { 
+    Route::get('/manage/profile', 'profile_index');     
 
     
 });

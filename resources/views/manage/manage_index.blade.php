@@ -4,7 +4,7 @@
 @section('keywords', '')
 @section('content')
     @include('manage.manage_header') 
-    <div style="min-height: 100vh">
+    
       {{-- @include('manage.MyHero') --}}
       <section></section>
       @include('manage.MyProfile')
@@ -13,7 +13,7 @@
       @include('manage.MyPosts_project_owner')
   
       
-    </div>
+    
     
     <style> 
     </style>

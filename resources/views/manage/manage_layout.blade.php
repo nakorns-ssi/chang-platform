@@ -44,12 +44,10 @@
     @include('layouts._GOOGLE_TAG_MANAGER_BODY') 
 
     
-    <main id="main" class="bg-light">
-			 
-
-     
-    @yield('content')
-     	  
+    <main id="main" class="">
+        <div class="bg-light" style="min-height: 100vh"> 
+            @yield('content')
+        </div>
     </main>
    
 
