@@ -57,6 +57,9 @@ body {
   -webkit-tap-highlight-color: transparent;
   font-family: "Kanit", sans-serif;
   color: #444444;
+  font-size: 16px;
+  min-font-size: 12px;
+  max-font-size: 20px;
 }
 textarea:focus, input:focus{
   outline: none;

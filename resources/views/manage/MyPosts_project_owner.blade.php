@@ -21,18 +21,10 @@
         <div class="container text-center">
             <div class="row row-cols-3 align-items-center">
                 <div class="col aos-init aos-animate  " data-aos="zoom-in" data-aos-delay="400">
-                    <a href="">
-                        <div class="icon"><i class="bi bi-file-earmark-plus"></i></div>
-                        สร้างโพสต์ใหม่
-                        <p>ช่างของฉัน</p>
-                    </a>  
+                     
                 </div>
                 <div class="col aos-init aos-animate  " data-aos="zoom-in" data-aos-delay="400">
-                    <a href="">
-                        <div class="icon"><i class="bi bi-file-text"></i></div>
-                        ดูโพสต์
-                        <p>ช่างของฉัน</p>
-                    </a>  
+                      
                 </div>
                 <div class="col aos-init aos-animate  " data-aos="zoom-in" data-aos-delay="400">
                     <a href="">
