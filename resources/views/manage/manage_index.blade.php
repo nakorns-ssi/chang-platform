@@ -3,15 +3,13 @@
 @section('description', '')
 @section('keywords', '')
 @section('content')
+<div class="bg-light" style="min-height: 100vh"> 
     @include('manage.manage_header') 
     
       {{-- @include('manage.MyHero') --}}
       <section></section>
-      @include('manage.MyProfile')
-      @include('manage.MyPosts')
-      @include('manage.MyPosts_worker')
-      @include('manage.MyPosts_project_owner')
-  
+      @include('manage.MyProfile') 
+      @include('manage.MyPosts_worker') 
       
     
     
@@ -20,4 +18,5 @@
     <script></script>
     @include('manage.bottom_nav')
     @include('layouts.section.ScrollToTop')
+</div>
 @endsection

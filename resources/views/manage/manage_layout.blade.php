@@ -45,9 +45,9 @@
 
     
     <main id="main" class="">
-        <div class="bg-light" style="min-height: 100vh"> 
+        
             @yield('content')
-        </div>
+    
     </main>
     @include('layouts.preloader')
 
