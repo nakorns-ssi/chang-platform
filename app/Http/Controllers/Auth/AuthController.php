@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use App\Models\Account;
+use App\helper\helper_account;
 use App\helper\util;
 use Session;
 use Cookie;
@@ -59,9 +60,9 @@ class AuthController extends Controller
              $model ::unguard();
              $model->fill($data);
              $model->account_code = 'temp_'.date('ymd').uniqid();    
-             $model->create_at =Carbon::now();
+             $model->created_at =Carbon::now();
              $model->last_active = Carbon::now(); 
-             $model->create_by = $_SERVER['REMOTE_ADDR'];    
+             $model->created_by = $_SERVER['REMOTE_ADDR'];    
               
              if($model->save()){ 
                 $model->account_code = util::gen_key($model->id);
@@ -75,17 +76,10 @@ class AuthController extends Controller
              $model->display_url = $login['display_url'];
              $model->last_active = Carbon::now();  
              $model->save();
+             helper_account::update_session_profile($model);
          }
+       
          
-           session()->put('account', [
-                'account_id' => $model->id  ,
-                'account_code' => $model->account_code  , 
-                'display_name' => $model->display_name  , 
-                'email' => $model->email , 
-                'display_url' => $model->display_url  , 
-                'role' => 'admin'  , 
-                // 'account_code' => $login['account_code'] ,  
-            ]); 
             if(isset( $login['page'])){
              return redirect($login['page']) ;
             }else{
@@ -96,7 +90,7 @@ class AuthController extends Controller
 
     public function  debug()
      {  
-        dd(session()->all() , Cookie::get());
+        dd(session()->all(),session('role')   , Cookie::get());
      } 
 
      public function  login(Request $request)
@@ -117,10 +111,15 @@ class AuthController extends Controller
 
      public function  logout(Request $request)
      {   
-        $previous_url = url('/') ;
+        $previous_url = url()->previous() ;
         if(session()->has('account')) {
             session()->forget('account');  
+           
         } 
+        if(!$previous_url){
+            $previous_url = url('/') ;
+        }
+        session()->forget('role');  
         return view('auth/logout', compact('previous_url'));
      }
 

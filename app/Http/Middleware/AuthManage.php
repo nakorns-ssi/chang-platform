@@ -23,7 +23,7 @@ class AuthManage
        
         if(!session()->has('account') && ($segments =='manage' )){
               
-          return redirect('auth/login?role=manage&&page='.$request->path() )->with('fail','You must be logged in');
+          return redirect('auth/login?role=free&&page='.$request->path() )->with('fail','You must be logged in');
         }
 
        

@@ -162,7 +162,9 @@
   if (preloader) {
     window.addEventListener('load', () => {
       console.log('preloader')
-      preloader.remove()
+     // preloader.remove()
+     $('#preloader').hide() 
+      
     });
   }
 

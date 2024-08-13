@@ -16,6 +16,7 @@ Route::controller(ManageController::class)->group(function () {
 use App\Http\Controllers\Manage\ProfileController; 
 Route::controller(ProfileController::class)->group(function () { 
     Route::get('/manage/profile', 'profile_index');     
+    Route::post('/manage/profile/save', 'profile_save');     
 
     
 });

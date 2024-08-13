@@ -51,6 +51,9 @@
     @yield('content')
      	  
     </main>
+
+
+    @include('layouts.preloader')
    
 
     <!-- Vendor JS Files -->

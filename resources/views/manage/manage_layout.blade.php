@@ -49,7 +49,7 @@
             @yield('content')
         </div>
     </main>
-   
+    @include('layouts.preloader')
 
     <!-- Vendor JS Files -->
   <script src="{{ asset('OnePage/assets/vendor/purecounter/purecounter_vanilla.js') }}"></script>

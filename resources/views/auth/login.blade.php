@@ -16,7 +16,7 @@
                 </div>
                  
              
-                <div class="col-12 col-md-12 ">
+                <div class="col-12 col-md-12 mb-1">
                     <div class=" m-2 d-flex justify-content-center  text-center ">
                          <button type='button' id="liffLoginButton" class='btn d-flex align-items-center' style='background:#06C755;color:#fff'>
                             <i class='fab fa-line fs-3 mx-2 ' style=' '></i>   Log in  with Line
