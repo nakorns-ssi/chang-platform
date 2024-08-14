@@ -133,7 +133,7 @@ h3 {
 
 
 #search_hero {
-  background: rgba(0, 0, 0, 0) url(../img/banner_hero.png) no-repeat center top fixed;
+  background: rgba(0, 0, 0, 0) url(../img/banner_hero.gif) no-repeat center top fixed;
   background-size: cover;
 }
 #search_hero .typewriter p   {
@@ -309,7 +309,7 @@ h3 {
 
 @media (max-width: 992px) {
   #header .logo {
-    font-size: 28px;
+    font-size: 1.25rem;
   }
 }
 

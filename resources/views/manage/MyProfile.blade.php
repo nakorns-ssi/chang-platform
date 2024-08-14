@@ -6,8 +6,8 @@
                     <div>
                         <span class="float-start text-success text-bold">{{ session('account')['display_name'] }} </span>
                     </div> 
-                    <span class="float-end text-success text-bold">
-                        <i class="bi bi-pencil-square" style="font-size: larger;"></i>
+                    <span class="float-end text-success  ">
+                        <i class="bi bi-pencil-square" style=" "></i>
                         แก้ไขข้อมูลส่วนตัว
                     </span>
                 </a> 

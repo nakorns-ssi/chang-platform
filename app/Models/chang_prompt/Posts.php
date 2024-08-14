@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\chang_prompt;
 
 use Illuminate\Database\Eloquent\Model;
 

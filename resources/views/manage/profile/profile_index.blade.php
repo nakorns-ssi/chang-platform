@@ -5,25 +5,26 @@
 @section('content')
 {{-- @include('manage.manage_header') --}}
      
+<header id="header" class="fixed-top">
+    <div class="container d-flex align-items-center justify-content-between">
 
-    <div class="container"> 
-      <div class="d-flex justify-content-between align-items-center pt-4">  
-        <div class="     ">   
-          <a class="btn btn-primary" href="/manage" role="button">ย้อนกลับ</a>
-        </div>
-        <div class="     "> 
-           
-        </div>
-      </div> 
+        <a class="btn  btn-sm btn-outline-dark" href="/manage"  ><i class="bi bi-caret-left-fill"></i> ย้อนกลับ</a>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+      
+
     </div>
-      <div class="container  " style="margin-top:25px;"  >  
+  </header><!-- End Header -->
+ 
+      <section class="container  " style="margin-top:25px;"  >  
         
       <?php
       $actionPath = '/manage/profile/save';
       ?>
-      <form action="{{ $actionPath }}" method="post" name="frm_n" id="frm_n" class="  ">
-          @csrf
-          <div class="  ">
+      
+            <form action="{{ $actionPath }}" method="post" name="frm_n" id="frm_n" class="  ">
+                @csrf
               <div class="row justify-content-center">
                   <div class="col-md-8  ">
                       <div class="card text-center mb-5 pt-4">
@@ -93,7 +94,7 @@
 
                               <div class="rate   px-1 text-start  mt-3">
                                   <label for="profile_bio" class="form-label">แนะนำเกี่ยวกับตัวเรา  </label>
-                                  <textarea class="form-control" id="profile_bio" name="model[profile_bio]" rows="3"></textarea>
+                                  <textarea class="form-control" id="profile_bio" name="model[profile_bio]" rows="3">{{$model->profile_bio}}</textarea>
                               </div>
 
 
@@ -105,14 +106,15 @@
                           </div>
                       </div>
                   </div>
-              </div>
-
-          </div>
-      </form>
+              </div> 
+        </form>
+        <div class="row justify-content-center">
+            <div class="col-md-8  "></div>
+        </div>
 
   
       
-    </div>
+    </section>
     <?php if (Session::has('alert')):
       $alert = Session::get('alert');
       ?>

@@ -6,7 +6,7 @@
         <div class="row">
 
           <div class="col-lg-6 video-box align-self-baseline aos-init aos-animate" data-aos="fade-right" data-aos-delay="100">
-            <img src="{{ asset('chang_prompt/img/chang_happy.png') }}" class="img-fluid" alt="เพื่อขีวิตที่ดีขึ้น ช่างเหล็ก"> 
+            <img src="{{ asset('chang_prompt/img/chang_happy.png') }}" loading="lazy" class="img-fluid" alt="เพื่อขีวิตที่ดีขึ้น ช่างเหล็ก"> 
           </div>
 
           <div class="col-lg-6 pt-3 pt-lg-0 content aos-init aos-animate" data-aos="fade-left" data-aos-delay="100">

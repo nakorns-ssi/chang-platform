@@ -23,7 +23,7 @@ class ManageController  extends Controller
       $paginate_num = 50;
       //dd($paginate_num);  
       //$model = Location::orderBy('code','desc')->paginate($paginate_num) ;
-       return view('manage/manage_index',compact('model'));
+       return view('manage/main_menu',compact('model'));
     }
      
     

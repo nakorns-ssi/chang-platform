@@ -6,17 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="csrf-token" content="{{ csrf_token() }}" />
-    <title>@yield('title') - {{env('APP_NAME')}}</title>
+    <title>@yield('title') - {{ env('APP_NAME') }}</title>
 
-    <meta content="{{env('APP_NAME')}} ช่างหางาน …งานหาช่าง ช่างเหล็ก แพลตฟอร์มช่วยได้ @yield('description')" name="description">
+    <meta content="{{ env('APP_NAME') }} ช่างหางาน …งานหาช่าง ช่างเหล็ก แพลตฟอร์มช่วยได้ @yield('description')"
+        name="description">
     <meta content="ช่างหางาน งานหาช่าง ช่างเหล็ก ช่างเชื่อม เหล็ก โครงสร้าง @yield('keywords')" name="keywords">
-  
-    
+
+
     <!-- Favicons -->
-    
+
     <link href="{{ asset('chang_prompt/img/chang_prompt_logo.svg') }}" rel="icon">
     <link href="{{ asset('chang_prompt/img/chang_prompt_logo.svg') }}" rel="apple-touch-icon">
-  
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,36 +32,51 @@
     <link href="{{ asset('OnePage/assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
     <link href="{{ asset('OnePage/assets/vendor/remixicon/remixicon.css') }}" rel="stylesheet">
     <link href="{{ asset('OnePage/assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
-  
-    @include('layouts._asset') 
+
+    @include('layouts._asset')
 
     <!-- Template Main CSS File -->
-    
+
     <link href="{{ asset('chang_prompt/css/style.css') }}" rel="stylesheet">
 
-    @include('layouts._GOOGLE_TAG_MANAGER_HEAD') 
+    @include('layouts._GOOGLE_TAG_MANAGER_HEAD')
 </head>
-<body>
-    @include('layouts._GOOGLE_TAG_MANAGER_BODY') 
 
-    
-    <main id="main" class="">
-        
-            @yield('content')
-    
+<body>
+    @include('layouts._GOOGLE_TAG_MANAGER_BODY')
+
+
+    <main id="main" class=""> 
+        <div class="bg-light" style="min-height: 100vh">
+            
+            @yield('content') 
+             
+        </div>
     </main>
+
     @include('layouts.preloader')
+    <style>
+        body {
+            font-size: 0.825rem;
+        }
+        form {
+            font-family: "Sarabun", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+    </style>
 
     <!-- Vendor JS Files -->
-  <script src="{{ asset('OnePage/assets/vendor/purecounter/purecounter_vanilla.js') }}"></script>
-  <script src="{{ asset('OnePage/assets/vendor/aos/aos.js') }}"></script>
-  <script src="{{ asset('OnePage/assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-  <script src="{{ asset('OnePage/assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
-  <script src="{{ asset('OnePage/assets/vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
-  <script src="{{ asset('OnePage/assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
-  <script src="{{ asset('OnePage/assets/vendor/php-email-form/validate.js') }}"></script>
+    <script src="{{ asset('OnePage/assets/vendor/purecounter/purecounter_vanilla.js') }}"></script>
+    <script src="{{ asset('OnePage/assets/vendor/aos/aos.js') }}"></script>
+    <script src="{{ asset('OnePage/assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('OnePage/assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
+    <script src="{{ asset('OnePage/assets/vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
+    <script src="{{ asset('OnePage/assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
+    <script src="{{ asset('OnePage/assets/vendor/php-email-form/validate.js') }}"></script>
 
-  <!-- Template Main JS File -->
-  <script src="{{ asset('OnePage/assets/js/main.js') }}"></script>
+    <!-- Template Main JS File -->
+    <script src="{{ asset('OnePage/assets/js/main.js') }}"></script>
 </body>
+
 </html>

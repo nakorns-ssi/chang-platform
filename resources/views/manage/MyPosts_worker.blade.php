@@ -21,7 +21,7 @@
         <div class="container px-0 text-center">
             <div class="row row-cols-3 align-items-center">
                 <div class="col  aos-init aos-animate   " data-aos="zoom-in" data-aos-delay="100">
-                    <a href="/manage/worker/post"  >
+                    <a href="/manage/worker/post/add" onclick="do_loading()"  >
                     <span class=" row  text-dark">
                         <div class="col-12 d-flex justify-content-center py-2">
                             <div class="icon icon-menu position-relative">
@@ -33,7 +33,7 @@
                     </a>   
                 </div>
                 <div class="col  aos-init aos-animate   " data-aos="zoom-in" data-aos-delay="100">
-                    <a href="/manage/worker/post"  >
+                    <a href="/manage/worker/post"  onclick="do_loading()" >
                     <span class=" row  text-dark">
                         <div class="col-12 d-flex justify-content-center py-2">
                             <div class="icon icon-menu position-relative"> 
@@ -54,8 +54,7 @@
 </article>
 
 <style>
-    i > .bi {
-        font-size: 2.5rem;
+    i > .bi { 
     }
     .icon-menu {
         height: 2rem;
@@ -63,8 +62,7 @@
         background-color: var(--bs-primary);
         border-radius: 50%;
     }
-    .icon-menu-label {
-      font-size: 0.76rem
+    .icon-menu-label { 
   }
 
 </style>
