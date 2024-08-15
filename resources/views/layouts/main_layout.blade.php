@@ -66,6 +66,6 @@
   <script src="{{ asset('OnePage/assets/vendor/php-email-form/validate.js') }}"></script>
 
   <!-- Template Main JS File -->
-  <script src="{{ asset('OnePage/assets/js/main.js') }}"></script>
+  <script src="{{ asset('chang_prompt/js/main.js') }}"></script>
 </body>
 </html>

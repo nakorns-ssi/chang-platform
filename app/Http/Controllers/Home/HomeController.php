@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon; 
 use Session;
+use App\Models\Account;
+use App\helper\helper_account;
+use App\Models\chang_prompt\Posts;
+use App\Models\Upload;
 
 class HomeController  extends Controller
 { 
@@ -19,7 +23,18 @@ class HomeController  extends Controller
     }
     public function  home_index(Request $request)
     {   
-       return view('home/home_index');
+      $Posts =  Posts::where(['status_code'=>'published'])->take(4)->get();
+      $model = $Posts ;
+       foreach( $Posts as $val):
+        $val->img_thumbnail = Upload::where('status','y') 
+          ->where('posts_id',$val->id)  
+          ->orderby('updated_at','desc')
+          ->first(); 
+       endforeach;
+     // dd($Posts[0]->img_thumbnail->url );
+      
+
+       return view('home/home_index' ,compact('model','Posts'));
     }
 
     public function  about_us(Request $request)

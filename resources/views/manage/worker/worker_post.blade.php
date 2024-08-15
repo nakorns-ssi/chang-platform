@@ -18,13 +18,14 @@
       <?php
       $actionPath = '/manage/worker/post/save';
       ?> 
-          <div class="row justify-content-center">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6 ">
             <form action="" method="post" name="frm_n" id="frm_n" class="  ">
                 @csrf
-            <div class="col-md-8 col-lg-6 ">
-                <div class="  mb-3">
+           
+                <div class="mb-3">
                     <label for="posts_content" class="form-label"><i class="bi bi-pencil"></i> เขียนโพสต์ * </label>
-                    <textarea class="form-control" id="posts_content" name="model[posts_content]" required ></textarea>
+                    <textarea class="form-control" id="posts_content" name="model[posts_content]" rows="6" required ></textarea>
                     
                 </div>
                 <div class="mb-3">
@@ -38,25 +39,24 @@
                         <input type="number" name="model[price_max]" value="{{$model->price_max}}" class="form-control" placeholder="ราคาสิ้นสุด"  >
                      </div>
                 </div>
-             
- 
-            </div>
+              
             </form>
-          </div>
+            </div>
+        </div>
       
 
       <div class="row justify-content-center">
         <div class="col-md-8 col-lg-6 ">
             <div class="mb-3">
                 <form action="{{ $actionPath }}" method="post" class="dropzone" id="my-great-dropzone" 
-                style=" border: dotted #ccc; border-radius: 10px; ">
+                style=" border: dotted #ccc 5px ; border-radius: 10px; ">
                     @csrf
                     <div class="previews"></div>
                     <input type="hidden" name="model[id]"  value="{{$model->id}}"  >
                     <input type="hidden" name="model[posts_type]"  value="{{$model->posts_type}}"  >
                 </form>
             </div>
-            <div class="mb-3">
+            <div class="mb-3 text-center">
                 <button type="button"  onclick="do_save()" class="btn btn-primary"><i class="bi bi-send"></i> โพสต์</button>
             </div>
         </div>
@@ -87,8 +87,8 @@
             uploadMultiple: true,
             parallelUploads: 10,
             maxFiles: 5,
-            resizeWidth: 1280,
-            resizeQuality: 0.8,
+            resizeWidth: 640, 
+            resizeQuality: 0.7,
             acceptedFiles: "image/*",
             init: function() {
                 myDropzone = this;
@@ -96,7 +96,7 @@
                 // First change the button to actually tell Dropzone to process the queue.
                 this.on("complete", function() {
                     console.log('complete')
-                     location.reload() 
+                     //location.reload() 
                 });
 
                 this.on("success", function() {

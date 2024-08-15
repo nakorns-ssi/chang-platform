@@ -7,12 +7,11 @@
     
     <main class="content" style="margin-top:80px">
         @include('layouts.section.SearchHero')
+        @include('layouts.section.PostRecommendTab',['model'=>$Posts])
         @include('layouts.section.Content2Col')
         @include('layouts.section.CallToAction') 
         <div class="container-fluid p-0">
-           
-            
- 
+            @include('layouts.section.GoogleFindMe') 
             
         </div>
     </main>

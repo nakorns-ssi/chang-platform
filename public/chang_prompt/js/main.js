@@ -162,8 +162,8 @@
   if (preloader) {
     window.addEventListener('load', () => {
       console.log('preloader')
-       preloader.remove()
-    // $('#preloader').hide() 
+     // preloader.remove()
+     $('#preloader').hide() 
       
     });
   }

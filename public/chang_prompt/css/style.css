@@ -57,10 +57,23 @@ body {
   -webkit-tap-highlight-color: transparent;
   font-family: "Kanit", sans-serif;
   color: #444444;
-  font-size: 16px;
-  min-font-size: 12px;
-  max-font-size: 20px;
+  font-size: 16px; 
 }
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;  
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;  
+  overflow: hidden;
+}
+
 textarea:focus, input:focus{
   outline: none;
 }
