@@ -11,18 +11,15 @@
          <div class="container d-flex align-items-center justify-content-between">
             
                  <div class=" row align-items-center">
-                     <div class="col-md-12 text-center">
-                         {{-- <h1 class="logo"><a href="/">ช่างเหล็ก.com</a></h1> --}}
-                         <img class="  img-fluid " src="{{ asset('chang_prompt/img/chang_prompt_logo.svg') }}"
-           alt="{{env('APP_NAME')}} โลโก้ ช่างเหล็ก.com" style="width: 5rem;min-width: 5rem;" >
-                     </div>
-                     <div class="col-md-12 text-center">
-                      @if (session()->has('account'))
-                      <div class="d-md-none">
-                          @include('layouts.Btn_Profile') 
-                      </div>
-                      @endif
-                     </div>
+                     <div class="col-md-12 text-center    "> 
+                        <img class=" img-fluid  d-inline " src="{{ asset('chang_prompt/img/chang_prompt_logo.svg') }}"
+           alt="{{env('APP_NAME')}} โลโก้ ช่างเหล็ก.com" style="width: 3rem;minmax(3rem, 48px);"  loading="lazy">
+                        @if (session()->has('account'))
+                        <div class="d-md-none d-inline">
+                            @include('layouts.Btn_Profile') 
+                        </div>
+                        @endif
+                     </div> 
 
                  </div>
              

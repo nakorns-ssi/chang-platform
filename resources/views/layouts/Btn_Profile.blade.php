@@ -1,4 +1,4 @@
-<a href="{{ url('/manage') }}" class="btn btn-outline-dark bg-white px-4 mt-2   mx-2   ">
+<a href="{{ url('/manage') }}" class="btn btn-outline-dark bg-white px-2 mt-2   mx-1   ">
     <div class="row g-0  row-cols-3">
         <div class="col-auto ">
             <img src="{{ session('account')['display_url'] }}" class="  rounded  "
