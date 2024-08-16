@@ -2,9 +2,7 @@
   <div class="badge bg-light shadow opacity-75 text-danger position-absolute" style="top: 0.5rem; right: 0.5rem">ช่าง</div>
    
   <!-- Product image-->
-  @if($value->img_thumbnail->url)
-  <img src="{{$value->img_thumbnail->url}}" class="card-img-top" alt=" {{$value->title}}" loading="lazy">
-  @endif
+   
   <!-- Product details-->
   <div class="card-body py-4 px-2">
       <div class="text-start">
