@@ -4,6 +4,12 @@
   <!-- Product image-->
   @if(isset($value->img_thumbnail->url))
   <img src="{{$value->img_thumbnail->url}}" class="card-img-top" alt=" {{$value->title}}" loading="lazy">
+  @else 
+  <div class="text-center">
+    <img class="card-img-top w-50 " src="{{ asset('chang_prompt/img/chang_prompt_logo.svg') }}"
+    alt="{{env('APP_NAME')}} {{$value->title}}"    loading="lazy">
+  </div>
+
   @endif
    
   <!-- Product details-->
