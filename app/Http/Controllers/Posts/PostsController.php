@@ -30,9 +30,7 @@ class PostsController  extends Controller
       $page_title = $this->page_title;
      // $post = $request->query('model');
       $post_id = $id;
-      $paginate_num = 1;
-      $account_id =  session('account')['account_id'];
-      $account_display_name =  session('account')['profile_display_name']; 
+      $paginate_num = 1; 
       $model = Posts::where(['status'=>'y' , 'id'=> $post_id])->first() ;   
 
       $upload = Upload::where('status','y') 
