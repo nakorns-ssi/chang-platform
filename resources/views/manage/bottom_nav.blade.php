@@ -7,7 +7,7 @@
                 <div class="row row-cols-3">
                     <div class="col aos-init aos-animate  text-center " data-aos="zoom-in" data-aos-delay="200">
                         <a href="{{ url('/') }}" class="d-inline  icon-bottom">
-                            <div class="icon"><i class="fa-solid fa-chalkboard-user"></i></div>
+                            <div class="icon"><i class="fa-solid fa-house"></i></div>
                             <span>หน้าหลัก</span>
                         </a>
                     </div>

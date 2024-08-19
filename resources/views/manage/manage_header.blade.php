@@ -17,7 +17,7 @@
           <nav id="navbar" class="navbar">
             <ul>
               
-              <li><a class="nav-link scrollto " href="/"><span><i class="bi bi-file-earmark-text" style="font-size: larger;"></i> ดูประกาศหน้าหลัก </span></a></li>
+              <li><a class="nav-link scrollto " href="/"><span><i class="fa-solid fa-house" style="font-size: larger;"></i> ดูประกาศหน้าหลัก </span></a></li>
               <li><a class="nav-link scrollto" href="#notification"><span><i class="bi bi-bell" style="font-size: larger;"></i> แจ้งเตือน</span></a></li> 
            
               <li><a class="nav-link scrollto  " href="/auth/logout"><span><i class="bi bi-box-arrow-right" style="font-size: larger;"></i> ออกจากระบบ</span></a></li>

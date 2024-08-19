@@ -4,24 +4,32 @@
 @section('keywords', '')
 @section('content')
 {{-- @include('manage.manage_header') --}}
-     
-<header id="header" class="fixed-top">
-    <div class="container d-flex align-items-center justify-content-between">
-
-        <a class="btn btn-sm  btn-outline-dark" href="/manage"  ><i class="bi bi-caret-left-fill"></i> ย้อนกลับ</a>
+<script type="text/javascript"
+        src="https://earthchie.github.io/jquery.Thailand.js/jquery.Thailand.js/dependencies/JQL.min.js"></script>
+<script type="text/javascript"
+    src="https://earthchie.github.io/jquery.Thailand.js/jquery.Thailand.js/dependencies/typeahead.bundle.js"></script>
+<link rel="stylesheet"
+    href="https://earthchie.github.io/jquery.Thailand.js/jquery.Thailand.js/dist/jquery.Thailand.min.css">
+<script type="text/javascript"
+    src="https://earthchie.github.io/jquery.Thailand.js/jquery.Thailand.js/dist/jquery.Thailand.min.js"></script>   
  
+  <header id="header" class="fixed-top">
+    <div class="container d-flex align-items-center justify-content-between"> 
+        <a class="btn btn-sm  btn-outline-dark" href="/manage"  ><i class="bi bi-caret-left-fill"></i> ย้อนกลับ</a>
+        <div class="  "><a class="text-dark" href="/manage/worker/post">โพสต์สำหรับช่าง </a> </div>
     </div>
   </header><!-- End Header -->
+  <!-- End Header -->
  
-      <section class="container  " style="margin-top:25px;"  >  
-        
+      <section class="container  card " style="margin-top:25px;"  >   
       <?php
       $actionPath = '/manage/worker/post/save';
       ?> 
+       <form action="{{ $actionPath }}" method="post" name="frm_n" id="frm_n" class="  ">
+        @csrf
         <div class="row justify-content-center">
             <div class="col-md-8 col-lg-6 ">
-            <form action="" method="post" name="frm_n" id="frm_n" class="  ">
-                @csrf
+           
            
                 <div class="mb-3">
                     <label for="posts_content" class="form-label"><i class="bi bi-pencil"></i> เขียนโพสต์ * </label>
@@ -39,21 +47,28 @@
                         <input type="number" name="model[price_max]" value="{{$model->price_max}}" class="form-control" placeholder="ราคาสิ้นสุด"  >
                      </div>
                 </div>
-              
-            </form>
+                <div class="mb-3">
+                    <label for="search_district" class="form-label"><i class="bi bi-geo-alt-fill"></i> ระบุพื้นที่รับงาน/ปฎิบัติงาน
+                      <input type="text" class="form-control" id="search_district"
+                            placeholder=" ระบุเช่น ชุมพร , หลังสวน , หาดใหญ่" />
+                        <div id="district_list" class="  px-1 text-start  mt-3 "></div>
+                </div>
+               
             </div>
-        </div>
-      
-
-      <div class="row justify-content-center">
+        </div> 
+        <input type="hidden" name="model[id]"  value="{{$model->id}}"  >
+         <input type="hidden" name="model[posts_type]"  value="{{$model->posts_type}}"  >
+    </form>
+       
+       
+      <div class="row justify-content-center"> 
         <div class="col-md-8 col-lg-6 ">
             <div class="mb-3">
-                <form action="{{ $actionPath }}" method="post" class="dropzone" id="my-great-dropzone" 
+                <form action="{{ $actionPath }}" method="post" class="dropzone" name="my_great_dropzone" id="my-great-dropzone" 
                 style=" border: dotted #ccc 5px ; border-radius: 10px; ">
                     @csrf
                     <div class="previews"></div>
-                    <input type="hidden" name="model[id]"  value="{{$model->id}}"  >
-                    <input type="hidden" name="model[posts_type]"  value="{{$model->posts_type}}"  >
+                    
                 </form>
             </div>
             <div class="mb-3 text-center">
@@ -130,28 +145,41 @@
 
       </script>
     <script>
+ let district_list = document.getElementById("district_list");
+ $.Thailand({
+            $district: $('.district'), // input ของตำบล
+            //  $amphoe: $('.amphoe'), // input ของอำเภอ
+            //  $province: $('.province'), // input ของจังหวัด
+            //  $zipcode: $('#postcode'), // input ของรหัสไปรษณีย์
+            $search: $('#search_district'),
+            onDataFill: function(data) {
+                console.log(data)
+                district_list.innerHTML =
+                    " <div><span class='badge  text-bg-secondary'>" + data.district + "</span>" +
+                    ` <span class="options ms-auto"> 
+                       <i onClick="deleteItem(this)" class="fas fa-trash-alt text-danger"></i>
+                       <input type="hidden" name="working_area[district][]" value='${JSON.stringify(data)}'>
+                   </span></div >`
+            }
+});
          var myDropzone
         $(document).ready(function() {
             // get_item_no()
             load_alert() 
-
-            
-
         }) // load page
         function do_save( ) {
             console.log('do_save')
             $('#preloader').show() 
                 count_file = myDropzone.files.length
                 console.log(myDropzone.files.length, myDropzone)
+                
                 if (count_file > 0) {
                     myDropzone.processQueue();
-                } else {
-                    Swal.fire({
-                        icon: "error",
-                        title: "ข้อมูลไม่ครบ",
-                        text: "เลือก ใบเสร็จ/ภาพสินค้า  (รูปภาพ)",
-                    });
-                }
+                } else { 
+                    $('#preloader').show(); 
+                    frm_n.submit();
+                    
+                } 
            // frm_n.submit()
         }
  

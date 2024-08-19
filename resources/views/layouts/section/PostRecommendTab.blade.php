@@ -21,20 +21,10 @@
       <div class="row gx-1 gx-lg-4 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-start">
         @foreach($model as $key => $value)
         <div class="col-lg-4 col-6 my-1 d-flex align-items-stretch aos-init aos-animate" data-aos="zoom-in" data-aos-delay="100">
-          @include('layouts.section.PostCard')  
+        
+            @include('layouts.section.PostCard') 
         </div>
-        <div class="col-lg-4 col-6 my-1 d-flex align-items-stretch aos-init aos-animate" data-aos="zoom-in" data-aos-delay="100">
-          @include('layouts.section.PostCard') 
-          
-        </div>
-        <div class="col-lg-4 col-6 my-1 d-flex align-items-stretch aos-init aos-animate" data-aos="zoom-in" data-aos-delay="100">
-          @include('layouts.section.PostCard') 
-          
-        </div>
-        <div class="col-lg-4 col-6 my-1 d-flex align-items-stretch aos-init aos-animate" data-aos="zoom-in" data-aos-delay="100">
-          @include('layouts.section.PostCard') 
-          
-        </div>
+         
         @endforeach
  
       </div>
@@ -42,7 +32,21 @@
     </div>
   </div>
   <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
-    <h1>ช่างยอดนิยม</h1> 
+    
+    <div class="container aos-init aos-animate pt-2" data-aos="fade-up"> 
+      <h1>ช่างยอดนิยม</h1>
+      <div class="row gx-2 gx-lg-4 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-start">
+        @foreach($model as $key => $value)
+
+        <div class="col-lg-4 col-6 my-1 d-flex align-items-stretch aos-init aos-animate" data-aos="zoom-in" data-aos-delay="100">
+          @include('layouts.section.PostCard')  
+        </div>
+         
+        @endforeach
+ 
+      </div>
+  
+    </div>
   </div>
    
 </div> 

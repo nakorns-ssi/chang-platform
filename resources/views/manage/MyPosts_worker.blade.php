@@ -2,10 +2,11 @@
     <div class="container   aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
         <div class="d-flex align-items-start py-2">
             <div class="flex-grow-1">
-                <a href="/posts">
+                
                     <span class="float-start text-success text-bold" style=" border-bottom: 2px solid;">
                         สำหรับช่าง
                     </span>
+                <a href="/manage/worker/post">
                     <span class="float-end text-success icon-menu-label">ดูทั้งหมด<i class="bi bi-chevron-right"
                             style="font-size: larger;"></i>
                     </span>

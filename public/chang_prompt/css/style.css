@@ -73,7 +73,9 @@ body {
   -webkit-box-orient: vertical;  
   overflow: hidden;
 }
-
+.card-img-top { 
+  object-fit: cover;
+}
 textarea:focus, input:focus{
   outline: none;
 }
@@ -146,7 +148,7 @@ h3 {
 
 
 #search_hero {
-  background: rgba(0, 0, 0, 0) url(../img/banner_hero.gif) no-repeat center top fixed;
+  background: rgba(0, 0, 0, 0) url(../img/banner_hero.jpg) no-repeat center top fixed;
   background-size: cover;
 }
 #search_hero .typewriter p   {

@@ -31,7 +31,7 @@ class HomeController  extends Controller
           ->orderby('updated_at','desc')
           ->first(); 
        endforeach;
-     // dd($Posts[0]->img_thumbnail->url );
+      // dd($Posts  );
       
 
        return view('home/home_index' ,compact('model','Posts'));

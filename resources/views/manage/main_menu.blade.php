@@ -8,6 +8,7 @@
       {{-- @include('manage.MyHero') --}} 
       @include('manage.MyProfile') 
       @include('manage.MyPosts_worker') 
+      @include('manage.MyPosts_project_owner') 
     </div>
      
    

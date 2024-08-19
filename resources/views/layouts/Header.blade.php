@@ -11,9 +11,11 @@
          <div class="container d-flex align-items-center justify-content-between">
             
                  <div class=" row align-items-center">
-                     <div class="col-md-12 text-center    "> 
+                     <div class="col-md-12 text-center    ">
+                        <a href="/">
                         <img class=" img-fluid  d-inline " src="{{ asset('chang_prompt/img/chang_prompt_logo.svg') }}"
            alt="{{env('APP_NAME')}} โลโก้ ช่างเหล็ก.com" style="width: 3rem;minmax(3rem, 48px);"  loading="lazy">
+        </a> 
                         @if (session()->has('account'))
                         <div class="d-md-none d-inline">
                             @include('layouts.Btn_Profile') 

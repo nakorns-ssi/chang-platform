@@ -23,16 +23,25 @@ class Project_ownerController  extends Controller
         // $this->middleware('AuthBuddyApp');
     } 
     
-    public function  index(Request $request)
+    public function  worker_post(Request $request)
     {    
-      $page_title = $this->page_title;
-      $model =  [];
-      $model_group =  [];
-      $master_filter =[];
-      $filter = $request->query('filter'); 
+      $page_title = $this->page_title; 
+      $model =   new Posts;   
       
         //dd($model);
-       return view('buddyapp/myorder_index',compact('last_update','customer_code','filter','tab','master_filter','model','model_group','total_weight','total_weight_out_standing','page_title'));
+       return view('manage/worker/worker_post',compact('model','page_title'));
+    }
+
+    public function  worker_post_add(Request $request)
+    {    
+      $page_title = $this->page_title; 
+      $model =   new Posts;  
+      $model->price_min = 0;
+      $model->price_max = 99;
+      $model->posts_type = 'worker';
+      
+        //dd($model);
+       return view('manage/worker/worker_post',compact('model','page_title'));
     }
      
     

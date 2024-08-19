@@ -17,31 +17,27 @@ use App\Models\Upload;
 class WorkerController  extends Controller
 { 
     protected $page_title = 'สำหรับช่าง';
+    protected $posts_type = 'worker';
     public function __construct()
     {
          //Session::put('url_before_login', back()); 
         // $this->middleware('AuthBuddyApp');
     } 
-    
-    public function  index(Request $request)
-    {    
-      $page_title = $this->page_title;
-      $model =  [];
-      $model_group =  [];
-      $master_filter =[];
-      $filter = $request->query('filter'); 
-      
-        //dd($model);
-       return view('manage/worker/worker_index',compact('model','page_title'));
-    }
+     
 
     public function  worker_post(Request $request)
     {    
-      $page_title = $this->page_title; 
-      $model =   new Posts;   
+      $page_title = $this->page_title;
+      $paginate_num = 1;
+      $account_id =  session('account')['account_id'];
+      $account_display_name =  session('account')['profile_display_name']; 
+      $model = Posts::where([
+        'status'=>'y' , 
+        'posts_type'=> $this->posts_type,
+        'account_id' => $account_id ])->orderby('updated_at','desc')->paginate($paginate_num) ;   
       
         //dd($model);
-       return view('manage/worker/worker_post',compact('model','page_title'));
+       return view('manage/worker/worker_post_index',compact('model','page_title'));
     }
 
     public function  worker_post_add(Request $request)
@@ -49,25 +45,31 @@ class WorkerController  extends Controller
       $page_title = $this->page_title; 
       $model =   new Posts;  
       $model->price_min = 0;
-      $model->price_max = 99;
+      $model->price_max = 0;
       $model->posts_type = 'worker';
       
         //dd($model);
-       return view('manage/worker/worker_post',compact('model','page_title'));
+       return view('manage/worker/worker_post_frm',compact('model','page_title'));
     }
     public function  worker_post_save(Request $request)
     {      
       $model =  [];
       $model_group =  [];  
       $post = $request->input('model');
-      
+      $working_area =  $request->input('working_area'); 
       $account_id =  session('account')['account_id'];
       $account_display_name =  session('account')['profile_display_name'];
       $id =  $post['id'];
+
+      if($post['price_min'] != $post['price_max']){
+        $post['price']  = min($post['price_min'] ,$post['price_max']);
+      }
+      
+     
        
       if(!$id){   
         $model =  new Posts ;
-        //dd($model  );
+        // dd($model , $working_area ,$post , $request->file() );
         $model ::unguard();
         $model->fill($post);
         $model->account_id = $account_id;
@@ -76,15 +78,26 @@ class WorkerController  extends Controller
         $model->updated_at = Carbon::now(); 
         $model->updated_by = $account_id;  
         $model->updated_by_username = $account_display_name;  
-        $model->posts_key = 'temp_'.date('ymd').uniqid();
+        $model->posts_key = 'temp_'.date('ymd').uniqid(); 
         
         if($model->save()){  
             $model->posts_key =   util::gen_key($model->id) ;
+            if(isset($working_area['district'] )) {
+              foreach($working_area['district'] as $val){ 
+                $data = json_decode($val);   
+                $model->location_district = $data->district;
+                $model->location_amphoe = $data->amphoe;
+                $model->location_province = $data->province;
+              }
+            }
             $model->save();  
         } 
       } 
-      
-      $source_file = $request->file('model')['pic_upload'];
+      $source_file = [];
+      if(isset( $request->file('model')['pic_upload'])){
+        $source_file = $request->file('model')['pic_upload'];
+      }
+     
      
       foreach ($source_file as $key => $fileitem) {
         $ext = pathinfo($fileitem->getClientOriginalName(), PATHINFO_EXTENSION);
@@ -142,7 +155,7 @@ class WorkerController  extends Controller
        ]); 
         } 
      
-     // return redirect('/manage/profile') ;
+       return redirect('/manage/worker/post') ;
     }
      
     
