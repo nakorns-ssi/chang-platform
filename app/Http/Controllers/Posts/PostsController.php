@@ -41,6 +41,20 @@ class PostsController  extends Controller
        //dd($upload);
        return view('posts/view_post',compact('model','upload','page_title'));
     }
+
+    public function  search_post(Request $request )
+    {    
+      $page_title = $this->page_title;
+      $post = $request->query('q');
+      $post_id = $id;
+      $paginate_num = 1; 
+      $model = Posts::where(['status'=>'y' ])->first() ;   
+
+  
+      
+       //dd($upload);
+       return view('posts/search_post',compact('model','upload','page_title'));
+    }
  
      
     

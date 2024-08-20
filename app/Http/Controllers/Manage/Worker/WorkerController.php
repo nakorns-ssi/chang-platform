@@ -28,7 +28,7 @@ class WorkerController  extends Controller
     public function  worker_post(Request $request)
     {    
       $page_title = $this->page_title;
-      $paginate_num = 1;
+      $paginate_num = 10;
       $account_id =  session('account')['account_id'];
       $account_display_name =  session('account')['profile_display_name']; 
       $model = Posts::where([
