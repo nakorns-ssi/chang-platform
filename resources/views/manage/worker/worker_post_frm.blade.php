@@ -78,28 +78,24 @@
         </div>
     </div>
 
-    @if(count($upload)>0)
     <div class="container d-flex justify-content-center"> 
-        <div class="row"> 
+    <table class="table table-sm"> 
+        <tbody>
         @foreach ($upload as $key => $value)
-        @if(isset($value->upload_key))
         <?php $view_img_link = '/upload/img/' . $value->upload_key; ?>
-        <div class="col-sm-6">
-            <div class="card" style="width: 18rem;"> 
+          <tr> 
+            <td>
                 <a href='{{ $view_img_link }}' target='_blank'>
-                    <img  src='{{ $view_img_link }}' class="card-img-top" loading='lazy' />
-                 </a>
-                <div class="card-body text-center">
-                    <button type="button" class="btn btn-sm btn-danger">ลบ</button>
-                </div>
-            </div>
-        </div> 
-        @endif
-        @endforeach 
-        </div>
+                    <img src="{{ $view_img_link }}" width="150px" class="rounded" loading="lazy">
+                </a>
+            </td>
+            <td> <button type="button" class="btn btn-sm btn-danger">ลบ</button></td>
+          </tr> 
+          @endforeach 
+        </tbody>
+      </table>
     </div>
-       
-    @endif
+ 
   
       
     </section>

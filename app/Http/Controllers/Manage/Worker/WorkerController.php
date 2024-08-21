@@ -69,7 +69,7 @@ class WorkerController  extends Controller
       if(!$model){
         abort(404);
       }
-      //   dd($model);
+        // dd($model->id);
       $upload = Upload::where('status','y') 
         ->where('posts_id',$model->id)  
         ->orderby('updated_at','desc')
