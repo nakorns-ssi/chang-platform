@@ -22,37 +22,110 @@
   <!-- End Header -->
  
       <section class="container  card " style="margin-top:25px;"  >   
-        <ul class="nav nav-pills flex-column flex-sm-row    justify-content-center " id="myTab" role="tablist">
-            <li class="nav-item me-2" role="presentation">
-              <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">
-                <i class="bi bi-file-text"></i> โพสต์
-            </button>
+        <ul class="nav nav-pills d-flex  " id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">โพสต์</button>
             </li>
-            <li class="nav-item me-2" role="presentation">
-                <button class="nav-link" id="location-tab" data-bs-toggle="tab" data-bs-target="#location-tab-pane" type="button" role="tab" aria-controls="location-tab-pane" aria-selected="false">
-                    <i class="bi bi-geo-alt-fill"></i> พื้นที่
-                </button>
-              </li>
-           
-            <li class="nav-item me-2" role="presentation">
-                <button class="nav-link " id="upload-tab" data-bs-toggle="tab" data-bs-target="#upload-tab-pane" type="button" role="tab" aria-controls="upload-tab-pane" aria-selected="false">
-                    <i class='bi bi-file-image'></i> รูปภาพ (0)
-                </button>
-              </li> 
-        </ul>
-
-          <div class="tab-content my-4" id="myTabContent">
-            <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
-                @include('manage.worker._post_frm')
-            </div>
-            <div class="tab-pane fade" id="location-tab-pane" role="tabpanel" aria-labelledby="location-tab" tabindex="0"> 
-                @include('manage.worker._location_frm')    
-            </div>
-            <div class="tab-pane fade" id="upload-tab-pane" role="tabpanel" aria-labelledby="upload-tab" tabindex="0">
-                @include('manage.worker._upload_frm') 
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">พื้นที่</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">รูปภาพ</button>
+            </li>
+          
+          </ul>
+          <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">โพสต์</div>
+            <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">พื้นที่</div>
+            <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">รูปภาพ
+            @include('manage.worker.worker_upload_frm')    
             </div> 
           </div>
-      
+      <?php
+      $actionPath = '/manage/worker/post/save';
+      ?> 
+       <form action="{{ $actionPath }}" method="post" name="frm_n" id="frm_n" class="  ">
+        @csrf
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6 ">
+            
+                <div class="mb-3">
+                    <label for="posts_content" class="form-label"><i class="bi bi-pencil"></i> เขียนโพสต์ * </label>
+                    <textarea class="form-control" id="posts_content" name="model[posts_content]" rows="6" required >{{$model->posts_content}}</textarea>
+                    
+                </div>
+                <div class="mb-3">
+                    <label for="price_min" class="form-label"><i class="bi bi-cash-coin"></i> ช่วงราคา</label>
+                    <div class="input-group mb-1">
+                        <div class="input-group-text" id="price_min">เริ่มต้น ฿</div>
+                        <input type="number" name="model[price_min]" value="{{$model->price_min}}" class="form-control" placeholder="ราคาเริ่มต้น"  > 
+                     </div>
+                     <div class="input-group mb-1"> 
+                        <div class="input-group-text" id="price_max">สิ้นสุด ฿</div>
+                        <input type="number" name="model[price_max]" value="{{$model->price_max}}" class="form-control" placeholder="ราคาสิ้นสุด"  >
+                     </div>
+                </div>
+                <div class="mb-3">
+                    <label for="search_district" class="form-label"><i class="bi bi-geo-alt-fill"></i> ระบุพื้นที่รับงาน/ปฎิบัติงาน
+                    </label>
+                      <input type="text" class="form-control" id="search_district"
+                            placeholder=" ระบุเช่น ชุมพร , หลังสวน , หาดใหญ่" />
+                        <div id="district_list" class="  px-1 text-start  mt-3 "></div>
+                        @if($model->location_district)
+                            <div>
+                            <span class='badge fs-6 my-1  text-bg-secondary'>{{$model->location_district}}</span> 
+                            <span class="options ms-auto"> 
+                                <i onClick="deleteItem(this)" class="fas fa-trash-alt text-danger"></i>
+                                <input type="hidden" name="working_area[district][]" value={{$model->location_district}}>
+                            </span>
+                            </div >
+                        @endif
+                </div>
+               
+            </div>
+        </div> 
+        <input type="hidden" name="model[id]"  value="{{$model->id}}"  >
+         <input type="hidden" name="model[posts_type]"  value="{{$model->posts_type}}"  >
+    </form>
+       
+       
+      <div class="row justify-content-center"> 
+        <div class="col-md-8 col-lg-6 ">
+            <div class="mb-3">
+                <form action="{{ $actionPath }}" method="post" class="dropzone" name="my_great_dropzone" id="my-great-dropzone" 
+                style=" border: dotted #ccc 5px ; border-radius: 10px; ">
+                    @csrf
+                    <div class="previews"></div>
+                    
+                </form>
+            </div>
+            <div class="mb-3 text-center">
+                <button type="button"  onclick="do_save()" class="btn btn-primary"><i class="bi bi-send"></i> โพสต์</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container d-flex justify-content-center"> 
+    <table class="table w-75 table-sm table-bordered"> 
+        <tbody>
+        @foreach ($upload as $key => $value)
+        <?php $view_img_link = '/upload/img/' . $value->upload_key; ?>
+          <tr> 
+            <td>
+                <a href='{{ $view_img_link }}' target='_blank'>
+                    <img src="{{ $view_img_link }}" width="150px" class="rounded" loading="lazy">
+                </a>
+            </td>
+            <td class="align-middle"> <button type="button" class="btn btn-sm btn-danger" 
+                onclick="del_img('{{$value->upload_key}}')"
+                >ลบ</button></td>
+          </tr> 
+          @endforeach 
+        </tbody>
+      </table>
+    </div>
+ 
+  
       
     </section>
     <?php if (Session::has('alert')):

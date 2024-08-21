@@ -1,0 +1,39 @@
+<?php
+      $actionPath = '/manage/worker/post/save';
+      ?> 
+       <form action="{{ $actionPath }}" method="post" name="frm_n" id="frm_n" class="  ">
+        @csrf
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6 ">
+            
+                <div class="mb-3">
+                    <label for="posts_content" class="form-label"><i class="bi bi-pencil"></i> เขียนโพสต์ * </label>
+                    <textarea class="form-control" id="posts_content" name="model[posts_content]" rows="6" required >{{$model->posts_content}}</textarea>
+                    
+                </div>
+                <div class="mb-3">
+                    <label for="price_min" class="form-label"><i class="bi bi-cash-coin"></i> ช่วงราคา</label>
+                    <div class="input-group mb-1">
+                        <div class="input-group-text" id="price_min">เริ่มต้น ฿</div>
+                        <input type="number" name="model[price_min]" value="{{$model->price_min}}" class="form-control" placeholder="ราคาเริ่มต้น"  > 
+                     </div>
+                     <div class="input-group mb-1"> 
+                        <div class="input-group-text" id="price_max">สิ้นสุด ฿</div>
+                        <input type="number" name="model[price_max]" value="{{$model->price_max}}" class="form-control" placeholder="ราคาสิ้นสุด"  >
+                     </div>
+                </div> 
+            </div>
+        </div> 
+        <div class="row justify-content-center"> 
+            <div class="col-md-8 col-lg-6 ">
+             
+                <div class="mb-3 text-center">
+                    <button type="button"  onclick="do_save()" class="btn btn-primary"><i class="bi bi-send"></i> โพสต์</button>
+                </div>
+            </div>
+        </div>
+        <input type="hidden" name="model[id]"  value="{{$model->id}}"  >
+         <input type="hidden" name="model[posts_type]"  value="{{$model->posts_type}}"  >
+    </form>
+        
+  
