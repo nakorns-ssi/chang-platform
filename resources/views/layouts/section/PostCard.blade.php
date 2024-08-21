@@ -41,10 +41,10 @@ if(!isset($mode)){
           <div class="">
                <!-- Product price-->
               @if($value->price_min!=$value->price_max)
-              <span class="text-dark" >฿{{$value->price_min}}</span> - 
-              <span class="text-dark  ">฿{{$value->price_max}}</span> 
+              <span class="text-dark" >฿{{number_format($value->price_min)}}</span> - 
+              <span class="text-dark  ">฿{{number_format($value->price_max)}}</span> 
               @else
-              <span class="text-dark" >฿{{$value->price_min}}</span> 
+              <span class="text-dark" >฿{{number_format($value->price_min)}}</span> 
               @endif
           </div>
            

@@ -91,10 +91,20 @@ class WorkerController  extends Controller
       if($post['price_min'] != $post['price_max']){
         $post['price']  = min($post['price_min'] ,$post['price_max']);
       }
-      
+     // dd( $id , $model   );
      
        
-      if(!$id){   
+      if($id){ //update  
+        $model =  Posts::where('id',$id)->first();
+        //dd($model  );
+        $model ::unguard();
+        $model->fill($post);       
+        $model->updated_at = Carbon::now(); 
+        $model->updated_by = $account_id;  
+        $model->updated_by_username = $account_display_name; 
+        $model->save(); 
+
+       } else{ //create  
         $model =  new Posts ;
         // dd($model , $working_area ,$post , $request->file() );
         $model ::unguard();
@@ -108,7 +118,7 @@ class WorkerController  extends Controller
         $model->posts_key = 'temp_'.date('ymd').uniqid(); 
         
         if($model->save()){  
-            $model->posts_key =   util::gen_key($model->id) ;
+            $model->posts_key =  util::gen_key($model->id) ;
             if(isset($working_area['district'] )) {
               foreach($working_area['district'] as $val){ 
                 $data = json_decode($val);   
@@ -120,11 +130,13 @@ class WorkerController  extends Controller
             $model->save();  
         } 
       } 
+      
       $source_file = [];
       if(isset( $request->file('model')['pic_upload'])){
         $source_file = $request->file('model')['pic_upload'];
       }
-     
+
+     //dd($source_file,$request->file('model')['pic_upload']);
      
       foreach ($source_file as $key => $fileitem) {
         $ext = pathinfo($fileitem->getClientOriginalName(), PATHINFO_EXTENSION);

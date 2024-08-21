@@ -29,11 +29,10 @@
         @csrf
         <div class="row justify-content-center">
             <div class="col-md-8 col-lg-6 ">
-           
-           
+            
                 <div class="mb-3">
                     <label for="posts_content" class="form-label"><i class="bi bi-pencil"></i> เขียนโพสต์ * </label>
-                    <textarea class="form-control" id="posts_content" name="model[posts_content]" rows="6" required ></textarea>
+                    <textarea class="form-control" id="posts_content" name="model[posts_content]" rows="6" required >{{$model->posts_content}}</textarea>
                     
                 </div>
                 <div class="mb-3">
@@ -53,6 +52,15 @@
                       <input type="text" class="form-control" id="search_district"
                             placeholder=" ระบุเช่น ชุมพร , หลังสวน , หาดใหญ่" />
                         <div id="district_list" class="  px-1 text-start  mt-3 "></div>
+                        @if($model->location_district)
+                            <div>
+                            <span class='badge fs-6 my-1  text-bg-secondary'>{{$model->location_district}}</span> 
+                            <span class="options ms-auto"> 
+                                <i onClick="deleteItem(this)" class="fas fa-trash-alt text-danger"></i>
+                                <input type="hidden" name="working_area[district][]" value={{$model->location_district}}>
+                            </span>
+                            </div >
+                        @endif
                 </div>
                
             </div>
@@ -79,7 +87,7 @@
     </div>
 
     <div class="container d-flex justify-content-center"> 
-    <table class="table table-sm"> 
+    <table class="table w-75 table-sm table-bordered"> 
         <tbody>
         @foreach ($upload as $key => $value)
         <?php $view_img_link = '/upload/img/' . $value->upload_key; ?>
@@ -89,7 +97,9 @@
                     <img src="{{ $view_img_link }}" width="150px" class="rounded" loading="lazy">
                 </a>
             </td>
-            <td> <button type="button" class="btn btn-sm btn-danger">ลบ</button></td>
+            <td class="align-middle"> <button type="button" class="btn btn-sm btn-danger" 
+                onclick="del_img('{{$value->upload_key}}')"
+                >ลบ</button></td>
           </tr> 
           @endforeach 
         </tbody>
@@ -128,7 +138,7 @@
                 // First change the button to actually tell Dropzone to process the queue.
                 this.on("complete", function() {
                     console.log('complete')
-                      location.href = '/manage/worker/post'
+                   //  location.href = '/manage/worker/post'
                 });
 
                 this.on("success", function() {
@@ -172,7 +182,7 @@
             onDataFill: function(data) {
                 console.log(data)
                 district_list.innerHTML =
-                    " <div><span class='badge fs-6  text-bg-secondary'>" + data.district + "</span>" +
+                    " <div><span class='badge fs-6 my-1 text-bg-secondary'>" + data.district + "</span>" +
                     ` <span class="options ms-auto"> 
                        <i onClick="deleteItem(this)" class="fas fa-trash-alt text-danger"></i>
                        <input type="hidden" name="working_area[district][]" value='${JSON.stringify(data)}'>
@@ -181,6 +191,12 @@
 });
          var myDropzone
          $('#preloader').show()
+         let deleteItem = (e) => {
+            console.log(e)
+            e.parentElement.parentElement.remove();
+            // e.parentElement.remove();
+            console.log(e)
+        };
         $(document).ready(function() {
             // get_item_no()
             $('#preloader').hide()
@@ -201,6 +217,32 @@
                 } 
            // frm_n.submit()
         }
+
+        function del_img(data) {
+            var config = {
+                title: 'ลบ-สินค้า/บริการ',
+                url: '/claim/product/del' 
+                + '?id=' + data.id 
+            }
+            Swal.fire({
+                title: 'Are you sure?',
+                text: data.title,
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.value) {
+                    location.href = config.url
+                }
+            })
+        
+ 
+        show_modal(config)
+        }
+
+
+        
  
  
         function load_alert() {
