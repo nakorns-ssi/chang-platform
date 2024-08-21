@@ -28,13 +28,19 @@ class WorkerController  extends Controller
     public function  worker_post(Request $request)
     {    
       $page_title = $this->page_title;
-      $paginate_num = 10;
+      $paginate_num = 5;
       $account_id =  session('account')['account_id'];
       $account_display_name =  session('account')['profile_display_name']; 
       $model = Posts::where([
         'status'=>'y' , 
         'posts_type'=> $this->posts_type,
-        'account_id' => $account_id ])->orderby('updated_at','desc')->paginate($paginate_num) ;   
+        'account_id' => $account_id ])->orderby('updated_at','desc')->paginate($paginate_num) ;
+      foreach( $model as $val):
+        $val->img_thumbnail = Upload::where('status','y') 
+          ->where('posts_id',$val->id)  
+          ->orderby('updated_at','desc')
+          ->first(); 
+        endforeach;   
       
         //dd($model);
        return view('manage/worker/worker_post_index',compact('model','page_title'));
@@ -43,13 +49,34 @@ class WorkerController  extends Controller
     public function  worker_post_add(Request $request)
     {    
       $page_title = $this->page_title; 
+      $upload = [];
       $model =   new Posts;  
       $model->price_min = 0;
       $model->price_max = 0;
-      $model->posts_type = 'worker';
-      
+      $model->posts_type =  $this->posts_type; 
+       // dd($upload);
+       return view('manage/worker/worker_post_frm',compact('model','page_title' ,'upload'));
+    }
+    public function  worker_post_edit(Request $request)
+    {
+      $page_title = $this->page_title;
+      $account_id =  session('account')['account_id'];
+      $key = $request->query('key');
+      $model = Posts::where([
+        'status'=>'y' , 
+        'posts_key'=> $key,
+        'account_id' => $account_id ])->first() ;
+      if(!$model){
+        abort(404);
+      }
+      //   dd($model);
+      $upload = Upload::where('status','y') 
+        ->where('posts_id',$model->id)  
+        ->orderby('updated_at','desc')
+        ->get();  
+          
         //dd($model);
-       return view('manage/worker/worker_post_frm',compact('model','page_title'));
+       return view('manage/worker/worker_post_frm',compact('model','page_title' ,'upload'));
     }
     public function  worker_post_save(Request $request)
     {      

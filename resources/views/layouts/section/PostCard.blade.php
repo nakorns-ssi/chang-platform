@@ -1,4 +1,10 @@
-<a href="{{ url("/post/$value->id")}}">
+<?php 
+use App\helper\util; 
+if(!isset($mode)){
+  $mode = null;
+}
+?>
+ 
 <div class="card h-100 w-100 zoom">
   <div class="badge bg-light shadow opacity-75 text-danger position-absolute" style="top: 0.5rem; right: 0.5rem">ช่าง</div>
    
@@ -47,9 +53,15 @@
        
     </div>
   </div>
-
-</div>
-</a>
+  @if($mode=='edit')
+    <div class="card-footer text-body-secondary"> 
+      <span class="float-end  ">
+        <a class="btn  btn-sm btn-primary" href="/manage/worker/post/edit?key={{ $value->posts_key }}"
+            role="button">แก้ไขข้อมูล</a>
+      </span>
+    </div>
+  @endif
+</div> 
 
 <style>
 

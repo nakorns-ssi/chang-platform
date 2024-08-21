@@ -49,7 +49,7 @@
                                 <div class="row justify-content-center align-items-center">
                                     <div class="col-md-6">
                                         <div class="mb-3">
-                                            <label for="profile_display_name" class="form-label">ชื่อโปรไฟล์*</label>
+                                            <label for="profile_display_name" class="form-label">ชื่อโปรไฟล์ *</label>
                                             <input type="text" class="form-control" id="profile_display_name"
                                             value="{{$model->profile_display_name}}"
                                                 name="model[profile_display_name]" placeholder="ระบุ" required>
@@ -57,7 +57,7 @@
                                     </div> 
                                     <div class="col-md-6">
                                         <div class="mb-3">
-                                            <label for="profile_full_name" class="form-label">ชื่อ-สกุล*</label>
+                                            <label for="profile_full_name" class="form-label">ชื่อ-สกุล *</label>
                                             <input type="text" class="form-control" id="profile_full_name"
                                             value="{{$model->profile_full_name}}"
                                                 name="model[profile_full_name]" placeholder="ระบุ" required>

@@ -15,7 +15,7 @@
  
   <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center justify-content-between"> 
-        <a class="btn btn-sm  btn-outline-dark" href="/manage"  ><i class="bi bi-caret-left-fill"></i> ย้อนกลับ</a>
+        <a class="btn btn-sm  btn-outline-dark" href="/manage/worker/post"  ><i class="bi bi-caret-left-fill"></i> ย้อนกลับ</a>
         <div class="  "><a class="text-dark" href="/manage/worker/post">โพสต์สำหรับช่าง </a> </div>
     </div>
   </header><!-- End Header -->
@@ -78,9 +78,29 @@
         </div>
     </div>
 
-   
-
-     
+    @if(count($upload)>0)
+    <div class="container d-flex justify-content-center"> 
+        <div class="row"> 
+        @foreach ($upload as $key => $value)
+        @if(isset($value->upload_key))
+        <?php $view_img_link = '/upload/img/' . $value->upload_key; ?>
+        <div class="col-sm-6">
+            <div class="card" style="width: 18rem;"> 
+                <a href='{{ $view_img_link }}' target='_blank'>
+                    <img  src='{{ $view_img_link }}' class="card-img-top" loading='lazy' />
+                 </a>
+                <div class="card-body text-center">
+                    <button type="button" class="btn btn-sm btn-danger">ลบ</button>
+                </div>
+            </div>
+        </div> 
+        @endif
+        @endforeach 
+        </div>
+    </div>
+       
+    @endif
+  
       
     </section>
     <?php if (Session::has('alert')):
@@ -164,8 +184,10 @@
             }
 });
          var myDropzone
+         $('#preloader').show()
         $(document).ready(function() {
             // get_item_no()
+            $('#preloader').hide()
             load_alert() 
         }) // load page
         function do_save( ) {

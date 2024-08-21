@@ -21,9 +21,7 @@ class UploadController extends Controller
  
  public function img_path(Request $request,$upload_key=null)
  {
-  if(!session()->has('role') ){
-    return response('permission denied', 401);
-  }
+   
    $model =Upload::where('status','y')
    ->where('upload_key',$upload_key )  
    ->first(); 

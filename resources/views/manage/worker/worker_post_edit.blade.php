@@ -7,7 +7,7 @@
      
 <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center justify-content-between"> 
-        <a class="btn btn-sm  btn-outline-dark" href="/manage"  ><i class="bi bi-caret-left-fill"></i> หน้าจัดการงาน</a>
+        <a class="btn btn-sm  btn-outline-dark" href="/manage"  ><i class="bi bi-caret-left-fill"></i> ย้อนกลับ</a>
         <div class="  "><a class="text-dark" href="/manage/worker/post">โพสต์ทั้งหมด{{$page_title}} </a> </div>
     </div>
   </header><!-- End Header -->
@@ -18,7 +18,7 @@
                 ทั้งหมด {{ count($model) }} รายการ
             </div>
             <div class="col-6  text-end">
-                <a class="btn btn-sm btn-primary" href="/manage/worker/post/add" role="button"><i class="bi bi-plus-lg"></i> สร้างโพสต์ใหม่</a>
+                <a class="btn btn-sm btn-primary" href="/manage/worker/post/add" role="button"><i class="bi bi-plus-lg"></i>เพิ่ม</a>
             </div>
         </div>
         <div class="row gx-1 gx-lg-4 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-start">
