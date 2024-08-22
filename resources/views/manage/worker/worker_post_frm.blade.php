@@ -22,7 +22,7 @@
   <!-- End Header -->
  
       <section class="container  card " style="margin-top:25px;"  >   
-        <ul class="nav nav-pills flex-column flex-sm-row    justify-content-center " id="myTab" role="tablist">
+        <ul class="nav nav-pills flex-row    justify-content-center " id="myTab" role="tablist">
             <li class="nav-item me-2" role="presentation">
               <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">
                 <i class="bi bi-file-text"></i> โพสต์
@@ -36,7 +36,7 @@
            
             <li class="nav-item me-2" role="presentation">
                 <button class="nav-link " id="upload-tab" data-bs-toggle="tab" data-bs-target="#upload-tab-pane" type="button" role="tab" aria-controls="upload-tab-pane" aria-selected="false">
-                    <i class='bi bi-file-image'></i> รูปภาพ (0)
+                    <i class='bi bi-file-image'></i> รูปภาพ (<?php echo count($upload); ?>) 
                 </button>
               </li> 
         </ul>
@@ -164,28 +164,7 @@
            // frm_n.submit()
         }
 
-        function del_img(data) {
-            var config = {
-                title: 'ลบ-สินค้า/บริการ',
-                url: '/claim/product/del' 
-                + '?id=' + data.id 
-            }
-            Swal.fire({
-                title: 'Are you sure?',
-                text: data.title,
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
-            }).then((result) => {
-                if (result.value) {
-                    location.href = config.url
-                }
-            })
-        
- 
-        show_modal(config)
-        }
+       
 
 
         

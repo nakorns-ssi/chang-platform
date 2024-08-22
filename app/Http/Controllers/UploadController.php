@@ -37,10 +37,37 @@ class UploadController extends Controller
       //   $googleCloudStoragePath = $upload_path.'/'.$filename;  
         $storage->registerStreamWrapper();   
         return  response(file_get_contents("gs://".$path_img))->header('Content-type',$model->content_type) ;
-   
- 
+
     return view('upload.upload_view_img', compact('model', 'upload_key'));
    
+ }
+
+ public function del(Request $request)
+ {
+    $upload_key =   $request->query('upload_key');  
+    $account_id =  session('account')['account_id'];
+    $account_display_name =  session('account')['profile_display_name'];
+    
+    $dataset = [ 
+        "status" => 'd', 
+        'updated_by'=>   $account_id ,
+        'updated_by_username'=> $account_display_name, 
+    ];   
+     $model = DB::table('upload') ->where("upload_key",$upload_key)->update($dataset);
+
+      if($model){
+         Session::flash('alert', [
+            'status' => 'success',
+            'text' => 'บันทึกข้อมูลแล้ว!' . '  , ' . date('H:i:s'),
+        ]);
+         return back()->withInput();
+        }else{
+         Session::flash('alert', [
+            'status' => 'error',
+            'text' => 'ข้อมูลไม่ถูกต้อง',
+        ]);
+         return back()->withInput();
+         } 
  }
  
 

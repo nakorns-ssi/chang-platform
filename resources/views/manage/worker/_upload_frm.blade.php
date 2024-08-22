@@ -26,10 +26,35 @@
             </a>
         </td>
         <td class="align-middle"> <button type="button" class="btn btn-sm btn-danger" 
-            onclick="del_img('{{$value->upload_key}}')"
+            onclick="del_upload('{{$value->upload_key}}')"
             >ลบ</button></td>
       </tr> 
       @endforeach 
     </tbody>
   </table>
 </div>
+
+<script>
+     function del_upload(upload_key) {
+        var config = {
+                title: 'ต้องการจะลบ ?',
+                url: '/upload/del' 
+                + '?upload_key=' + upload_key
+            }
+            Swal.fire({
+                title: 'ต้องการจะลบ ?', 
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                cancelButtonText: 'ยกเลิก',
+                confirmButtonText: 'ตกลง, ลบรายการ !'
+            }).then((result) => {
+                if (result.value) {
+                    $('#preloader').show()
+                    location.href = config.url
+                }
+            })
+        
+  
+        }
+</script>
