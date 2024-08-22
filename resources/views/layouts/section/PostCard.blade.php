@@ -56,7 +56,7 @@ if(!isset($mode)){
   @if($mode=='edit')
     <div class="card-footer text-body-secondary"> 
       <span class="float-end  ">
-        <a class="btn  btn-sm btn-primary" href="/manage/worker/post/edit?key={{ $value->posts_key }}"
+        <a class="btn  btn-sm btn-primary" href="/manage/worker/post/edit?id={{ $value->posts_key }}"
             role="button">แก้ไขข้อมูล</a>
       </span>
     </div>

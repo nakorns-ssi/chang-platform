@@ -61,13 +61,13 @@ class WorkerController  extends Controller
     {
       $page_title = $this->page_title;
       $account_id =  session('account')['account_id'];
-      $key = $request->query('key');
-      DB::enableQueryLog();
+      $key = $request->query('id');
+    //  DB::enableQueryLog();
       $model = Posts::where([
         'status'=>'y' , 
         'posts_key'=> $key,
         'account_id' => $account_id ])->first() ;
-        dd(DB::getQueryLog());
+      //  dd(DB::getQueryLog());
       if(!$model){
         abort(404);
       }
