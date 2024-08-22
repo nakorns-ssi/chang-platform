@@ -50,12 +50,34 @@ class WorkerController  extends Controller
     {    
       $page_title = $this->page_title; 
       $upload = [];
-      $model =   new Posts;  
-      $model->price_min = 0;
-      $model->price_max = 0;
-      $model->posts_type =  $this->posts_type; 
+      $account_id =  session('account')['account_id'];
+      $account_display_name =  session('account')['profile_display_name'];
+      $model =  Posts::where([
+        'status'=>'y' , 
+        'status_code'=> 'draft',
+        'account_id' => $account_id ])->first();
+      if(!$model){
+        $model =   new Posts;  
+        $model->price_min = 0;
+        $model->price_max = 0;
+        $model->posts_type =  $this->posts_type;  
+        $model->account_id = $account_id;
+        $model->created_at = Carbon::now(); 
+        $model->created_by = $account_id;
+        $model->updated_at = Carbon::now(); 
+        $model->updated_by = $account_id;  
+        $model->updated_by_username = $account_display_name;  
+        $model->posts_key = 'temp_'.date('ymd').uniqid(); 
+        if($model->save()){  
+          $model->posts_key =  util::gen_key($model->id) ; 
+          $model->save();  
+      } 
+
+      }
+      return redirect('/manage/worker/post/edit?id='. $model->posts_key) ;
+     
        // dd($upload);
-       return view('manage/worker/worker_post_frm',compact('model','page_title' ,'upload'));
+      // return view('manage/worker/worker_post_frm',compact('model','page_title' ,'upload'));
     }
     public function  worker_post_edit(Request $request)
     {

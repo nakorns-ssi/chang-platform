@@ -54,11 +54,12 @@
             this.on("complete", function() {
                 console.log('complete')
                //  location.href = '/manage/worker/post'
+               location.reload() 
             });
 
             this.on("success", function() {
                 console.log('success')
-                 location.href = '/manage/worker/post'
+                // location.href = '/manage/worker/post'
             });
 
             this.on('error', function(file, response) {
