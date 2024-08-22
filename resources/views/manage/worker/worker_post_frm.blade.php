@@ -63,60 +63,7 @@
     <?php endif;?>
     <style> 
     </style>
-    <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />   
-    <script>
-        Dropzone.options.myGreatDropzone = { // camelized version of the `id`
-            autoProcessQueue: false,
-            dictDefaultMessage: "<i class='bi bi-file-image'></i> รูปภาพ   ( ไม่เกิน 5 รูป)",
-            autoProcessQueue: false,
-            addRemoveLinks: true,
-            paramName: 'model[pic_upload]',
-            uploadMultiple: true,
-            parallelUploads: 10,
-            maxFiles: 5,
-            resizeWidth: 640, 
-            resizeQuality: 0.7,
-            acceptedFiles: "image/*",
-            init: function() {
-                myDropzone = this;
-
-                // First change the button to actually tell Dropzone to process the queue.
-                this.on("complete", function() {
-                    console.log('complete')
-                   //  location.href = '/manage/worker/post'
-                });
-
-                this.on("success", function() {
-                    console.log('success')
-                     location.href = '/manage/worker/post'
-                });
-
-                this.on('error', function(file, response) {
-                    console.log('error')
-                    console.log(response)
-
-                });
-                this.on("sendingmultiple", function(file, xhr, formData) {
-                    console.log('sendingmultiple')
-                    var data = $('#frm_n').serializeArray();
-                    $.each(data, function(key, el) {
-                        formData.append(el.name, el.value);
-                    });
-                    $('#preloader').show()
-                });
-                this.on("successmultiple", function(files, response) {
-                    console.log('successmultiple')
-                    // location.reload() 
-                });
-                this.on("errormultiple", function(files, response) {
-                    console.log('errormultiple')
-                });
-
-            }
-        };
-
-      </script>
+   
     <script>
  let district_list = document.getElementById("district_list");
  $.Thailand({

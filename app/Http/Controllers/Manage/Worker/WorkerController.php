@@ -21,7 +21,7 @@ class WorkerController  extends Controller
     public function __construct()
     {
          //Session::put('url_before_login', back()); 
-        // $this->middleware('AuthBuddyApp');
+         $this->middleware('AuthManage');
     } 
      
 
