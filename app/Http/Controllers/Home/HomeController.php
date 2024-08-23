@@ -23,14 +23,15 @@ class HomeController  extends Controller
     }
     public function  home_index(Request $request)
     {   
-      $Posts =  Posts::where(['status_code'=>'published'])->take(4)->get();
-      $model = $Posts ;
-       foreach( $Posts as $val):
-        $val->img_thumbnail = Upload::where('status','y') 
-          ->where('posts_id',$val->id)  
-          ->orderby('updated_at','desc')
-          ->first(); 
-       endforeach;
+      $paginate_num = 4; 
+      $model = new Posts;
+      $model =  $model->leftJoin('upload', 'posts.id', '=', 'upload.posts_id') ;
+      $model =  $model->select('posts.*', 'upload.url as img_thumbnail_url' ,'upload.upload_key as img_upload_key' ) ;
+      $model =  $model->where([
+        'posts.status'=>'y' ,   
+        'status_code'=>'published' ])
+        ->orderby('posts.updated_at','desc')->paginate($paginate_num) ;
+      $Posts =  $model ;
       // dd($Posts  );
       
 

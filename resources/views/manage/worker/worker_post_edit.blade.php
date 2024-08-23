@@ -57,12 +57,11 @@
     </style>
       
     <script>
-         var myDropzone
+         
         $(document).ready(function() {
             // get_item_no()
             load_alert() 
-
-            
+ 
 
         }) // load page
         

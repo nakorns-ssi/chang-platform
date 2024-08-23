@@ -54,8 +54,7 @@
     <style> 
     </style>
       
-    <script>
-         var myDropzone
+    <script> 
         $(document).ready(function() {
             // get_item_no()
             load_alert() 

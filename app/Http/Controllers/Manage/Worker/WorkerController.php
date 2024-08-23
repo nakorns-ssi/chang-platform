@@ -31,18 +31,17 @@ class WorkerController  extends Controller
       $paginate_num = 5;
       $account_id =  session('account')['account_id'];
       $account_display_name =  session('account')['profile_display_name']; 
-      $model = Posts::where([
-        'status'=>'y' , 
+      $model = new Posts;
+      $model =  $model->leftJoin('upload', 'posts.id', '=', 'upload.posts_id') ;
+      $model =  $model->select('posts.*', 'upload.url as img_thumbnail_url' ,'upload.upload_key as img_upload_key' ) ;
+      $model =  $model->where([
+        'posts.status'=>'y' ,  
         'posts_type'=> $this->posts_type,
-        'account_id' => $account_id ])->orderby('updated_at','desc')->paginate($paginate_num) ;
-      foreach( $model as $val):
-        $val->img_thumbnail = Upload::where('status','y') 
-          ->where('posts_id',$val->id)  
-          ->orderby('updated_at','desc')
-          ->first(); 
-        endforeach;   
+        'posts.account_id' => $account_id ])
+        ->orderby('posts.updated_at','desc')->paginate($paginate_num) ;
+       
       
-        //dd($model);
+     //dd($model);
        return view('manage/worker/worker_post_index',compact('model','page_title'));
     }
 
@@ -61,6 +60,7 @@ class WorkerController  extends Controller
         $model->price_min = 0;
         $model->price_max = 0;
         $model->posts_type =  $this->posts_type;  
+        $model->status_code =  'draft';  
         $model->account_id = $account_id;
         $model->created_at = Carbon::now(); 
         $model->created_by = $account_id;
@@ -92,6 +92,9 @@ class WorkerController  extends Controller
       //  dd(DB::getQueryLog());
       if(!$model){
         abort(404);
+      }
+      if($model->status_code ==  'draft'){
+        $model->status_code =  'published';
       }
         // dd($model->id);
       $upload = Upload::where('status','y') 
@@ -140,20 +143,23 @@ class WorkerController  extends Controller
         $model->updated_by = $account_id;  
         $model->updated_by_username = $account_display_name;  
         $model->posts_key = 'temp_'.date('ymd').uniqid(); 
-        
         if($model->save()){  
-            $model->posts_key =  util::gen_key($model->id) ;
-            if(isset($working_area['district'] )) {
-              foreach($working_area['district'] as $val){ 
-                $data = json_decode($val);   
-                $model->location_district = $data->district;
-                $model->location_amphoe = $data->amphoe;
-                $model->location_province = $data->province;
-              }
-            }
+          $model->posts_key =  util::gen_key($model->id) ;
+          $model->save();
+        }
+        
+      }   
+        if(isset($working_area['district'] )) {
+          foreach($working_area['district'] as $val){ 
+            $data = json_decode($val);   
+            $model->location_district = $data->district;
+            $model->location_amphoe = $data->amphoe;
+            $model->location_province = $data->province;
+            $model->location_zipcode = $data->zipcode;
             $model->save();  
-        } 
-      } 
+          }
+        }
+         
       
       $source_file = [];
       if(isset( $request->file('model')['pic_upload'])){
@@ -218,7 +224,7 @@ class WorkerController  extends Controller
        ]); 
         } 
      
-       return redirect('/manage/worker/post') ;
+       return redirect('/manage/worker/post/edit?id='.$model->posts_key) ;
     }
      
     

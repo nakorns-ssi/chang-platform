@@ -11,8 +11,8 @@ if(!isset($mode)){
    style="top: 0.5rem; right: 0.5rem">{{helper_lang::post_status($value->posts_type)}}</div>
    
   <!-- Product image-->
-  @if(isset($value->img_thumbnail->url))
-  <img src="{{$value->img_thumbnail->url}}" class="card-img-top " alt=" {{$value->title}}" loading="lazy">
+  @if(isset($value->img_thumbnail_url))
+  <img src="{{$value->img_thumbnail_url}}" class="card-img-top " alt=" {{$value->title}}" loading="lazy">
   @else 
   <div class="text-center pt-2">
     <img class="card-img-top w-50 " src="{{ asset('chang_prompt/img/chang_prompt_logo.svg') }}"
@@ -22,7 +22,7 @@ if(!isset($mode)){
   @endif
    
   <!-- Product details-->
-  <div class="card-body py-2 px-2">
+  <div class="card-body py-1 px-2">
       <div class="text-start">
           <!-- Product name-->
           <h6 class=" line-clamp-2">{{$value->posts_content}}</h6>  

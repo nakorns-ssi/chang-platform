@@ -4,15 +4,7 @@
 @section('keywords', '')
 @section('content')
 {{-- @include('manage.manage_header') --}}
-<script type="text/javascript"
-        src="https://earthchie.github.io/jquery.Thailand.js/jquery.Thailand.js/dependencies/JQL.min.js"></script>
-<script type="text/javascript"
-    src="https://earthchie.github.io/jquery.Thailand.js/jquery.Thailand.js/dependencies/typeahead.bundle.js"></script>
-<link rel="stylesheet"
-    href="https://earthchie.github.io/jquery.Thailand.js/jquery.Thailand.js/dist/jquery.Thailand.min.css">
-<script type="text/javascript"
-    src="https://earthchie.github.io/jquery.Thailand.js/jquery.Thailand.js/dist/jquery.Thailand.min.js"></script>   
- 
+
   <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center justify-content-between"> 
         <a class="btn btn-sm  btn-outline-dark" href="/manage/worker/post"  ><i class="bi bi-caret-left-fill"></i> ย้อนกลับ</a>
@@ -58,15 +50,8 @@
     </style>
    
     <script>
-  
-         var myDropzone
-         $('#preloader').show()
-         let deleteItem = (e) => {
-            console.log(e)
-            e.parentElement.parentElement.remove();
-            // e.parentElement.remove();
-            console.log(e)
-        };
+   
+         
         $(document).ready(function() {
             // get_item_no()
             $('#preloader').hide()
@@ -75,17 +60,17 @@
         function do_save( ) {
             console.log('do_save')
             $('#preloader').show() 
-                count_file = myDropzone.files.length
-                console.log(myDropzone.files.length, myDropzone)
+                // count_file = myDropzone.files.length
+                // console.log(myDropzone.files.length, myDropzone)
                 
-                if (count_file > 0) {
-                    myDropzone.processQueue();
-                } else { 
-                    $('#preloader').show(); 
-                    frm_n.submit();
+                // if (count_file > 0) {
+                //     myDropzone.processQueue();
+                // } else { 
+                //     $('#preloader').show(); 
+                //     frm_n.submit();
                     
-                } 
-           // frm_n.submit()
+                // } 
+             frm_n.submit()
         }
 
        

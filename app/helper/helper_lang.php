@@ -16,7 +16,8 @@ class helper_lang
     {
         $lang = [
             'published' =>'เผยแพร่' ,
-            'draft' =>'ส่วนตัว' ,  
+            'draft' =>'ร่าง' ,  
+            'private' =>'ส่วนตัว' ,  
             'worker' =>'ช่าง' ,  
             'product_owner' =>'ผู้ว่าจ้าง' ,  
         ];

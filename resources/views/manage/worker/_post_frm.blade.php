@@ -27,14 +27,14 @@
                 </div>
                 <div class="mb-3 text-center text-sm-start">
                     <div class="input-group mb-3">
-                        <button class="btn btn-light border" type="button"><i class="bi bi-eye-fill"></i> การมองเห็น</button>
-                        <select class="form-select" id="inputGroupSelect03" aria-label="การมองเห็น โพสต์">
+                        <button class="btn btn-light border" type="button"><i class="bi bi-eye-fill"></i> การมองเห็นโพสต์</button>
+                        <select class="form-select" id="status_code" name="model[status_code]" aria-label="การมองเห็น โพสต์">
                            
                           <option value="published" 
                             <?php if($model->status_code == 'published') echo 'selected' ?>
                            >เผยแพร่</option>
-                          <option value="draft"  
-                            <?php if($model->status_code == 'draft') echo 'selected' ?>
+                          <option value="private"  
+                            <?php if($model->status_code == 'private') echo 'selected' ?>
                              >ส่วนตัว</option> 
                         </select>
                       </div>
@@ -46,8 +46,7 @@
         </div> 
  
         <input type="hidden" name="model[id]"  value="{{$model->id}}"  >
-         <input type="hidden" name="model[posts_type]"  value="{{$model->posts_type}}"  >
-         <input type="hidden" name="model[status_code]"  value="published"  >
+         <input type="hidden" name="model[posts_type]"  value="{{$model->posts_type}}"  > 
     </form>
 
    
