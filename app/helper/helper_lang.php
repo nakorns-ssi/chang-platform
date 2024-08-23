@@ -12,11 +12,13 @@ class helper_lang
         
     }
 
-    public static function ssi_reward_status($status_code)
+    public static function post_status($status_code)
     {
         $lang = [
-            'wait' =>'รออนุมัติ' ,
-            'approved' =>'อนุมัติ' ,  
+            'published' =>'เผยแพร่' ,
+            'draft' =>'ส่วนตัว' ,  
+            'worker' =>'ช่าง' ,  
+            'product_owner' =>'ผู้ว่าจ้าง' ,  
         ];
         if(isset($lang[$status_code])){
             return $lang[$status_code];

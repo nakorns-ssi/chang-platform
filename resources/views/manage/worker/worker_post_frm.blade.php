@@ -28,12 +28,7 @@
                 <i class="bi bi-file-text"></i> โพสต์
             </button>
             </li>
-            <li class="nav-item me-2 d-none" role="presentation">
-                <button class="nav-link" id="location-tab" data-bs-toggle="tab" data-bs-target="#location-tab-pane" type="button" role="tab" aria-controls="location-tab-pane" aria-selected="false">
-                    <i class="bi bi-geo-alt-fill"></i> พื้นที่
-                </button>
-              </li>
-           
+       
             <li class="nav-item me-2" role="presentation">
                 <button class="nav-link " id="upload-tab" data-bs-toggle="tab" data-bs-target="#upload-tab-pane" type="button" role="tab" aria-controls="upload-tab-pane" aria-selected="false">
                     <i class='bi bi-file-image'></i> รูปภาพ (<?php echo count($upload); ?>) 
@@ -45,9 +40,7 @@
             <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
                 @include('manage.worker._post_frm')
             </div>
-            <div class="tab-pane fade d-done" id="location-tab-pane" role="tabpanel" aria-labelledby="location-tab" tabindex="0"> 
-                @include('manage.worker._location_frm')    
-            </div>
+          
             <div class="tab-pane fade" id="upload-tab-pane" role="tabpanel" aria-labelledby="upload-tab" tabindex="0">
                 @include('manage.worker._upload_frm') 
             </div> 
@@ -65,23 +58,7 @@
     </style>
    
     <script>
- let district_list = document.getElementById("district_list");
- $.Thailand({
-            $district: $('.district'), // input ของตำบล
-            //  $amphoe: $('.amphoe'), // input ของอำเภอ
-            //  $province: $('.province'), // input ของจังหวัด
-            //  $zipcode: $('#postcode'), // input ของรหัสไปรษณีย์
-            $search: $('#search_district'),
-            onDataFill: function(data) {
-                console.log(data)
-                district_list.innerHTML =
-                    " <div><span class='badge fs-6 my-1 text-bg-secondary'>" + data.district + "</span>" +
-                    ` <span class="options ms-auto"> 
-                       <i onClick="deleteItem(this)" class="fas fa-trash-alt text-danger"></i>
-                       <input type="hidden" name="working_area[district][]" value='${JSON.stringify(data)}'>
-                   </span></div >`
-            }
-});
+  
          var myDropzone
          $('#preloader').show()
          let deleteItem = (e) => {

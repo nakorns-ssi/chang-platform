@@ -1,12 +1,14 @@
 <?php 
 use App\helper\util; 
+use App\helper\helper_lang; 
 if(!isset($mode)){
   $mode = null;
 }
 ?>
  
 <div class="card h-100 w-100 zoom">
-  <div class="badge bg-light shadow opacity-75 text-danger position-absolute" style="top: 0.5rem; right: 0.5rem">ช่าง</div>
+  <div class="badge bg-light shadow opacity-75 text-danger position-absolute" 
+   style="top: 0.5rem; right: 0.5rem">{{helper_lang::post_status($value->posts_type)}}</div>
    
   <!-- Product image-->
   @if(isset($value->img_thumbnail->url))
@@ -20,7 +22,7 @@ if(!isset($mode)){
   @endif
    
   <!-- Product details-->
-  <div class="card-body py-4 px-2">
+  <div class="card-body py-2 px-2">
       <div class="text-start">
           <!-- Product name-->
           <h6 class=" line-clamp-2">{{$value->posts_content}}</h6>  
@@ -54,7 +56,12 @@ if(!isset($mode)){
     </div>
   </div>
   @if($mode=='edit')
-    <div class="card-footer text-body-secondary"> 
+    <div class="card-footer text-body-secondary">
+      <span class="float-start  ">
+        <span> 
+          {{ helper_lang::post_status( $value->status_code)}} 
+        </span>
+      </span>
       <span class="float-end  ">
         <a class="btn  btn-sm btn-primary" href="/manage/worker/post/edit?id={{ $value->posts_key }}"
             role="button">แก้ไขข้อมูล</a>

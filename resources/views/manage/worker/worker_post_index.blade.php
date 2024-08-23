@@ -22,13 +22,11 @@
             </div>
         </div>
         <div class="row gx-1 gx-lg-4 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-start">
-           
             @foreach ($model as $key => $value)
-            <div class="col-lg-4 col-md-6  my-1 "> 
-                @include('layouts.section.PostCard' ,['mode'=>'edit'])  
-            </div>  
-            @endforeach
-           
+                <div class="col-lg-4 col-md-6  my-1 "> 
+                    @include('layouts.section.PostCard' ,['mode'=>'edit'])  
+                </div>  
+            @endforeach 
         </div>
           
        
