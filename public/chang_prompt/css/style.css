@@ -147,7 +147,7 @@ h3 {
 }
 
 
-#search_hero {
+.search_hero {
   background: rgba(0, 0, 0, 0) url(../img/banner_hero.jpg) no-repeat center top fixed;
   background-size: cover;
 }

@@ -3,127 +3,63 @@
 @section('description', "")
 @section('keywords', "")
 @section('content') 
-@include('layouts.Header') 
-    <main class="content" style="margin-top:80px"> 
-        <div class="container py-2">
-            <?php 
-            use Illuminate\Support\Str;
-            use App\helper\util; 
-            $Product_image_url = []; 
-            $link = '/';
-            ?>
-            
-            <div class="container pb-5"> 
-                <div class="row">
-                  
-                    <div class="col-lg-5 mt-5">
-             
-                        <div class="card mb-3">
-                            @if(isset($upload[0]->url))
-                            <img class="card-img img-fluid" src="{{$upload[0]->url}}" alt="รูปสินค้า {{$model->title}}"
-                                id="product-detail">
-                            @endif
-                        </div>
-                        <div class="row">
-                            <!--Start Controls-->
-                            <div class="col-1 align-self-center">
-                                <a href="#multi-item-example" role="button" data-bs-slide="prev">
-                                    <i class="text-dark fas fa-chevron-left"></i>
-                                    <span class="sr-only">Previous</span>
-                                </a>
-                            </div>
-                            <!--End Controls-->
-                            <!--Start Carousel Wrapper-->
-                            <div id="multi-item-example" class="col-10 carousel slide carousel-multi-item" data-bs-ride="carousel">
-                                <!--Start Slides-->
-                                <div class="carousel-inner product-links-wap" role="listbox">
-            
-            
-                                    <!--First slide-->
-                                    <div class="carousel-item active">
-                                        <div class="row">
-                                            @foreach($upload as $key => $img)
-                                            <?php    ?>
-                                            <div class="col-4">
-                                                <a href="{{$img->url}}" target="_blank">
-                                                    <img class="card-img img-fluid" src="{{$img->url}}" alt="Post Image {{$key}}">
-                                                </a>
-                                            </div>
-                                            @endforeach
-                                        </div>
-                                    </div>
-                                    <!--/.First slide-->
-            
-            
-            
-                                </div>
-                                <!--End Slides-->
-                            </div>
-                            <!--End Carousel Wrapper-->
-                            <!--Start Controls-->
-                            <div class="col-1 align-self-center">
-                                <a href="#multi-item-example" role="button" data-bs-slide="next">
-                                    <i class="text-dark fas fa-chevron-right"></i>
-                                    <span class="sr-only">Next</span>
-                                </a>
-                            </div>
-                            <!--End Controls-->
-                        </div>
-                    </div>
-                    <!-- col end -->
-                    <div class="col-lg-7 mt-5">
-                        <div class="card">
-                            <div class="card-body">
-                                <form action="" method="GET" class="mt-2">
-                                    <input type="hidden" name="product-title" value="Activewear">
-            
-                                    <div class="row pb-3">
-                                        <div class="col d-grid"> 
-                                           
-                                        </div>
-                                        <div class="col d-grid">
-                                            <a class="btn btn-success  " href="{{$link}}" role="button"><i
-                                                    class="bi bi-share"></i> แชร์ให้เพื่อน</a>
-                                        </div>
-                                    </div>
-                                </form>
-                                <h1 class="h4">{{$model->title}}</h1>
-                                <div class="text-start text-sm-center">
-                                    <!-- Product price-->
-                                    <span class="lead text-danger">฿{{number_format($model->sale_price)}}</span>
-                                    <span class="text-muted text-decoration-line-through ">฿{{$model->price}}</span>
-            
-                                </div>
-                                <p class="py-2">
-                                    <i class="fa fa-star text-warning"></i>
-                                    <i class="fa fa-star text-warning"></i>
-                                    <i class="fa fa-star text-warning"></i>
-                                    <i class="fa fa-star text-warning"></i>
-                                    <i class="fa fa-star text-secondary"></i>
-                                    <span class="list-inline-item text-dark">Rating {{$model->item_rating}} |
-                                        {{number_format($model->item_sold)}} ขายแล้ว</span>
-                                </p>
-                                <ul class="list-inline">
-                                    <li class="list-inline-item">
-                                        <h6>Brand:</h6>
-                                    </li>
-                                    <li class="list-inline-item">
-                                        <p class="text-muted"><strong>{{$model->global_brand}}</strong></p>
-                                    </li>
-                                </ul>
-            
-                                <h6>รายละเอียด:</h6>
-                                <p>{!! nl2br($model->posts_content) !!}</p>
-            
-                            
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
+@include('layouts.Header')  
+
+<section class="container  " style="margin-top:80px;"  >  
+    <div class="mb-2 row justify-content-between">
+        <div class="col-6  text-start">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="{{url("/")}}"><i class="fa-solid fa-house"></i> หน้าแรก</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">ค้นหา {{$page_title}}</li>
+                </ol>
+              </nav>
         </div>
-    </main> 
+        <div class="col-6  text-end">
+            ทั้งหมด {{ count($model) }} รายการ
+        </div>
+    </div>
+    <article id="search_hero" class="   mt-1 text-center">
+        <div class="overlay padd-section">
+          <div class="container aos-init aos-animate" data-aos="zoom-in"> 
+            <div class="row justify-content-center">
+              <div class="col-md-9 col-lg-6 sarabun-regular">
+                <form action="">
+                  <input type="text" class="  px-2" name="q" placeholder="ระบุคำค้นหา..."  >
+                  <button type="submit" class=" "><i class="bi bi-search"></i>ค้นหา</button>
+                </form>
+              </div> 
+              
+            </div>
+             
+      
+          </div>
+        </div>
+      </article> 
+    <div class="row mt-4 gx-1 gx-lg-4 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-start">
+        @foreach ($model as $key => $value)
+            <div class="col-lg-4 col-md-6  my-1 "> 
+                @include('layouts.section.PostCard' ,['mode'=>'edit'])  
+            </div>  
+        @endforeach 
+    </div>
+      
+   
+
+    <div class="mt-2 row justify-content-center">
+
+        <div class="col-12 pagination-custom d-flex justify-content-center">
+            @if (count($model) > 0)
+                {{ $model->links() }}
+            @else
+                ไม่พบรายการ
+            @endif
+        </div>
+    </div> 
+
+
+  
+</section>
     @include('layouts.section.ScrollToTop') 
     <style> 
     </style>

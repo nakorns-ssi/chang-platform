@@ -8,12 +8,11 @@
               
                 <div class="row justify-content-center">
                   <div class="col-md-9 col-lg-6 sarabun-regular">
-                    <form     action="/search">
-                      <input type="text" class="  px-2" name="q" placeholder="ระบุคำค้นหา..." name="email">
+                    <form action="/">
+                      <input type="text" class="  px-2" name="q" placeholder="ระบุคำค้นหา..."  >
                       <button type="submit" class=" "><i class="bi bi-search"></i>ค้นหา</button>
                     </form>
-                  </div>
-
+                  </div> 
                   
                 </div>
                 

@@ -22,7 +22,7 @@ use App\Http\Controllers\Posts\PostsController;
 Route::controller(PostsController::class)->group(function () { 
     Route::get('post/worker', 'post_worker');    
     Route::get('post/project_owner', 'post_project_owner');    
-    Route::get('post/{id}', 'view_post');     
+    Route::get('post/{id}/{slug}', 'view_post');     
     Route::get('search/', 'search_post');     
 });
 
