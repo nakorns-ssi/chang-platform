@@ -76,6 +76,9 @@ class AuthController extends Controller
              $model->display_url = $login['display_url'];
              $model->last_active = Carbon::now();  
              $model->save();
+             if($model->profile_display_url == ''){
+                $model->profile_display_url = $login['display_url'];
+             }
              helper_account::update_session_profile($model);
          }
        

@@ -23,6 +23,7 @@ class helper_account
             'display_name' => $model->display_name  , 
             'email' => $model->email , 
             'display_url' => $model->display_url  , 
+            'profile_display_url' => $model->profile_display_url  ,  
             'profile_display_name' => $model->profile_display_name  ,  
             'profile_full_name' => $model->profile_full_name  ,  
             'profile_phone' => $model->profile_phone  ,  

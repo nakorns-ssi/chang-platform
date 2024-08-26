@@ -17,6 +17,7 @@ use App\Http\Controllers\Manage\ProfileController;
 Route::controller(ProfileController::class)->group(function () { 
     Route::get('/manage/profile', 'profile_index');     
     Route::post('/manage/profile/save', 'profile_save');     
+    Route::post('/manage/profile/profile_upload_img', 'profile_upload_img');     
 
     
 });
