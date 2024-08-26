@@ -28,7 +28,7 @@ class PostsController  extends Controller
     
     public function  post_worker(Request $request)
     {   
-      $page_title = $this->page_title; 
+      $page_title = $this->page_title.'ช่าง'; 
       $posts_type = 'worker';
       $model = Cache::remember('home_posts', $seconds = (15*1), function () use ($posts_type) { 
         $paginate_num = 4; 
@@ -48,7 +48,7 @@ class PostsController  extends Controller
 
     public function  post_project_owner(Request $request)
     {   
-      $page_title = $this->page_title; 
+      $page_title = $this->page_title.'ผู้ว่าจ้าง'; 
       $posts_type = 'project_owner';
       $model = Cache::remember('home_posts', $seconds = (15*1), function () use ($posts_type) { 
         $paginate_num = 4; 
@@ -89,15 +89,26 @@ class PostsController  extends Controller
     public function  search_post(Request $request )
     {    
       $page_title = $this->page_title;
-      $post = $request->query('q');
-      $post_id = $id;
-      $paginate_num = 1; 
-      $model = Posts::where(['status'=>'y' ])->first() ;   
-
-  
-      
-       //dd($upload);
-       return view('posts/search_post',compact('model','upload','page_title'));
+      $keyword = $request->query('q');  
+      DB::enableQueryLog();
+      $paginate_num = 10; 
+        $model = new Posts;
+        $model =  $model->leftJoin('upload', 'posts.id', '=', 'upload.posts_id') ;
+        $model =  $model->select('posts.*', 'upload.url as img_thumbnail_url' ,'upload.upload_key as img_upload_key' ) ;
+        
+        $model = $model->where(function ($query) use ($keyword) {
+          $query->Where('posts.posts_content', 'like', '%' . $keyword . '%') 
+          ->orWhere('posts.location_province', 'like', '%' . $keyword . '%')  
+          ->orWhere('posts.location_amphoe', 'like', '%' . $keyword . '%')  
+          ->orWhere('posts.location_district', 'like', '%' . $keyword . '%')   ; 
+          })  ;
+        $model =  $model->where([
+          'posts.status'=>'y' , 
+          'status_code'=>'published' ])
+          ->orderby('posts.updated_at','desc')->paginate($paginate_num) ; 
+         // dd(DB::getQueryLog());
+       
+       return view('posts/search_post',compact('model', 'page_title'));
     }
  
      
