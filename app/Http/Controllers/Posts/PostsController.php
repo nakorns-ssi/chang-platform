@@ -74,7 +74,7 @@ class PostsController  extends Controller
       $posts_key = $id;
       $paginate_num = 1; 
       $model = Posts::where(['status'=>'y' , 'posts_key'=> $posts_key])->first() ;   
-
+      if(!$model){  abort(404); }
       $upload = [];
       if($model->id){
         $upload = Upload::where('status','y') 
