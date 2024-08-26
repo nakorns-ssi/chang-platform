@@ -73,7 +73,7 @@ class PostsController  extends Controller
      // $post = $request->query('model');
       $posts_key = $id;
       $paginate_num = 1; 
-      $model = Posts::where(['status'=>'y' , 'posts_key'=> $posts_key])->first() ;   
+      $model = Posts::where(['status'=>'y' ,'status_code'=>'published', 'posts_key'=> $posts_key])->first() ;   
       if(!$model){  abort(404); }
       $upload = [];
       if($model->id){
@@ -108,7 +108,7 @@ class PostsController  extends Controller
           ->orderby('posts.updated_at','desc')->paginate($paginate_num) ; 
          // dd(DB::getQueryLog());
        
-       return view('posts/search_post',compact('model', 'page_title'));
+       return view('posts/search_post',compact('model', 'page_title' ,'keyword'));
     }
  
      

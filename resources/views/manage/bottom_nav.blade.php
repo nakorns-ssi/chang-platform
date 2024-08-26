@@ -19,7 +19,7 @@
                     </div>
                     <div class="col aos-init aos-animate   text-center" data-aos="zoom-in" data-aos-delay="400">
                         <a href="{{ url('/history') }}" class="d-inline  icon-bottom">
-                            <div class="icon"><i class="fa-solid fa-people-roof"></i></div>
+                            <div class="icon"><i class="bi bi-file-earmark-text" style="font-size: larger;"></i> </div>
                             <span>ประวัติการใช้งาน </span>
   
                         </a>

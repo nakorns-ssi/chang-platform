@@ -4,7 +4,10 @@
 @section('keywords', "")
 @section('content') 
 @include('layouts.Header')  
-
+<?php 
+use App\helper\util; 
+use App\helper\helper_lang; 
+?>
 <section class="container  " style="margin-top:80px;"  >  
     <div class="mb-2 row justify-content-between">
         <div class="col-6  text-start">
@@ -25,7 +28,7 @@
             <div class="row justify-content-center">
               <div class="col-md-9 col-lg-6 sarabun-regular">
                 <form action="{{url('search/')}}">
-                  <input type="text" class="  px-2" name="q" placeholder="ระบุคำค้นหา..."  >
+                  <input type="text" class="  px-2" name="q" placeholder="ระบุคำค้นหา..." value="{{$keyword}}"  >
                   <button type="submit" class=" "><i class="bi bi-search"></i>ค้นหา</button>
                 </form>
               </div> 
@@ -38,8 +41,11 @@
       </article> 
     <div class="row mt-4 gx-1 gx-lg-4 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-start">
         @foreach ($model as $key => $value)
+        <?php $url_slug = url("/post/{$value->posts_key}"."/".util::slugify($value->posts_content) );  ?>
             <div class="col-lg-4 col-md-6  my-1 "> 
+              <a href="{{$url_slug}}">
                 @include('layouts.section.PostCard'  )  
+              </a>
             </div>  
         @endforeach 
     </div>

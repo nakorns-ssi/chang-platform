@@ -4,11 +4,19 @@
             <div class="flex-grow-1">
                 <a href="/manage/profile">
                     <div>
-                        <span class="float-start text-success text-bold">{{ session('account')['display_name'] }} </span>
+                         
                     </div> 
                     <span class="float-end text-success  ">
+                        <p>
+                            <img src="{{ session('account')['profile_display_url'] }}" class="  rounded  " alt="โปรไฟล์"
+                                loading="lazy" style="width: 5rem;minmax(3rem, 48px);" />
+                        </p>
+                        <span class="float-start text-success text-bold">{{ session('account')['display_name'] }} </span>
+                    </br>
+                        <p>
                         <i class="bi bi-pencil-square" style=" "></i>
-                        แก้ไขข้อมูลส่วนตัว
+                        แก้ไขข้อมูลส่วนตัว    
+                        </p> 
                     </span>
                 </a> 
             </div>
