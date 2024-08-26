@@ -94,13 +94,20 @@
                                 </div>
                             </div>
 
+                            <div class="    px-1 text-start  mt-3">
+                                <?php 
+                                $profile_list = [
+                                    "profile_bio"=>"ประวัติส่วนตัว" ,
+                                    "profile_work_history"=>"ประวัติการทำงาน" ,
+                                    "profile_project"=>"ผลงาน" ,
+                                    "profile_ability"=>"ความถนัด" ,
+                                    "profile_skills"=>"ทักษะพิเศษ" ,
+                            ];
+                                    ?>
+                                @include('manage.profile._profile_accordion',['model' => $model ,'profile_list'=> $profile_list ])
+                             </div>
 
-                            <div class="rate   px-1 text-start  mt-3">
-                                <label for="profile_bio" class="form-label">แนะนำเกี่ยวกับตัวเรา </label>
-                                <textarea class="form-control" id="profile_bio" name="model[profile_bio]" rows="3">{{ $model->profile_bio }}</textarea>
-                            </div>
-
-
+                             
                             <div class="buttons px-4 mt-4">
                                 <button class="btn btn-primary text-white btn-block rating-submit" onclick="do_save()"
                                     type="button">บันทึก</button>

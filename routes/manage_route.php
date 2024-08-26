@@ -28,9 +28,9 @@ Route::controller(WorkerController::class)->group(function () {
     Route::get('/manage/worker/post', 'worker_post');        
     Route::get('/manage/worker/post/add', 'worker_post_add');      
     Route::post('/manage/worker/post/save', 'worker_post_save');   
-    Route::get('/manage/worker/post/edit', 'worker_post_edit');   
- 
+    Route::get('/manage/worker/post/edit', 'worker_post_edit');    
 });
+
 
 use App\Http\Controllers\Manage\project_owner\Project_ownerController; 
 Route::controller(Project_ownerController::class)->group(function () { 

@@ -35,7 +35,7 @@ class ProfileController  extends Controller
       if(!$model->profile_email){
         $model->profile_email = $model->line_email;
       }
-      //dd($account ,  $model ); 
+      //dd($model['profile_work_history'],  $model ); 
        return view('manage/profile/profile_index',compact('model'));
     }
 

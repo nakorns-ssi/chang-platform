@@ -13,14 +13,14 @@
                     </div>
                     <div class="col aos-init aos-animate   text-center" data-aos="zoom-in" data-aos-delay="300">
                         <a href="{{ url('/worker') }}" class="d-inline  icon-bottom">
-                            <div class="icon"><i class="fa-solid fa-user-gear"></i></div>
-                            <span>สำหรับช่าง</span>
+                            <div class="icon"><i class="bi bi-bell" style="font-size: larger;"></i></div>
+                            <span>แจ้งเตือน</span>
                         </a>
                     </div>
                     <div class="col aos-init aos-animate   text-center" data-aos="zoom-in" data-aos-delay="400">
-                        <a href="{{ url('/project_owner') }}" class="d-inline  icon-bottom">
+                        <a href="{{ url('/history') }}" class="d-inline  icon-bottom">
                             <div class="icon"><i class="fa-solid fa-people-roof"></i></div>
-                            <span>สำหรับผู้ว่าจ้าง </span>
+                            <span>ประวัติการใช้งาน </span>
   
                         </a>
                     </div>

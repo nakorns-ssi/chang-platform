@@ -4,7 +4,7 @@
             <div class="flex-grow-1">
                 <a href="/posts">
                     <span class="float-start text-success text-bold" style=" border-bottom: 2px solid;">
-                        สำหรับผู้ว่าจ้าง
+                          สำหรับผู้ว่าจ้าง
                     </span>
                     <span class="float-end text-success icon-menu-label">ดูทั้งหมด<i class="bi bi-chevron-right"
                             style="font-size: larger;"></i>

@@ -4,7 +4,7 @@
             <div class="flex-grow-1">
                 
                     <span class="float-start text-success text-bold" style=" border-bottom: 2px solid;">
-                        สำหรับช่าง
+                          สำหรับช่าง
                     </span>
                 <a href="/manage/worker/post">
                     <span class="float-end text-success icon-menu-label">ดูทั้งหมด<i class="bi bi-chevron-right"
@@ -45,18 +45,7 @@
                     </span> 
                     </a>   
                 </div>
-                <div class="col  aos-init aos-animate   " data-aos="zoom-in" data-aos-delay="100">
-                    <a href="/manage/worker/skills"  onclick="do_loading()" >
-                    <span class=" row  text-dark">
-                        <div class="col-12 d-flex justify-content-center py-2">
-                            <div class="icon icon-menu position-relative"> 
-                                <i class="bi bi-file-text  position-absolute top-50 start-50 translate-middle"></i>
-                            </div>
-                        </div> 
-                        <span class="col-12  fw-light icon-menu-label py-2" >ระบุความถนัด</span> 
-                    </span> 
-                    </a>   
-                </div>
+                 
                 
                  
 
