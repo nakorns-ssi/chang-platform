@@ -1,5 +1,5 @@
 <?php 
- $actionPath = '/manage/profile/profile_upload_img';
+ $actionPath = '/manage/user_profile/user_profile_upload_img';
 ?>
  
     <div class="mb-3 px-4">

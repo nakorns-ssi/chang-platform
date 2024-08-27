@@ -12,7 +12,7 @@ use Session;
 use App\Models\Account; 
 use App\Models\Upload; 
 use App\helper\helper_account;
-use App\helper\gcp\helper_upload;
+use App\helper\gcp\helper_upload; 
 
 class ProfileController  extends Controller
 { 
@@ -21,7 +21,7 @@ class ProfileController  extends Controller
          //Session::put('url_before_login', back()); 
           $this->middleware('AuthManage');
     } 
-    public function  profile_index(Request $request)
+    public function  user_profile(Request $request)
     {    
       $model =  null; 
       $paginate_num = 50; 
@@ -35,11 +35,12 @@ class ProfileController  extends Controller
       if(!$model->profile_email){
         $model->profile_email = $model->line_email;
       }
+       
       //dd($model['profile_work_history'],  $model ); 
-       return view('manage/profile/profile_index',compact('model'));
+       return view('manage/profile/user_profile',compact('model'));
     }
 
-    public function  profile_save(Request $request)
+    public function  user_profile_save(Request $request)
     {      
       $model =  [];
       $model_group =  [];  
@@ -65,11 +66,12 @@ class ProfileController  extends Controller
         }
         
       } 
-     
-      return redirect('/manage/profile') ;
+       
+       
+      return redirect()->back() ;
     }
 
-    public function  profile_upload_img(Request $request)
+    public function  user_profile_upload_img(Request $request)
     { 
       $account_id =  session('account')['account_id'];
       $account_display_name =  session('account')['profile_display_name']; 

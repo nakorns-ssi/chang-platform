@@ -28,48 +28,55 @@ class PostsController  extends Controller
     
     public function  post_worker(Request $request)
     {   
-      $page_title = $this->page_title.'ช่าง'; 
+      $page_title = $this->page_title.'ช่าง';
+      $keyword = $request->query('q');
       $posts_type = 'worker';
-      $model = Cache::remember('home_posts', $seconds = (15*1), function () use ($posts_type) { 
+     // $model = Cache::remember('home_posts', $seconds = (15*1), function () use ($posts_type) { 
         $paginate_num = 4; 
         $model = new Posts;
-        $model =  $model->leftJoin('upload', 'posts.id', '=', 'upload.posts_id') ;
-        $model =  $model->select('posts.*', 'upload.url as img_thumbnail_url' ,'upload.upload_key as img_upload_key' ) ;
+        $model =  $model->select('posts.*', 
+        DB::raw('(select url from upload where upload.posts_id = posts.id limit 1)  as img_thumbnail_url') ,
+        DB::raw('(select upload_key from upload where upload.posts_id = posts.id limit 1)  as img_upload_key')  
+        ) ;
         $model =  $model->where([
           'posts.status'=>'y' ,
           'posts.posts_type' =>  $posts_type ,
           'status_code'=>'published' ])
           ->orderby('posts.updated_at','desc')->paginate($paginate_num) ;
-        return  $model;
-      }); 
+      //   return  $model;
+      // }); 
       // dd($Posts  ); 
-       return view('posts/search_post' ,compact('model' ,'page_title' , 'posts_type'));
+       return view('posts/search_post' ,compact('model' ,'page_title' , 'posts_type' ,'keyword'));
     }
 
     public function  post_project_owner(Request $request)
     {   
-      $page_title = $this->page_title.'ผู้ว่าจ้าง'; 
+      $page_title = $this->page_title.'ผู้ว่าจ้าง';
+      $keyword = $request->query('q');
       $posts_type = 'project_owner';
-      $model = Cache::remember('home_posts', $seconds = (15*1), function () use ($posts_type) { 
+      // $model = Cache::remember('home_posts', $seconds = (15*1), function () use ($posts_type) { 
         $paginate_num = 4; 
         $model = new Posts;
-        $model =  $model->leftJoin('upload', 'posts.id', '=', 'upload.posts_id') ;
-        $model =  $model->select('posts.*', 'upload.url as img_thumbnail_url' ,'upload.upload_key as img_upload_key' ) ;
+        $model =  $model->select('posts.*', 
+        DB::raw('(select url from upload where upload.posts_id = posts.id limit 1)  as img_thumbnail_url') ,
+        DB::raw('(select upload_key from upload where upload.posts_id = posts.id limit 1)  as img_upload_key')  
+        ) ;
         $model =  $model->where([
           'posts.status'=>'y' ,
           'posts.posts_type' =>  $posts_type ,
           'status_code'=>'published' ])
           ->orderby('posts.updated_at','desc')->paginate($paginate_num) ;
-        return  $model;
-      }); 
+       // return  $model;
+      // }); 
       // dd($Posts  ); 
-       return view('posts/search_post' ,compact('model' ,'page_title' , 'posts_type'));
+       return view('posts/search_post' ,compact('model' ,'page_title' , 'posts_type' ,'keyword'));
     }
      
 
     public function  view_post(Request $request , $id ,$slug)
     {    
       $page_title = $this->page_title;
+      $keyword = $request->query('q');
      // $post = $request->query('model');
       $posts_key = $id;
       $paginate_num = 1; 
@@ -83,7 +90,7 @@ class PostsController  extends Controller
         ->get();
       } 
        //dd($upload);
-       return view('posts/view_post',compact('model','upload','page_title'));
+       return view('posts/view_post',compact('model','upload','page_title','keyword'));
     }
 
     public function  search_post(Request $request )
@@ -92,10 +99,11 @@ class PostsController  extends Controller
       $keyword = $request->query('q');  
       DB::enableQueryLog();
       $paginate_num = 10; 
-        $model = new Posts;
-        $model =  $model->leftJoin('upload', 'posts.id', '=', 'upload.posts_id') ;
-        $model =  $model->select('posts.*', 'upload.url as img_thumbnail_url' ,'upload.upload_key as img_upload_key' ) ;
-        
+        $model = new Posts; 
+        $model =  $model->select('posts.*', 
+        DB::raw('(select url from upload where upload.posts_id = posts.id limit 1)  as img_thumbnail_url') ,
+        DB::raw('(select upload_key from upload where upload.posts_id = posts.id limit 1)  as img_upload_key')  
+        ) ;
         $model = $model->where(function ($query) use ($keyword) {
           $query->Where('posts.posts_content', 'like', '%' . $keyword . '%') 
           ->orWhere('posts.location_province', 'like', '%' . $keyword . '%')  

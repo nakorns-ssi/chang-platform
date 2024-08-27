@@ -12,8 +12,9 @@ use Session;
 use App\helper\util;
 use App\helper\gcp\helper_upload;
 use App\Models\chang_prompt\Posts; 
-use App\Models\chang_prompt\Posts_meta; 
+use App\Models\chang_prompt\Data_meta; 
 use App\Models\Upload; 
+use App\Models\Account; 
 class WorkerController  extends Controller
 { 
     protected $page_title = 'สำหรับช่าง';
@@ -23,6 +24,64 @@ class WorkerController  extends Controller
          //Session::put('url_before_login', back()); 
          $this->middleware('AuthManage');
     } 
+
+    public function  worker_profile(Request $request)
+    {    
+      $model =  null; 
+      $paginate_num = 50; 
+      $account = session('account');
+      $account_id = session('account')['account_id'];  
+      $Data_meta =  Data_meta::where([
+        'tag'=>'worker_profile' ,  
+        'account_id' => $account_id 
+        ])->get();
+
+        foreach($Data_meta as $val){
+          $model[$val->meta_key][] = $val->meta_value;
+        }
+      //dd($model['profile_ability']); 
+       return view('manage/worker/worker_profile',compact('model'));
+    }
+
+    public function  worker_profile_save(Request $request)
+    {    
+      $page_title = $this->page_title; 
+      $upload = [];
+      $account_id =  session('account')['account_id'];
+      $account_display_name =  session('account')['profile_display_name'];
+      $post = $request->input('model');
+      
+    //dd($post); 
+      $model =  Data_meta::where([
+        'tag'=>'worker_profile' ,  
+        'account_id' => $account_id ])->first();
+      
+        foreach($post as $mete_key => $meta_value ){
+          //dd('dataset $meta_value', $mete_key , $meta_value );
+          foreach($meta_value as $val ){
+            $dataset =[ 
+              "tag" => 'worker_profile',   
+              "meta_key" => $mete_key,  
+              "meta_value" =>$val,   
+              "account_id" => $account_id ,   
+            ];
+            $data_insert[] = $dataset;
+          }
+        }
+        Data_meta::where([ 
+          "tag" => 'worker_profile',   
+          "account_id" => $account_id   
+        ])->delete();
+        foreach (array_chunk($data_insert,1000) as $t)  
+        { 
+            $model = Data_meta::insert($t); 
+        } 
+     
+      //dd('Data_meta saved', $model );
+
+      return redirect()->back() ;
+      
+    }
      
 
     public function  worker_post(Request $request)

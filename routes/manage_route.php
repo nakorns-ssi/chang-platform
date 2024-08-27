@@ -15,9 +15,9 @@ Route::controller(ManageController::class)->group(function () {
 
 use App\Http\Controllers\Manage\ProfileController; 
 Route::controller(ProfileController::class)->group(function () { 
-    Route::get('/manage/profile', 'profile_index');     
-    Route::post('/manage/profile/save', 'profile_save');     
-    Route::post('/manage/profile/profile_upload_img', 'profile_upload_img');     
+    Route::get('/manage/user_profile', 'user_profile');     
+    Route::post('/manage/user_profile/save', 'user_profile_save');     
+    Route::post('/manage/user_profile/user_profile_upload_img', 'user_profile_upload_img');     
 
     
 });
@@ -28,7 +28,10 @@ Route::controller(WorkerController::class)->group(function () {
     Route::get('/manage/worker/post', 'worker_post');        
     Route::get('/manage/worker/post/add', 'worker_post_add');      
     Route::post('/manage/worker/post/save', 'worker_post_save');   
-    Route::get('/manage/worker/post/edit', 'worker_post_edit');    
+    Route::get('/manage/worker/post/edit', 'worker_post_edit'); 
+    
+    Route::get('/manage/worker/worker_profile', 'worker_profile');     
+    Route::post('/manage/worker/worker_profile_save', 'worker_profile_save');     
 });
 
 

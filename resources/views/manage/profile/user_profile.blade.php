@@ -18,7 +18,7 @@
     <section class="container  " style="margin-top:25px;">
 
         <?php
-        $actionPath = '/manage/profile/save';
+        $actionPath = '/manage/user_profile/save';
         ?>
  
         <div class="row justify-content-center">
@@ -93,20 +93,35 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="    px-1 text-start  mt-3">
-                                <?php 
-                                $profile_list = [
-                                    "profile_bio"=>"ประวัติส่วนตัว" ,
-                                    "profile_work_history"=>"ประวัติการทำงาน" ,
-                                    "profile_project"=>"ผลงาน" ,
-                                    "profile_ability"=>"ความถนัด" ,
-                                    "profile_skills"=>"ทักษะพิเศษ" ,
-                            ];
-                                    ?>
-                                @include('manage.profile._profile_accordion',['model' => $model ,'profile_list'=> $profile_list ])
-                             </div>
-
+                            <div class="container text-center mt-2"> 
+                                <div class="row g-2">
+                                    <div class=" col-md-6">
+                                        <label class="w-100" for="profile_role_worker">
+                                           
+                                            <div class="card bg-primary-subtle fs-6  mb-1 p-2">
+                                                ฉันคือ"ช่าง" 
+                                              <input type="checkbox" id="profile_role_worker" 
+                                              name="model[profile_role_worker]" value="1"
+                                              <?php if($model->profile_role_worker==1) echo 'checked'; ?>
+                                              >
+                                            </div>
+                                        </label>
+                                    </div>
+                                    <div class=" col-md-6">
+                                        <label class="w-100" for="profile_role_project_owner"> 
+                                            <div class="card bg-primary-subtle fs-6 mb-1 p-2">
+                                                  ฉันคือ"ผู้ว่าจ้าง" 
+                                                <input type="checkbox" id="profile_role_project_owner" 
+                                                name="model[profile_role_project_owner]"  value="1"
+                                                <?php if($model->profile_role_project_owner==1) echo 'checked'; ?> 
+                                                 >
+                                            </div>
+                                        </label>
+                                    </div>
+                                         
+                                </div>
+                            </div>
+                             
                              
                             <div class="buttons px-4 mt-4">
                                 <button class="btn btn-primary text-white btn-block rating-submit" onclick="do_save()"
@@ -133,6 +148,14 @@
     <input type="hidden" id="alert_text" name="alert['text']" value="<?= $alert['text'] ?>">
     <?php endif;?>
     <style>
+        input[type="checkbox"] {
+            margin: 12px 10px;
+            -ms-transform: scale(1.5);
+            /* IE 9 */
+            -webkit-transform: scale(1.5);
+            /* Chrome, Safari, Opera */
+            transform: scale(1.5);
+        }
     </style>
     <script>
         $(document).ready(function() {
