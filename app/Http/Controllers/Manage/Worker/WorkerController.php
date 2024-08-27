@@ -31,15 +31,19 @@ class WorkerController  extends Controller
       $paginate_num = 5;
       $account_id =  session('account')['account_id'];
       $account_display_name =  session('account')['profile_display_name']; 
+      DB::enableQueryLog();
       $model = new Posts;
-      $model =  $model->leftJoin('upload', 'posts.id', '=', 'upload.posts_id') ;
-      $model =  $model->select('posts.*', 'upload.url as img_thumbnail_url' ,'upload.upload_key as img_upload_key' ) ;
+     // $model =  $model->RightJoin('upload', 'posts.id', '=', 'upload.posts_id') ;
+      $model =  $model->select('posts.*', 
+      DB::raw('(select url from upload where upload.posts_id = posts.id limit 1)  as img_thumbnail_url') ,
+      DB::raw('(select upload_key from upload where upload.posts_id = posts.id limit 1)  as img_upload_key')  
+      ) ;
       $model =  $model->where([
         'posts.status'=>'y' ,  
         'posts_type'=> $this->posts_type,
         'posts.account_id' => $account_id ])
-        ->orderby('posts.updated_at','desc')->paginate($paginate_num) ;
-       
+        ->orderby('updated_at','desc')->paginate($paginate_num) ;
+      //dd(DB::getQueryLog()); 
       
      //dd($model);
        return view('manage/worker/worker_post_index',compact('model','page_title'));
