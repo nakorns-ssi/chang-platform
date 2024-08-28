@@ -26,6 +26,11 @@ Route::controller(PostsController::class)->group(function () {
     Route::get('search/', 'search_post');     
 });
 
+use App\Http\Controllers\Profile\ProfileController; 
+Route::controller(ProfileController::class)->group(function () {  
+    Route::get('profile/{id}/{slug}', 'view_profile');      
+});
+
 @include base_path('routes/auth_route.php');   
 @include base_path('routes/upload_route.php'); 
 @include base_path('routes/manage_route.php'); 

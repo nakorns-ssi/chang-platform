@@ -1,7 +1,7 @@
  
  
  <?php $title = $title; ?>
-<div class="container mt-5">
+<div class="container  ">
     <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
             @foreach($upload as $key => $img)

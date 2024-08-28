@@ -64,7 +64,7 @@
                                             }
                                         }
                                         ?>
-                                        <div class=" col-sm-4">
+                                        <div class=" col-4 col-sm-3">
                                             <label class="w-100" for="profile_ability{{$key}}"> 
                                                 <div class="card bg-primary-subtle fs-6  mb-1 p-2">
                                                     {{$item}}
@@ -107,7 +107,7 @@
                                         }
                                         
                                         ?>
-                                        <div class=" col-sm-4">
+                                        <div class="col-4 col-sm-3">
                                             <label class="w-100" for="profile_skills{{$key}}"> 
                                                 <div class="card bg-primary-subtle fs-6  mb-1 p-2">
                                                     {{$item}}

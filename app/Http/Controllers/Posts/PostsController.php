@@ -80,7 +80,17 @@ class PostsController  extends Controller
      // $post = $request->query('model');
       $posts_key = $id;
       $paginate_num = 1; 
-      $model = Posts::where(['status'=>'y' ,'status_code'=>'published', 'posts_key'=> $posts_key])->first() ;   
+      $model = Posts::where(['status'=>'y' ,'status_code'=>'published', 'posts_key'=> $posts_key])->first() ;  
+      $model =  $model->select('posts.*', 
+        DB::raw('(select account_code from account where account.id = posts.account_id limit 1)  as account_code') ,
+        DB::raw('(select url from upload where upload.posts_id = posts.id limit 1)  as img_thumbnail_url') ,
+        DB::raw('(select upload_key from upload where upload.posts_id = posts.id limit 1)  as img_upload_key')  
+        ) ;
+        $model =  $model->where([
+          'posts.status'=>'y' ,   
+          'posts.posts_key'=>$posts_key ,   
+          'status_code'=>'published' ])
+          ->orderby('posts.updated_at','desc')->first() ; 
       if(!$model){  abort(404); }
       $upload = [];
       if($model->id){
