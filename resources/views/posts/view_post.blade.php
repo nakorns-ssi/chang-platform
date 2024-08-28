@@ -17,7 +17,7 @@
                 <div class="row"> 
                     <div class="col-12 mt-5">
                         <div class="my-2">
-                            @include('posts.view_btn_profile' ,['account_code' => $model->account_code])
+                            @include('posts.view_user_profile' ,['account' => $account])
                             <hr class="w-100" />
                         </div>
                         
@@ -71,22 +71,20 @@
                                         {{number_format($model->item_sold)}} เข้าชม</span>
                                 </p>
                                 <ul class="list-inline">
-                                    <li class="list-inline-item">
-                                        <h6 class="d-inline"><i class="bi bi-geo-alt-fill   "></i></h6>
+                                    <li class="list-inline-item d-flex flex-wrap">
+                                        <h6 class="d-inline"><i class="bi bi-geo-alt-fill   "></i></h6> 
                                         
-                                            
-                                        
-                                            <a href="/search?q={{$model->location_province}}" class=" ">
+                                            <a href="/search?q={{$model->location_province}}" class="my-2  ">
                                                 <span class='badge fs-6 m-1 rounded-pill  text-bg-warning d-inline'>
                                                     {{$model->location_province}}
                                                 </span> 
                                             </a>
-                                            <a href="/search?q={{$model->location_amphoe}}" class=" ">
+                                            <a href="/search?q={{$model->location_amphoe}}" class="my-2  ">
                                                 <span class='badge fs-6 m-1 rounded-pill  text-bg-warning d-inline'>
                                                     {{$model->location_amphoe}}
                                                 </span> 
                                             </a>
-                                            <a href="/search?q={{$model->location_district}}" class=" ">
+                                            <a href="/search?q={{$model->location_district}}" class="my-2  ">
                                                 <span class='badge fs-6 m-1 rounded-pill  text-bg-warning d-inline'>
                                                     {{$model->location_district}}
                                                 </span> 

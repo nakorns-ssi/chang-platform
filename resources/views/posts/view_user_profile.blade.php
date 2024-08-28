@@ -1,12 +1,14 @@
 <?php 
 use App\helper\util; 
 use App\helper\helper_lang; 
-$display_name = session('account')['display_name'];
+$display_name = $account->display_name ;
+$profile_display_url = $account->profile_display_url ;
+$account_code = $account->account_code ;
 ?>
 <div class="row g-0  row-cols-3">
     <div class="col-auto ">
         <div class="c-avatar">
-            <img src="{{ session('account')['profile_display_url'] }}" class="   "
+            <img src="{{ $profile_display_url }}" class="   "
               alt="โปรไฟล์" loading="lazy" /> 
         </div>
         

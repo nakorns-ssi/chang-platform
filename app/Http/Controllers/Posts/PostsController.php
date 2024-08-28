@@ -14,7 +14,9 @@ use App\helper\util;
 use App\helper\gcp\helper_upload;
 use App\Models\chang_prompt\Posts; 
 use App\Models\chang_prompt\Posts_meta; 
-use App\Models\Upload; 
+use App\Models\Upload;
+use App\Models\Account; 
+
 class PostsController  extends Controller
 { 
     protected $page_title = 'โพสต์';
@@ -99,8 +101,12 @@ class PostsController  extends Controller
         ->orderby('updated_at','desc')
         ->get();
       } 
+ 
+      $account = Account::where([ 
+        'status'=>'enable', 
+        'account_code'=> $model->account_code ])->first() ; 
        //dd($upload);
-       return view('posts/view_post',compact('model','upload','page_title','keyword'));
+       return view('posts/view_post',compact('model','upload','account', 'page_title','keyword'));
     }
 
     public function  search_post(Request $request )
