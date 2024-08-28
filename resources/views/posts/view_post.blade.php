@@ -27,8 +27,10 @@
                       
                         <div class="row">
                             <!--Start Controls-->
-                                  <!--First slide--> 
+                                  <!--First slide-->
+                                  @if(count($upload)>0)
                                   @include('layouts.section.Carousel',['upload'=> $upload,'title' =>$model->title ])
+                                  @endif
                                   <!--/.First slide-->
                             <!--End Controls-->
                         </div>
@@ -73,7 +75,7 @@
                                 <ul class="list-inline">
                                     <li class="list-inline-item d-flex flex-wrap">
                                         <h6 class="d-inline"><i class="bi bi-geo-alt-fill   "></i></h6> 
-                                        
+                                        @if($model->location_province)
                                             <a href="/search?q={{$model->location_province}}" class="my-2  ">
                                                 <span class='badge fs-6 m-1 rounded-pill  text-bg-warning d-inline'>
                                                     {{$model->location_province}}
@@ -88,7 +90,8 @@
                                                 <span class='badge fs-6 m-1 rounded-pill  text-bg-warning d-inline'>
                                                     {{$model->location_district}}
                                                 </span> 
-                                            </a> 
+                                            </a>
+                                        @endif
                                     </li>
                                     <li class="list-inline-item">
                                         <p class="text-muted"><strong>{{$model->global_brand}}</strong></p>

@@ -17,7 +17,7 @@
                 <div class="row g-1"> 
                     <div class="col-12 mt-5">
                         <div class="my-2">
-                            @include('posts.view_btn_profile' ,['account_code' => $model->account_code])
+                            @include('posts.view_user_profile' ,['account' => $model])
                             <hr class="w-100" />
                         </div> 
                     </div> 
