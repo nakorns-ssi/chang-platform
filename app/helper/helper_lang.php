@@ -19,7 +19,7 @@ class helper_lang
             'draft' =>'ร่าง' ,  
             'private' =>'ส่วนตัว' ,  
             'worker' =>'ช่าง' ,  
-            'product_owner' =>'ผู้ว่าจ้าง' ,  
+            'project_owner' =>'ผู้ว่าจ้าง' ,  
         ];
         if(isset($lang[$status_code])){
             return $lang[$status_code];

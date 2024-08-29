@@ -19,14 +19,14 @@ use App\helper\helper_lang;
 <div class="tab-content" id="myTabContent">
   <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
     <div class="container aos-init aos-animate" data-aos="fade-up"> 
-
-      <div class="row gx-1 gx-lg-4 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-start">
+ 
+      <div class="row gx-2 gx-lg-4 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-start">
         @foreach($model as $key => $value)
         <?php $url_slug = url("/post/{$value->posts_key}"."/".util::slugify($value->posts_content) );  ?>
-        <div class="col-3 col-md-4  my-1 d-flex align-items-stretch aos-init aos-animate" data-aos="zoom-in" data-aos-delay="100">
+        <div class="col-lg-4 col-6 my-1 d-flex align-items-stretch aos-init aos-animate" data-aos="zoom-in" data-aos-delay="100">
           <a href="{{$url_slug}}">
-            @include('layouts.section.PostCard') 
-          </a>
+          @include('layouts.section.PostCard') 
+        </a>
         </div>
          
         @endforeach

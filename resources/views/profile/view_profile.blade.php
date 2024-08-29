@@ -42,7 +42,7 @@
                                 <div class="row gx-1 gx-lg-4 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-start">
                                     @foreach($posts as $key => $value)
                                     <?php $url_slug = url("/post/{$value->posts_key}"."/".util::slugify($value->posts_content) );  ?>
-                                        <div class="  col-md-4  my-1 d-flex align-items-center  " >
+                                        <div class="  col-md-4  my-1 d-flex align-items-stretch  " >
                                             <a href="{{$url_slug}}">
                                                 @include('layouts.section.PostCard') 
                                             </a>
