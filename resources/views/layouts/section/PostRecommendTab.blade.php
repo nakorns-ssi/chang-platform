@@ -41,11 +41,12 @@ use App\helper\helper_lang;
       <h1>ยอดผู้ชม</h1>
       <div class="row gx-2 gx-lg-4 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-start">
         @foreach($model as $key => $value)
-
+        <?php $url_slug = url("/post/{$value->posts_key}"."/".util::slugify($value->posts_content) );  ?>
         <div class="col-lg-4 col-6 my-1 d-flex align-items-stretch aos-init aos-animate" data-aos="zoom-in" data-aos-delay="100">
+          <a href="{{$url_slug}}">
           @include('layouts.section.PostCard')  
-        </div>
-         
+          </a>
+        </div> 
         @endforeach
  
       </div>

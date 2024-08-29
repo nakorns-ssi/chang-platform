@@ -18,7 +18,7 @@ $account_code = $account->account_code ;
           {{ $display_name }}  
         </a>  
         <br />
-      <span class="text-dark  ">โพสต์เมื่อ 22 April  </span>   
+      <span class="text-dark  ">โพสต์เมื่อ {{ util::thai_datetime($posts->updated_at)}}  </span>   
     </div>
     <div class="col-auto row align-items-center px-0"> 
         <span  ><i class="bi bi-chevron-right"></i></span> 

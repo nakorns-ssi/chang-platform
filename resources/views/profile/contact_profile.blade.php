@@ -7,7 +7,7 @@
         <ul class="list-inline">
             <li class="list-inline-item">   
                 <a href="tel:{{$model->profile_phone}}">
-                    <h6 class="d-inline badge text-bg-warning" style="" ><i class="bi bi-telephone-fill" style="font-size: larger" ></i>  
+                    <h6 class="d-inline badge text-bg-warning fw-normal" style="" ><i class="bi bi-telephone-fill" style="font-size: larger" ></i>  
                         @if($model->profile_phone)
                         {{$model->profile_phone}} 
                         @else
@@ -20,7 +20,7 @@
         <ul class="list-inline">
             <li class="list-inline-item">   
                 <a href="mailto:{{$model->profile_email}}">
-                    <h6 class="d-inline badge text-bg-warning" style="" ><i class="bi bi-envelope" style="font-size: larger" ></i>  
+                    <h6 class="d-inline badge text-bg-warning fw-normal" style="" ><i class="bi bi-envelope" style="font-size: larger" ></i>  
                         @if($model->profile_email)
                         {{$model->profile_email}} 
                         @else

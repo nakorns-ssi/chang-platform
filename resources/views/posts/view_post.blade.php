@@ -17,14 +17,12 @@
                 <div class="row"> 
                     <div class="col-12 mt-5">
                         <div class="my-2">
-                            @include('posts.view_user_profile' ,['account' => $account])
+                            @include('posts.view_user_profile' ,['account' => $account ,'posts'=>$model])
                             <hr class="w-100" />
                         </div>
                         
                     </div>
-                    <div class="col-lg-5  ">
-             
-                      
+                    <div class="col-lg-5  "> 
                         <div class="row">
                             <!--Start Controls-->
                                   <!--First slide-->
@@ -93,9 +91,7 @@
                                             </a>
                                         @endif
                                     </li>
-                                    <li class="list-inline-item">
-                                        <p class="text-muted"><strong>{{$model->global_brand}}</strong></p>
-                                    </li>
+                                   
                                 </ul>
             
                                 <h6>รายละเอียด:</h6>

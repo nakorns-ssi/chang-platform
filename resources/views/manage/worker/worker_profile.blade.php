@@ -30,6 +30,14 @@
                     <form action="{{ $actionPath }}" method="post" name="frm_n" id="frm_n" class="  ">
                         @csrf
                         <div class="card-body">
+                            <?php
+                                if(!isset($model['profile_work_history'][0])){
+                                    $model['profile_work_history'][0]=null;
+                                }
+                                if(!isset($model['profile_project'][0])){
+                                    $model['profile_project'][0]=null;
+                                }
+                                ?>
                             <div class="     px-1 text-start  my-3 "> 
                                 <div class="row justify-content-center align-items-center">
                                     <label for="profile_work_history" class="h5">ประวัติการทำงาน</label>
@@ -64,7 +72,7 @@
                                             }
                                         }
                                         ?>
-                                        <div class=" col-4 col-sm-3">
+                                        <div class=" col-4 col-sm-3 flex-fill ">
                                             <label class="w-100" for="profile_ability{{$key}}"> 
                                                 <div class="card bg-primary-subtle fs-6  mb-1 p-2">
                                                     {{$item}}
@@ -89,7 +97,7 @@
                                 <h5>ทักษะพิเศษ</h5>
                                 <?php  
                                 $profile_skills = [ 
-                                    "งานฝ้า" , "งานปูน" ,
+                                    "งานฝ้า" , "งานปูน" ,"งานไม้" ,
                                    "ทาสี" ,
                                     "ทาสีผนัง" ,
                                     "ต่อเติมงานฝ้า" ,
@@ -107,7 +115,7 @@
                                         }
                                         
                                         ?>
-                                        <div class="col-4 col-sm-3">
+                                        <div class="col-4 col-sm-3 flex-fill">
                                             <label class="w-100" for="profile_skills{{$key}}"> 
                                                 <div class="card bg-primary-subtle fs-6  mb-1 p-2">
                                                     {{$item}}
@@ -156,14 +164,7 @@
     <input type="hidden" id="alert_text" name="alert['text']" value="<?= $alert['text'] ?>">
     <?php endif;?>
     <style>
-        input[type="checkbox"] {
-            margin: 12px 10px;
-            -ms-transform: scale(1.5);
-            /* IE 9 */
-            -webkit-transform: scale(1.5);
-            /* Chrome, Safari, Opera */
-            transform: scale(1.5);
-        }
+         
     </style>
     <script>
         $(document).ready(function() {

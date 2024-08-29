@@ -18,16 +18,17 @@ class util
         
     }
 
-    public static function thai_datetime($time)
+    public static function thai_datetime($date_input)
     { // 19 ธันวาคม 2556 เวลา 10:10:43
         // print_r(date("n", $time));die();
+       $time = strtotime($date_input);
        $thai_date_return = '';
          
       //  $thai_date_return = self::$dayTH[date('D',$time)].'ที่ ';
         $thai_date_return .= date("j", $time);
         $thai_date_return .= " " . self::$monthTH[date("n", $time)];
         $thai_date_return .= " " . substr((date("Y", $time)+543),2) ;
-      //  $thai_date_return .= " ," .  (date("H:i", $time)) ;
+        $thai_date_return .= " เวลา " .  (date("H:i", $time)) ;
         return $thai_date_return;
     }
     public static function   humanTiming ($time)
@@ -65,7 +66,7 @@ class util
                 return 'พรุ่งนี้ ';
                 break; 
         }
-       // return  'วัน'.self::$dayTH[date('D',strtotime($strDate1))] ;
+        return  'วัน'.self::$dayTH[date('D',strtotime($strDate1))] ;
         return  ''  ;
     }
 
