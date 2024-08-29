@@ -16,10 +16,23 @@
             <div class="container pb-5">  
                 <div class="row"> 
                     <div class="col-12 mt-5">
-                        <div class="my-2">
-                            @include('posts.view_user_profile' ,['account' => $account ,'posts'=>$model])
-                            <hr class="w-100" />
-                        </div>
+                        <div class="row justify-content-between">
+                            <div class="col-sm-8">
+                                @include('posts.view_user_profile' ,['account' => $account ,'posts'=>$model])
+                                
+                            </div>
+                            <div class="col-sm-4">
+                                 <!-- AddToAny BEGIN --> 
+                                 <div class="a2a_kit a2a_kit_size_32 a2a_default_style py-2 py-2 d-flex justify-content-end"> 
+                                    <a class="a2a_button_facebook"></a> 
+                                    <a class="a2a_button_line"></a>
+                                    <a class="a2a_button_copy_link"></a>
+                                    </div>
+                                    <script async src="https://static.addtoany.com/menu/page.js"></script>
+                                    <!-- AddToAny END -->  
+                            </div>
+                        </div> 
+                        <hr class="w-100" />
                         
                     </div>
                     <div class="col-lg-5  "> 
@@ -34,25 +47,16 @@
                         </div>
                     </div>
                     <!-- col end -->
-                    <div class="col-lg-7 mt-5">
+                    <div class="col-lg-7  ">
+                        <div class="h4">{{ mb_substr($model->posts_content,0,50) }}</div>
                         <div class="card">
-                            <div class="card-body">
-                                <form action="" method="GET" class="mt-2 d-none">
-                                    <input type="hidden" name="product-title" value="Activewear">
-            
-                                    <div class="row pb-3">
-                                        <div class="col d-grid"> 
-                                           
-                                        </div>
-                                        <div class="col d-grid">
-                                            <a class="btn btn-success  " href="{{$link}}" role="button"><i
-                                                    class="bi bi-share"></i> แชร์ให้เพื่อน</a>
-                                        </div>
-                                    </div>
-                                </form>
-                                <h1 class="h4">{{$model->title}}</h1>
+                            <div class="card-body"> 
+                                
+                                <div class="text-start text-sm-center">
+                               
                                 <div class="text-start text-sm-center">
                                     <!-- Product price--> 
+                                    ราคา
                                     @if($model->price_min!=$model->price_max)
                                     <span class="text-dark" >฿{{number_format($model->price_min)}}</span> - 
                                     <span class="text-dark  ">฿{{number_format($model->price_max)}}</span> 
@@ -61,38 +65,49 @@
                                     @endif
             
                                 </div>
-                                <p class="py-2">
-                                    <i class="fa fa-star text-warning"></i>
-                                    <i class="fa fa-star text-warning"></i>
-                                    <i class="fa fa-star text-warning"></i>
-                                    <i class="fa fa-star text-warning"></i>
-                                    <i class="fa fa-star text-secondary"></i>
-                                    <span class="list-inline-item text-dark">Rating {{$model->item_rating}} |
-                                        {{number_format($model->item_sold)}} เข้าชม</span>
+                                <p class="">  
+                                    <i class="bi bi-people-fill"></i> {{number_format($model->item_sold)}} ผู้เข้าชม</span>
                                 </p>
-                                <ul class="list-inline">
-                                    <li class="list-inline-item d-flex flex-wrap">
-                                        <h6 class="d-inline"><i class="bi bi-geo-alt-fill   "></i></h6> 
-                                        @if($model->location_province)
-                                            <a href="/search?q={{$model->location_province}}" class="my-2  ">
-                                                <span class='badge fs-6 m-1 rounded-pill  text-bg-warning d-inline'>
-                                                    {{$model->location_province}}
-                                                </span> 
-                                            </a>
-                                            <a href="/search?q={{$model->location_amphoe}}" class="my-2  ">
-                                                <span class='badge fs-6 m-1 rounded-pill  text-bg-warning d-inline'>
-                                                    {{$model->location_amphoe}}
-                                                </span> 
-                                            </a>
-                                            <a href="/search?q={{$model->location_district}}" class="my-2  ">
-                                                <span class='badge fs-6 m-1 rounded-pill  text-bg-warning d-inline'>
-                                                    {{$model->location_district}}
-                                                </span> 
-                                            </a>
-                                        @endif
-                                    </li>
-                                   
-                                </ul>
+                                <p class="">  
+                                    <i class="bi bi-people-fill"></i> {{number_format($model->item_sold)}} ผู้เสนอราคา</span>
+                                </p>
+                                <p class="py-1"> 
+                                    <ul class="list-inline">
+                                        <li class="list-inline-item d-flex aligh-items-center justify-content-start flex-wrap">
+                                            <div class="col-auto py-2">
+                                                <i class="bi bi-geo-alt-fill "></i>
+                                            </div>
+                                                
+                                            @if($model->location_province)
+                                            <div class="col-auto py-2">
+                                                <a href="/search?q={{$model->location_province}}" class="   ">
+                                                    <span class=' px-2 py-1  fs-6 m-1 rounded-pill  text-bg-warning '>
+                                                        #{{$model->location_province}}
+                                                    </span> 
+                                                </a>
+                                            </div>
+                                            <div class="col-auto py-2">
+                                                <a href="/search?q={{$model->location_amphoe}}" class="   ">
+                                                    <span class='px-2 py-1 fs-6 m-1 rounded-pill  text-bg-warning '>
+                                                        #{{$model->location_amphoe}}
+                                                    </span> 
+                                                </a>
+                                            </div>
+                                            <div class="col-auto py-2">
+                                                <a href="/search?q={{$model->location_district}}" class="   ">
+                                                    <span class='px-2 py-1 fs-6 m-1 rounded-pill  text-bg-warning '>
+                                                        #{{$model->location_district}}
+                                                    </span> 
+                                                </a>
+                                            </div>
+                                            @else
+                                            <div class="col-auto py-2">
+                                                <span> ไม่ระบุ</span>
+                                            </div>
+                                            @endif
+                                        </li> 
+                                    </ul>
+                                </p>
             
                                 <h6>รายละเอียด:</h6>
                                 <p>{!! nl2br($model->posts_content) !!}</p>
