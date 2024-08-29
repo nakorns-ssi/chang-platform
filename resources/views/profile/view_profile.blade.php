@@ -14,7 +14,7 @@
             $profile_display_url = $model->profile_display_url ;
             $account_code = $model->account_code ;
             ?>
-            <article class="bg-white d-flex justify-content-center align-items-center pt-4 mt-4 position-relative ">  
+            <article class="bg-white d-flex justify-content-center align-items-center pt-5 mt-4 position-relative ">  
                 <div class="mt-4">
                     <div class="c-avatar d-block position-absolute top-100 start-50 translate-middle"
                     style="  height: 80px;  width: 80px; ">
