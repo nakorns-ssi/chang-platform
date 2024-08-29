@@ -27,22 +27,5 @@ $account_code = $account->account_code ;
 </div>
 
 <style>
-.c-avatar {
-    background-color: #cfd6df;
-    border-radius: 100%;
-    display: block;
-    height: 48px;
-    position: relative;
-    text-align: center;
-    width: 48px;
-}
-.c-avatar>img {
-    border-radius: 100%;
-    display: block;
-    height: 100%;
-    -o-object-fit: cover;
-    object-fit: cover;
-    width: 100%;
-    z-index: 2;
-}
+
 </style>
