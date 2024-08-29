@@ -95,29 +95,22 @@
                             </div>
                             <div class="container text-center mt-2"> 
                                 <div class="row g-2">
-                                    <div class=" col-md-6">
-                                        <label class="w-100" for="profile_role_worker">
-                                           
-                                            <div class="card bg-primary-subtle fs-6  mb-1 p-2">
-                                                ฉันคือ"ช่าง" 
-                                              <input type="checkbox" id="profile_role_worker" 
-                                              name="model[profile_role_worker]" value="1"
-                                              <?php if($model->profile_role_worker==1) echo 'checked'; ?>
-                                              >
-                                            </div>
-                                        </label>
+                                    <div class="col-12 text-start">
+                                        <label for="profile_role" class="form-label">คุณคือใครในระบบ</label>
+                                        <select class="form-select" id="profile_role" name="model[profile_role]" aria-label="Default select example">
+                                            <option disabled >-ระบุ-</option>
+                                            <option value="worker" 
+                                            <?php if($model->profile_role =='worker') echo 'selected'; ?>
+                                             >ฉันคือ"ช่าง"</option>
+                                            <option value="project_owner"
+                                            <?php if($model->profile_role =='project_owner') echo 'selected'; ?>
+                                            > ฉันคือ"ผู้ว่าจ้าง" </option>
+                                            <option value="all" 
+                                            <?php if($model->profile_role =='all') echo 'selected'; ?>
+                                            > ฉันคือ "ช่าง" + "ผู้ว่าจ้าง" </option>
+                                          </select>
                                     </div>
-                                    <div class=" col-md-6">
-                                        <label class="w-100" for="profile_role_project_owner"> 
-                                            <div class="card bg-primary-subtle fs-6 mb-1 p-2">
-                                                  ฉันคือ"ผู้ว่าจ้าง" 
-                                                <input type="checkbox" id="profile_role_project_owner" 
-                                                name="model[profile_role_project_owner]"  value="1"
-                                                <?php if($model->profile_role_project_owner==1) echo 'checked'; ?> 
-                                                 >
-                                            </div>
-                                        </label>
-                                    </div>
+                                    
                                          
                                 </div>
                             </div>

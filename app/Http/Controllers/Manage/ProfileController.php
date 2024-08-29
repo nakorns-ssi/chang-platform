@@ -26,8 +26,7 @@ class ProfileController  extends Controller
       $model =  null; 
       $paginate_num = 50; 
       $account = session('account');
-      $account_id = session('account')['account_id'];
-      $model =  new Account;
+      $account_id = session('account')['account_id']; 
       $model = Account::where(['status'=>'enable' ,'id'=>$account_id])->first();
       if(!$model->profile_display_name){
         $model->profile_display_name = $model->display_name;
