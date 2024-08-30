@@ -131,13 +131,8 @@ class AuthController extends Controller
         $model = DB::table('account')->where(['id' =>  $id ,'status'=>'enable' ])->first();
         // dd($model);
         if($model){
-            session()->put('account', [
-                'account_id' => $model->id  ,
-                'account_code' => $model->account_code  , 
-                'display_name' => $model->display_name  , 
-                'email' => $model->line_email , 
-                'display_url' => $model->display_url  ,  
-            ]); 
+            helper_account::update_session_profile($model);
+            
         }
        
         
