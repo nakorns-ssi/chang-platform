@@ -8,20 +8,21 @@ use App\helper\helper_lang;
 
 <ul class="nav nav-tabs" id="myTab" role="tablist">
   <li class="nav-item" role="presentation">
-    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">ล่าสุด</button>
+    <button class="nav-link active" id="worker-tab" data-bs-toggle="tab" data-bs-target="#worker-tab-pane" type="button" role="tab" aria-controls="worker-tab-pane" aria-selected="true">โพสต์ช่าง</button>
   </li>
   <li class="nav-item" role="presentation">
-    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">ยอดผู้ชม</button>
+    <button class="nav-link" id="project_owner-tab" data-bs-toggle="tab" data-bs-target="#project_owner-tab-pane" type="button" role="tab" aria-controls="project_owner-tab-pane" aria-selected="false">โพสต์ผู้ว่าจ้าง</button>
   </li>
   
    
 </ul>
 <div class="tab-content" id="myTabContent">
-  <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+  <div class="tab-pane fade show active" id="worker-tab-pane" role="tabpanel" aria-labelledby="worker-tab" tabindex="0">
     <div class="container aos-init aos-animate" data-aos="fade-up"> 
  
       <div class="row gx-2 gx-lg-4 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-start">
         @foreach($model as $key => $value)
+        <?php if($value->posts_type != 'worker') continue; ?>
         <?php $url_slug = url("/post/{$value->posts_key}"."/".util::slugify($value->posts_content) );  ?>
         <div class="col-lg-4 col-6 my-1 d-flex align-items-stretch aos-init aos-animate" data-aos="zoom-in" data-aos-delay="100">
           <a href="{{$url_slug}}">
@@ -35,12 +36,12 @@ use App\helper\helper_lang;
   
     </div>
   </div>
-  <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+  <div class="tab-pane fade" id="project_owner-tab-pane" role="tabpanel" aria-labelledby="project_owner-tab" tabindex="0">
     
-    <div class="container aos-init aos-animate pt-2" data-aos="fade-up"> 
-      <h1>ยอดผู้ชม</h1>
+    <div class="container aos-init aos-animate pt-2" data-aos="fade-up">  
       <div class="row gx-2 gx-lg-4 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-start">
         @foreach($model as $key => $value)
+        <?php if($value->posts_type != 'project_owner') continue; ?>
         <?php $url_slug = url("/post/{$value->posts_key}"."/".util::slugify($value->posts_content) );  ?>
         <div class="col-lg-4 col-6 my-1 d-flex align-items-stretch aos-init aos-animate" data-aos="zoom-in" data-aos-delay="100">
           <a href="{{$url_slug}}">

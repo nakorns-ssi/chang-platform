@@ -31,9 +31,9 @@
                                 <input type="hidden" id="btn_share_url" value="{{$btn_share_url}}" > 
                                 <script>
                                     const shareData = {
-                                    title: "MDN",
-                                    text: "Learn web development on MDN!",
-                                    url: "https://developer.mozilla.org",
+                                    title: document.querySelector("#btn_share_title").value,
+                                    text: document.querySelector("#btn_share_text").value,
+                                    url: document.querySelector("#btn_share_url").value,
                                     };
 
                                     const btn = document.querySelector("#btn_share"); 
@@ -85,10 +85,7 @@
                                 </div>
                                 <p class="">  
                                     <i class="bi bi-people-fill"></i> {{number_format($model->item_sold)}} ผู้เข้าชม</span>
-                                </p>
-                                <p class="">  
-                                    <i class="bi bi-people-fill"></i> {{number_format($model->item_sold)}} ผู้เสนอราคา</span>
-                                </p>
+                                </p> 
                                 <p class="py-1"> 
                                     <ul class="list-inline">
                                         <li class="list-inline-item d-flex aligh-items-center justify-content-start flex-wrap">

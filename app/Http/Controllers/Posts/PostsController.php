@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Cache;
 use App\helper\util;
 use App\helper\gcp\helper_upload;
 use App\Models\chang_prompt\Posts; 
-use App\Models\chang_prompt\Posts_meta; 
+use App\Models\chang_prompt\Data_meta; 
 use App\Models\Upload;
 use App\Models\Account; 
 
@@ -114,17 +114,33 @@ class PostsController  extends Controller
       $page_title = $this->page_title;
       $keyword = $request->query('q');  
       DB::enableQueryLog();
+      
       $paginate_num = 10; 
         $model = new Posts; 
         $model =  $model->select('posts.*', 
         DB::raw('(select url from upload where upload.posts_id = posts.id limit 1)  as img_thumbnail_url') ,
         DB::raw('(select upload_key from upload where upload.posts_id = posts.id limit 1)  as img_upload_key')  
         ) ;
-        $model = $model->where(function ($query) use ($keyword) {
+        $Data_meta = Data_meta::where( 'status','y')->select('account_id')
+        ->where('meta_value', 'like', '%' . $keyword . '%')->groupBy('account_id')->get();
+        $account_id_list = [];
+        foreach($Data_meta as $val){
+          $account_id_list[] = $val->account_id;
+        }
+       // dd($account_id_list,$Data_meta);
+        // if(count($account_id_list)>0){ 
+        //   $model = $model->orWhere(function ($query) use ($account_id_list) {
+        //     $query->WhereIn('posts.account_id',$account_id_list)   ; 
+        //     })  ;
+        // }
+        
+
+        $model = $model->where(function ($query) use ($keyword,$account_id_list) {
           $query->Where('posts.posts_content', 'like', '%' . $keyword . '%') 
           ->orWhere('posts.location_province', 'like', '%' . $keyword . '%')  
           ->orWhere('posts.location_amphoe', 'like', '%' . $keyword . '%')  
-          ->orWhere('posts.location_district', 'like', '%' . $keyword . '%')   ; 
+          ->orWhere('posts.location_district', 'like', '%' . $keyword . '%')   
+          ->orWhereIn('posts.account_id',$account_id_list)   ; 
           })  ;
         $model =  $model->where([
           'posts.status'=>'y' , 

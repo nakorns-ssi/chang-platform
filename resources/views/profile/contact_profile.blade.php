@@ -31,14 +31,34 @@
             </li> 
         </ul> 
         </div>
+        
+            @if(isset($worker_profile['profile_work_history'][0]) )
+            <div class="col-sm-3 my-2"> 
+                @if($worker_profile['profile_work_history'][0])
+                {{$worker_profile['profile_work_history'][0]}} 
+                @else
+                ไม่ระบุ
+                @endif
+            </div>
+            @endif
 
-        <div class="col-sm-3 my-2"> 
-            @include('profile.skills_profile',['title'=>'ความถนัด' ,'model'=>$worker_profile['profile_ability']]) 
-         
-        </div> 
-        <div class="col-sm-3 my-2"> 
-            @include('profile.skills_profile',['title'=>'ทักษะพิเศษ' ,'model'=>$worker_profile['profile_skills'] ]) 
+            @if(isset($worker_profile['profile_project'][0]) )
+            <div class="col-sm-3 my-2"> 
+                @if($worker_profile['profile_project'][0])
+                {{$worker_profile['profile_project'][0]}} 
+                @else
+                ไม่ระบุ
+                @endif
+            </div>
+            @endif 
+        
+        
+       
+            @if(isset($worker_profile['profile_ability']))
+            <div class="col-sm-3 my-2"> 
+                @include('profile.skills_profile',['title'=>'ความชำนาญ' ,'model'=>$worker_profile['profile_ability']]) 
+            </div>
+             @endif
            
-        </div> 
     </div>
 </div> 

@@ -55,11 +55,16 @@
                              
 
                             <div class="container text-center mt-2"> 
-                                <h5>ความถนัด</h5>
+                                <h5>ความชำนาญ</h5>
                                 <?php 
                                 $profile_ability = [ 
                                     "เหล็กดัด","มุ้งลวด","เหล็กดัดหน้าต่าง", "เหล็กดัดประตู" , "โครงหลังคา" , "งานโครงสร้าง" ,
                                     "โรงรถ" ,"กันสาด" ,'งานเหล็ก' ,"เฟอร์นิเจอร์" ,"บ้านน็อคดาวน์"
+                                    ,"งานฝ้า" , "งานปูน" ,"งานไม้" ,
+                                   "ทาสี" ,
+                                    "ทาสีผนัง" ,
+                                    "ต่อเติมงานฝ้า" ,
+                                    "ปูกระเบื้อง" ,"อลูมิเนียม" , "สแตนเลส"
                                 ]; 
                                     ?>
                                     <div class="row g-2">
@@ -87,54 +92,13 @@
                                     </div> 
                                     <div class="row g-2">
                                         <div class="mb-3  ">
-                                            <label for="profile_ability_other" class="form-label">ความถนัด อื่นๆ</label>
+                                            <label for="profile_ability_other" class="form-label">ความชำนาญ อื่นๆ</label>
                                             <input type="text" class="form-control" id="profile_ability_other" placeholder="อื่นๆ ระบุ">
                                           </div>
                                     </div>
                             </div>
 
-                            <div class="container text-center mt-2"> 
-                                <h5>ทักษะพิเศษ</h5>
-                                <?php  
-                                $profile_skills = [ 
-                                    "งานฝ้า" , "งานปูน" ,"งานไม้" ,
-                                   "ทาสี" ,
-                                    "ทาสีผนัง" ,
-                                    "ต่อเติมงานฝ้า" ,
-                                    "ปูกระเบื้อง" ,"อลูมิเนียม" , "สแตนเลส"
-                                 ];
-                                    ?>
-                                    <div class="row g-2">
-                                        @foreach ($profile_skills as $key => $item)
-                                        <?php 
-                                        $checked = '';
-                                        if(isset($model['profile_skills'])){
-                                            if( in_array($item ,$model['profile_skills']) ){
-                                                $checked = 'checked';
-                                            }
-                                        }
-                                        
-                                        ?>
-                                        <div class="col-4 col-sm-3 flex-fill">
-                                            <label class="w-100" for="profile_skills{{$key}}"> 
-                                                <div class="card bg-primary-subtle fs-6  mb-1 p-2">
-                                                    {{$item}}
-                                                  <input type="checkbox" id="profile_skills{{$key}}" 
-                                                  name="model[profile_skills][]" value="{{$item}}"
-                                                  {{$checked}}
-                                                  >
-                                                </div>
-                                            </label>
-                                        </div> 
-                                        @endforeach 
-                                    </div>
-                                    <div class="row g-2">
-                                        <div class="mb-3  ">
-                                            <label for="profile_skills_other" class="form-label">ทักษะพิเศษ อื่นๆ</label>
-                                            <input type="text" class="form-control" id="profile_skills_other" placeholder="อื่นๆ ระบุ">
-                                          </div>
-                                    </div>
-                            </div>
+                             
 
                            
 
