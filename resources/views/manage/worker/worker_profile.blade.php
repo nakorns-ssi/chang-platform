@@ -37,6 +37,9 @@
                                 if(!isset($model['profile_project'][0])){
                                     $model['profile_project'][0]=null;
                                 }
+                                if(!isset($model['profile_ability_other'][0])){
+                                    $model['profile_ability_other'][0]=null;
+                                }
                                 ?>
                             <div class="     px-1 text-start  my-3 "> 
                                 <div class="row justify-content-center align-items-center">
@@ -93,7 +96,9 @@
                                     <div class="row g-2">
                                         <div class="mb-3  ">
                                             <label for="profile_ability_other" class="form-label">ความชำนาญ อื่นๆ</label>
-                                            <input type="text" class="form-control" id="profile_ability_other" placeholder="อื่นๆ ระบุ">
+                                            <input type="text" class="form-control" id="profile_ability_other"
+                                            name="model[profile_ability_other][]" value="{{$model['profile_ability_other'][0]}}" 
+                                             placeholder=" ระบุ">
                                           </div>
                                     </div>
                             </div>
