@@ -9,7 +9,9 @@ use Illuminate\Support\Facades\Session;
  
 use App\Http\Controllers\Manage\ManageController; 
 Route::controller(ManageController::class)->group(function () { 
-    Route::get('/manage', 'manage_index');      
+    Route::get('/manage', 'manage_index');
+    Route::get('/manage/regis', 'regis_index');
+    Route::post('/manage/regis_update', 'regis_update');
     
 });
 
