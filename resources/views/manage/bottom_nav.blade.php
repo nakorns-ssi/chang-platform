@@ -12,13 +12,13 @@
                         </a>
                     </div>
                     <div class="col aos-init aos-animate   text-center" data-aos="zoom-in" data-aos-delay="300">
-                        <a href="{{ url('/worker') }}" class="d-inline  icon-bottom">
+                        <a href="#notification" class="d-inline  icon-bottom">
                             <div class="icon"><i class="bi bi-bell" style="font-size: larger;"></i></div>
                             <span>แจ้งเตือน</span>
                         </a>
                     </div>
                     <div class="col aos-init aos-animate   text-center" data-aos="zoom-in" data-aos-delay="400">
-                        <a href="{{ url('/history') }}" class="d-inline  icon-bottom">
+                        <a href="#history" class="d-inline  icon-bottom">
                             <div class="icon"><i class="bi bi-file-earmark-text" style="font-size: larger;"></i> </div>
                             <span>ประวัติการใช้งาน </span>
   

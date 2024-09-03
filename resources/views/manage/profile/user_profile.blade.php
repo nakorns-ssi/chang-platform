@@ -72,7 +72,7 @@
                             </div>
                             <div class="rate    px-1 text-start  my-3 ">
 
-                                <div class="row justify-content-center align-items-center">
+                                <div class="row justify-content-start align-items-center">
 
                                     <div class="col-md-6">
                                         <div class="mb-3">
@@ -88,6 +88,14 @@
                                             <label for="profile_email" class="form-label">อีเมล</label>
                                             <input type="email" class="form-control" id="profile_email"
                                                 value="{{ $model->profile_email }}" name="model[profile_email]"
+                                                placeholder="ระบุ">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="profile_email" class="form-label">Line ID</label>
+                                            <input type="text" class="form-control" id="add_line_id"
+                                                value="{{ $model->add_line_id }}" name="model[add_line_id]"
                                                 placeholder="ระบุ">
                                         </div>
                                     </div>

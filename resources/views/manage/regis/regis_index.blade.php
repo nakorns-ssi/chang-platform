@@ -43,9 +43,13 @@
             }
             
              ?>
-            @if($step )
-            <a href="{{$link_prevBtn}}" class="btn btn-lg  " style="width: 140px;  ">ย้อนกลับ</a>
-            @endif
+           
+            <a href="{{$link_prevBtn}}" class="btn btn-lg  " style="width: 140px;  ">
+                @if($step && $step !=1 )
+                ย้อนกลับ
+                @endif
+            </a>
+           
             @if($step<$step_total) <button type="submit" class="btn btn-lg btn-warning  " id="nextBtn"
                  
                 style="width: 140px;">

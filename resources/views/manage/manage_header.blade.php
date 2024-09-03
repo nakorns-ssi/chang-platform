@@ -18,7 +18,7 @@
             <ul>
               
               <li><a class="nav-link scrollto" href="#notification"><span><i class="bi bi-bell" style="font-size: larger;"></i> แจ้งเตือน</span></a></li> 
-              <li><a class="nav-link scrollto " href="/history"><span><i class="bi bi-file-earmark-text" style="font-size: larger;"></i> ประวัติการใช้งาน </span></a></li>
+              <li><a class="nav-link scrollto " href="#history"><span><i class="bi bi-file-earmark-text" style="font-size: larger;"></i> ประวัติการใช้งาน </span></a></li>
            
               <li><a class="nav-link scrollto  " href="/auth/logout"><span><i class="bi bi-box-arrow-right" style="font-size: larger;"></i> ออกจากระบบ</span></a></li>
               
