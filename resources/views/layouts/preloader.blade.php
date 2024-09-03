@@ -10,7 +10,7 @@
   top: calc(50% - 4px);
   left: calc(50% - 4px); 
   width: 160px;
-  height: 160px;
+  height: auto;
 transform: translate(-50%, -50%);
 	text-decoration: blink;
 	-webkit-animation-name: blinker;

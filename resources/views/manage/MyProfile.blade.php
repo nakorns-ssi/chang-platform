@@ -20,6 +20,7 @@
                         <p>
                             <span class="text-center text-success text-bold">{{ session('account')['display_name'] }} </span>
                         </p> 
+                        <div class="h6 fst-normal">{{ 'No. '.str_pad(session('account')['account_id'],4,"0",STR_PAD_LEFT) }}</div>
                         <p>
                         <i class="bi bi-pencil-square" style=" "></i>
                         แก้ไขข้อมูลส่วนตัว    
