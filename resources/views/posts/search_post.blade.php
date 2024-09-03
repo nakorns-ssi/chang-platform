@@ -18,8 +18,8 @@ use App\helper\helper_lang;
                 </ol>
               </nav>
         </div>
-        <div class="col-6  text-end">
-            ทั้งหมด {{ count($model) }} รายการ
+        <div class="col-6  text-end"> 
+           ผลการค้นหา ทั้งหมด {{ count($model) }} รายการ
         </div>
     </div>
     <article id="search_hero" class="   mt-1 text-center">

@@ -65,13 +65,29 @@
             </div>
             @endif 
         
-        
-       
-            @if(isset($worker_profile['profile_ability']))
+            @if(isset($worker_profile['work_category']))
             <div class="col-sm-3 my-2"> 
-                @include('profile.skills_profile',['title'=>'ความชำนาญ' ,'model'=>$worker_profile['profile_ability']]) 
+                @include('profile.skills_profile',['title'=>'ประเภทงาน' ,'model'=>$worker_profile['work_category']]) 
             </div>
              @endif
+             @if(isset($worker_profile['work_sub_category']))
+            <div class="col-sm-3 my-2"> 
+                @include('profile.skills_profile',['title'=>'ประเภทงานย่อย' ,'model'=>$worker_profile['work_sub_category']]) 
+            </div>
+             @endif
+       
+            @if(isset($worker_profile['skill']))
+            <div class="col-sm-3 my-2"> 
+                @include('profile.skills_profile',['title'=>'ทักษะ' ,'model'=>$worker_profile['skill']]) 
+            </div>
+             @endif
+
+             @if(isset($worker_profile['product']))
+            <div class="col-sm-3 my-2"> 
+                @include('profile.skills_profile',['title'=>'สินค้า' ,'model'=>$worker_profile['product']]) 
+            </div>
+             @endif
+
            
     </div>
 </div> 

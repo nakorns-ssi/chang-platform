@@ -26,7 +26,7 @@ class util
          
       //  $thai_date_return = self::$dayTH[date('D',$time)].'ที่ ';
         $thai_date_return .= date("j", $time);
-        $thai_date_return .= " " . self::$monthTH[date("n", $time)];
+        $thai_date_return .= " " . self::$monthTH_brev[date("n", $time)];
         $thai_date_return .= " " . substr((date("Y", $time)+543),2) ;
         $thai_date_return .= " เวลา " .  (date("H:i", $time)) ;
         return $thai_date_return;

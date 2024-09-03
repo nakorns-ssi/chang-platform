@@ -66,7 +66,7 @@
                     </div>
                     <!-- col end -->
                     <div class="col-lg-7  ">
-                        <div class="h4">{{ mb_substr($model->posts_content,0,50) }}</div>
+                        <div class="h4 mt-2">{{ mb_substr($model->posts_content,0,50) }}</div>
                         <div class="card">
                             <div class="card-body"> 
                                 

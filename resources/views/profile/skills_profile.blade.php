@@ -1,5 +1,5 @@
  
-        <div class="text-center text-sm-start">
+        <div class="text-start text-sm-center">
             <div class="h4">{{$title}}</div>  
         </div>
         <div class="d-block p-2   ">
