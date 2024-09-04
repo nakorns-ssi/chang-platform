@@ -1,6 +1,6 @@
 <div class="card my-2">
     <div class="card-body row justify-content-center">
-        <div class="col-sm-6 my-2"> 
+        <div class="col-sm-4 my-2"> 
         <div class="text-center text-sm-start">
             <div class="h4">{{$title}}</div>  
         </div> 
@@ -46,7 +46,7 @@
         </div>
         
             @if(isset($worker_profile['profile_work_history'][0]) )
-            <div class="col-sm-3 my-2"> 
+            <div class="col-sm-4 my-2"> 
                 @if($worker_profile['profile_work_history'][0])
                 {{$worker_profile['profile_work_history'][0]}} 
                 @else
@@ -56,7 +56,7 @@
             @endif
 
             @if(isset($worker_profile['profile_project'][0]) )
-            <div class="col-sm-3 my-2"> 
+            <div class="col-sm-4 my-2"> 
                 @if($worker_profile['profile_project'][0])
                 {{$worker_profile['profile_project'][0]}} 
                 @else
@@ -65,28 +65,7 @@
             </div>
             @endif 
         
-            @if(isset($worker_profile['work_category']))
-            <div class="col-sm-3 my-2"> 
-                @include('profile.skills_profile',['title'=>'ประเภทงาน' ,'model'=>$worker_profile['work_category']]) 
-            </div>
-             @endif
-             @if(isset($worker_profile['work_sub_category']))
-            <div class="col-sm-3 my-2"> 
-                @include('profile.skills_profile',['title'=>'ประเภทงานย่อย' ,'model'=>$worker_profile['work_sub_category']]) 
-            </div>
-             @endif
-       
-            @if(isset($worker_profile['skill']))
-            <div class="col-sm-3 my-2"> 
-                @include('profile.skills_profile',['title'=>'ทักษะ' ,'model'=>$worker_profile['skill']]) 
-            </div>
-             @endif
-
-             @if(isset($worker_profile['product']))
-            <div class="col-sm-3 my-2"> 
-                @include('profile.skills_profile',['title'=>'สินค้า' ,'model'=>$worker_profile['product']]) 
-            </div>
-             @endif
+            
 
            
     </div>

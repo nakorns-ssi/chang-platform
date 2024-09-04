@@ -27,7 +27,7 @@ class ProfileController  extends Controller
         // $this->middleware('AuthBuddyApp');
     } 
  
-    public function  view_profile(Request $request , $id ,$slug)
+    public function  profile_index(Request $request , $id ,$slug)
     {    
       $page_title = $this->page_title;
       $paginate_num = 6;
@@ -60,7 +60,7 @@ class ProfileController  extends Controller
         }
 
        //dd($worker_profile);
-       return view('profile/view_profile',compact('model','posts','worker_profile','page_title'));
+       return view('profile/profile_index',compact('model','posts','worker_profile','page_title'));
     }
  
      

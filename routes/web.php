@@ -34,7 +34,7 @@ Route::controller(PostsController::class)->group(function () {
 
 use App\Http\Controllers\Profile\ProfileController; 
 Route::controller(ProfileController::class)->group(function () {  
-    Route::get('profile/{id}/{slug}', 'view_profile');      
+    Route::get('profile/{id}/{slug}', 'profile_index');      
 });
 
 @include base_path('routes/auth_route.php');   
