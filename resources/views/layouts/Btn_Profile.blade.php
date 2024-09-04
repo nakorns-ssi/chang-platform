@@ -5,7 +5,7 @@
                 height="48" alt="โปรไฟล์" loading="lazy" /> 
         </div>
         <div class="col-auto px-2 ">
-          <span class="text-dark text-truncate"> {{ session('account')['display_name'] }}</span> 
+          <span class="text-dark text-truncate"> {{ session('account')['profile_display_name'] }}</span> 
             <br />
           <span class="text-dark  ">จัดการงาน</span>   
         </div>

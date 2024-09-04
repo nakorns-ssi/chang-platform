@@ -1,10 +1,10 @@
 <?php 
 use App\helper\util; 
 use App\helper\helper_lang; 
-$display_name = $account->display_name ;
+$profile_display_name = $account->profile_display_name ;
 $profile_display_url = $account->profile_display_url ;
 $account_code = $account->account_code ;
-$url_link_profile = url('profile/'.$account_code."/".util::slugify($display_name));
+$url_link_profile = url('profile/'.$account_code."/".util::slugify($profile_display_name));
 ?>
 <div class="row g-0  row-cols-3">
     <div class="col-auto ">
@@ -18,7 +18,7 @@ $url_link_profile = url('profile/'.$account_code."/".util::slugify($display_name
     </div>
     <div class="col-auto px-2 ">โดย
       <a href="{{$url_link_profile}}" class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">
-          {{ $display_name }}  
+          {{ $profile_display_name }}  
         </a>  
         <br />
       <span class="text-dark  ">โพสต์เมื่อ {{ util::thai_datetime($posts->updated_at)}}  </span>   

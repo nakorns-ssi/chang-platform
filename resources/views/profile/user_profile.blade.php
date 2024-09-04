@@ -2,6 +2,7 @@
 use App\helper\util; 
 use App\helper\helper_lang; 
 $display_name = $account->display_name ;
+$profile_display_name = $account->profile_display_name ;
 $profile_display_url = $account->profile_display_url ;
 $account_code = $account->account_code ;
 ?>
@@ -14,8 +15,8 @@ $account_code = $account->account_code ;
         
     </div>
     <div class="col-auto px-2 ">โดย
-      <a href="{{url('profile/'.$account_code."/".util::slugify($display_name))}}" class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">
-          {{ $display_name }}  
+      <a href="{{url('profile/'.$account_code."/".util::slugify($profile_display_name))}}" class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">
+          {{ $profile_display_name }}  
         </a>  
         <br />
       <span class="text-dark  ">โพสต์เมื่อ 22 April  </span>   
