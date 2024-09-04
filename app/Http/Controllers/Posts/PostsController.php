@@ -37,8 +37,8 @@ class PostsController  extends Controller
         $paginate_num = 4; 
         $model = new Posts;
         $model =  $model->select('posts.*', 
-        DB::raw('(select url from upload where upload.posts_id = posts.id limit 1)  as img_thumbnail_url') ,
-        DB::raw('(select upload_key from upload where upload.posts_id = posts.id limit 1)  as img_upload_key')  
+        DB::raw('(select url from upload where status = "y" and upload.posts_id = posts.id  limit 1)  as img_thumbnail_url') ,
+        DB::raw('(select upload_key from upload where status = "y" and upload.posts_id = posts.id limit 1)  as img_upload_key')   
         ) ;
         $model =  $model->where([
           'posts.status'=>'y' ,
@@ -60,8 +60,8 @@ class PostsController  extends Controller
         $paginate_num = 4; 
         $model = new Posts;
         $model =  $model->select('posts.*', 
-        DB::raw('(select url from upload where upload.posts_id = posts.id limit 1)  as img_thumbnail_url') ,
-        DB::raw('(select upload_key from upload where upload.posts_id = posts.id limit 1)  as img_upload_key')  
+        DB::raw('(select url from upload where status = "y" and upload.posts_id = posts.id  limit 1)  as img_thumbnail_url') ,
+        DB::raw('(select upload_key from upload where status = "y" and upload.posts_id = posts.id limit 1)  as img_upload_key')  
         ) ;
         $model =  $model->where([
           'posts.status'=>'y' ,
@@ -85,8 +85,8 @@ class PostsController  extends Controller
       $model = Posts::where(['status'=>'y' ,'status_code'=>'published', 'posts_key'=> $posts_key])->first() ;  
       $model =  $model->select('posts.*', 
         DB::raw('(select account_code from account where account.id = posts.account_id limit 1)  as account_code') ,
-        DB::raw('(select url from upload where upload.posts_id = posts.id limit 1)  as img_thumbnail_url') ,
-        DB::raw('(select upload_key from upload where upload.posts_id = posts.id limit 1)  as img_upload_key')  
+        DB::raw('(select url from upload where status = "y" and upload.posts_id = posts.id  limit 1)  as img_thumbnail_url') ,
+        DB::raw('(select upload_key from upload where status = "y" and upload.posts_id = posts.id limit 1)  as img_upload_key')  
         ) ;
         $model =  $model->where([
           'posts.status'=>'y' ,   
@@ -118,8 +118,8 @@ class PostsController  extends Controller
       $paginate_num = 10; 
         $model = new Posts; 
         $model =  $model->select('posts.*', 
-        DB::raw('(select url from upload where upload.posts_id = posts.id limit 1)  as img_thumbnail_url') ,
-        DB::raw('(select upload_key from upload where upload.posts_id = posts.id limit 1)  as img_upload_key')  
+        DB::raw('(select url from upload where status = "y" and upload.posts_id = posts.id  limit 1)  as img_thumbnail_url') ,
+        DB::raw('(select upload_key from upload where status = "y" and upload.posts_id = posts.id limit 1)  as img_upload_key')  
         ) ;
         $Data_meta = Data_meta::where( 'status','y')->select('account_id')
         ->where('meta_value', 'like', '%' . $keyword . '%')->groupBy('account_id')->get();

@@ -29,8 +29,8 @@ class HomeController  extends Controller
         $paginate_num = 4; 
         $model = new Posts; 
         $model =  $model->select('posts.*', 
-        DB::raw('(select url from upload where upload.posts_id = posts.id limit 1)  as img_thumbnail_url') ,
-        DB::raw('(select upload_key from upload where upload.posts_id = posts.id limit 1)  as img_upload_key')  
+        DB::raw('(select url from upload where status = "y" and upload.posts_id = posts.id  limit 1)  as img_thumbnail_url') ,
+        DB::raw('(select upload_key from upload where status = "y" and upload.posts_id = posts.id limit 1)  as img_upload_key')  
         ) ;
         $model =  $model->where([
           'posts.status'=>'y' ,   

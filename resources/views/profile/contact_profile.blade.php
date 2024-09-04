@@ -1,5 +1,5 @@
 <div class="card my-2">
-    <div class="card-body row justify-content-center">
+    <div class="card-body row justify-content-start">
         <div class="col-sm-4 my-2"> 
         <div class="text-center text-sm-start">
             <div class="h4">{{$title}}</div>  
