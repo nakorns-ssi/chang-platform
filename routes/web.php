@@ -19,6 +19,11 @@ Route::controller(HomeController::class)->group(function () {
     Route::get('/about_us', 'about_us');  
 });
 
+use App\Http\Controllers\QRController; 
+Route::controller(QRController::class)->group(function () { 
+    Route::get('/qr/{id}', 'qr_scan');   
+});
+
 use App\Http\Controllers\Posts\PostsController; 
 Route::controller(PostsController::class)->group(function () { 
     Route::get('post/worker', 'post_worker');    
