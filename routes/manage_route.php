@@ -37,7 +37,7 @@ Route::controller(WorkerController::class)->group(function () {
 });
 
 
-use App\Http\Controllers\Manage\project_owner\Project_ownerController; 
+use App\Http\Controllers\Manage\Project_owner\Project_ownerController; 
 Route::controller(Project_ownerController::class)->group(function () { 
     Route::get('/project_owner', 'index'); 
     Route::get('/manage/project_owner/post', 'project_owner_post');        
