@@ -30,9 +30,12 @@
                     <form action="{{ $actionPath }}" method="post" name="frm_n" id="frm_n" class="  ">
                         @csrf
                         <div class="card-body">
-                            <?php
+                            <?php 
                                 if(!isset($model['profile_work_history'][0])){
                                     $model['profile_work_history'][0]=null;
+                                }
+                                if(!isset($model['profile_project'][0])){
+                                    $model['profile_project'][0]=null;
                                 }
 
                                 if(!isset($model['work_category'][0])){

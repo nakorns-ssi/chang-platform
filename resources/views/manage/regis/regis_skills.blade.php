@@ -18,6 +18,13 @@
                                 if(!isset($model['profile_work_history'][0])){
                                     $model['profile_work_history'][0]=null;
                                 }
+                                if(!isset($model['profile_project'][0])){
+                                    $model['profile_project'][0]=null;
+                                }
+
+                                if(!isset($model['profile_work_history'][0])){
+                                    $model['profile_work_history'][0]=null;
+                                }
 
                                 if(!isset($model['work_category'][0])){
                                     $model['work_category'][0]=null;
@@ -31,6 +38,12 @@
                                 }
                                 if(!isset($model['work_sub_category_other'][0])){
                                     $model['work_sub_category_other'][0]=null;
+                                }
+                                if(!isset($model['skill'][0])){
+                                    $model['skill'][0]=null;
+                                }
+                                if(!isset($model['skill_other'][0])){
+                                    $model['skill_other'][0]=null;
                                 }
                                 if(!isset($model['product'][0])){
                                     $model['product'][0]=null;
@@ -169,7 +182,7 @@
                     </div> 
                     <div class="row g-2">
                         <div class="mb-3 text-start ">
-                            <label for="skill_other" class="form-label">สินค้า อื่นๆ</label>
+                            <label for="skill_other" class="form-label">ทักษะ อื่นๆ</label>
                             <input type="text" class="form-control" id="skill_other"
                             name="skills[skill_other][]" value="{{$model['skill_other'][0]}}" 
                              placeholder=" ระบุ">
