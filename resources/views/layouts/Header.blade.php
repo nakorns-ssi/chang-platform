@@ -21,6 +21,13 @@
                             @include('layouts.Btn_Profile') 
                         </div>
                         @endif
+                        @if (!session()->has('account')) 
+                        <div class="d-sm-none d-inline mx-4">
+                         <a class=" text-dark " href="/auth/login">
+                          <span><i class="bi bi-person fa-beat-fade"
+                           style="font-size: larger;"></i>เข้าสู่ระบบ</a></span> 
+                        </div>
+                        @endif
                      </div> 
 
                  </div>
