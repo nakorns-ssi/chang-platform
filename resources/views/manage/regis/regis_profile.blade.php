@@ -30,7 +30,7 @@
                     <label for="profile_full_name" class="form-label">ชื่อ-สกุล </label>
                     <input type="text" class="form-control" id="profile_full_name"
                         value="{{ $model->profile_full_name }}" name="profile[profile_full_name]"
-                        placeholder="ระบุ" required>
+                        placeholder="ระบุ"  >
                 </div>
             </div>
 
