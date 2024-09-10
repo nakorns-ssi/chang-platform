@@ -9,7 +9,9 @@
         @include('layouts.section.SearchHero')
         @include('layouts.section.PostRecommendTab',['model'=>$model])
         {{-- @include('layouts.section.Content2Col') --}}
+        @include('layouts.section.tag_category') 
         @include('layouts.section.CallToAction') 
+        
         <div class="container-fluid p-0">
             @include('layouts.section.GoogleFindMe') 
             

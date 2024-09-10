@@ -38,17 +38,46 @@ use App\helper\helper_lang;
       
           </div>
         </div>
-      </article> 
-    <div class="row mt-4 gx-1 gx-lg-4 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-start">
+      </article>
+
+    @if(count($model)>0)
+    <div class="text-center text-sm-start   container mt-2">
+      <h5 class="text-danger text-decoration-underline" >โพสต์ ({{ number_format(count($model)) }})</h5> 
+    </div> 
+    <div class="row mt-2 gx-1 gx-lg-4 row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 justify-content-start">
+       
         @foreach ($model as $key => $value)
         <?php $url_slug = url("/post/{$value->posts_key}"."/".util::slugify($value->posts_content) );  ?>
             <div class="col-lg-4 col-md-6  my-1 "> 
               <a href="{{$url_slug}}">
-                @include('layouts.section.PostCard'  )  
+                @include('layouts.section.PostCard' )  
               </a>
             </div>  
         @endforeach 
     </div>
+    @endif
+
+    @if(count($Account_list)>0)
+    <div class="text-center text-sm-start pt-2 container mt-2">
+      <h5 class="text-danger text-decoration-underline" >โปรไฟล์ ({{ number_format(count($Account_list))  }})</h5>  
+    </div> 
+    <div class="row mt-2 gx-1 gx-lg-4 row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 justify-content-start">
+      
+        @foreach ($Account_list as $key => $account)
+        <?php 
+        $profile_display_name = $account->profile_display_name ;
+        $profile_display_url = $account->profile_display_url ;
+        $account_code = $account->account_code ;
+        $url_link_profile = url('profile/'.$account_code."/".util::slugify($profile_display_name));
+        ?>
+            <div class="col-lg-4 col-md-6  my-1 ">
+              <a href="{{$url_link_profile}}" target="_blank" class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"> 
+              @include('layouts.section.AccountCard' ,['account' => $account  ])
+              </a>
+            </div>  
+        @endforeach 
+    
+    @endif
       
    
 

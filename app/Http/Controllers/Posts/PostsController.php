@@ -127,7 +127,14 @@ class PostsController  extends Controller
         foreach($Data_meta as $val){
           $account_id_list[] = $val->account_id;
         }
-       // dd($account_id_list,$Data_meta);
+        $Account_list = [];
+
+        if(count($account_id_list)>0){
+          $Account_list = Account::where( 'status','enable') 
+          ->WhereIn('id',$account_id_list)->orderBy('last_active','desc')->take(10)->get();
+        }
+        
+        // dd($Account_list ,$account_id_list );
         // if(count($account_id_list)>0){ 
         //   $model = $model->orWhere(function ($query) use ($account_id_list) {
         //     $query->WhereIn('posts.account_id',$account_id_list)   ; 
@@ -148,7 +155,7 @@ class PostsController  extends Controller
           ->orderby('posts.updated_at','desc')->paginate($paginate_num) ; 
          // dd(DB::getQueryLog());
        
-       return view('posts/search_post',compact('model', 'page_title' ,'keyword'));
+       return view('posts/search_post',compact('model' ,'Account_list', 'page_title' ,'keyword'));
     }
  
      
