@@ -20,14 +20,14 @@ use App\helper\helper_lang;
   @endif
    
   <!-- Product details-->
-  <div class="card-body py-1 px-2">
+  <div class="card-body py-1 px-2 d-flex align-items-end">
       
-      <div class="text-center">  
+      
       
         <div class="d-flex justify-content-between  row  mb-2">
-          <div class="col-sm-6 text-start">
+          <div class="col-sm-6 text-center text-sm-start">
             @if(isset($account->profile_display_name))
-            <div class="  h5" >{{$account->profile_display_name}} </div> 
+            <div class="  h5 text-wrap" >{{$account->profile_display_name}} </div> 
            @else
            <div class=" " >ไม่ระบุ </div> 
             @endif 
@@ -39,8 +39,7 @@ use App\helper\helper_lang;
            
         </div>
         
-       
-    </div>
+        
   </div> 
 </div> 
 

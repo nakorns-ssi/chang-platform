@@ -22,38 +22,32 @@ if(!isset($mode)){
   @endif
    
   <!-- Product details-->
-  <div class="card-body py-1 px-2">
-      <div class="text-start">
-          <!-- Product name-->
-          <h6 class=" line-clamp-2">{{$value->posts_content}}</h6>  
-          <span class="badge text-bg-warning">{{$value->global_category1}}</span>
-      </div>
-      <div class="text-center"> 
-        <!-- Product reviews-->
+  <div class="card-body py-1 px-2 d-flex align-items-end">
       
-        <div class="d-flex justify-content-between  small  mb-2">
-          <div class="">
-            @if(isset($value->location_province))
-            <div class="d-inline" >{{$value->location_province}} </div> 
-           @else
-           <div class="d-inline" >ไม่ระบุ </div> 
-            @endif
-            <div class="d-inline bi bi-geo-alt-fill  "></div>
-          </div>
-          <div class="">
-               <!-- Product price-->
-              @if($value->price_min!=$value->price_max)
-              <span class="text-dark" >฿{{number_format($value->price_min)}}</span> - 
-              <span class="text-dark  ">฿{{number_format($value->price_max)}}</span> 
-              @else
-              <span class="text-dark" >฿{{number_format($value->price_min)}}</span> 
-              @endif
-          </div>
-           
+      <div class="d-flex justify-content-between row    mb-2">
+        <div class="col-sm-12">
+          <h6 class=" line-clamp-2">{{$value->posts_content}}</h6>   
         </div>
+        <div class="col-sm-6">
+          @if(isset($value->location_province))
+          <div class="d-inline" >{{$value->location_province}} </div> 
+          @else
+          <div class="d-inline" >ไม่ระบุ </div> 
+          @endif
+          <div class="d-inline bi bi-geo-alt-fill  "></div>
+        </div>
+        <div class="col-sm-6">
+              <!-- Product price-->
+            @if($value->price_min!=$value->price_max)
+            <span class="text-dark" >฿{{number_format($value->price_min)}}</span> - 
+            <span class="text-dark  ">฿{{number_format($value->price_max)}}</span> 
+            @else
+            <span class="text-dark" >฿{{number_format($value->price_min)}}</span> 
+            @endif
+        </div> 
+      </div>
         
-       
-    </div>
+        
   </div>
   @if($mode=='edit')
     <div class="card-footer text-body-secondary">
