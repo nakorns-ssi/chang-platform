@@ -14,21 +14,26 @@
             $profile_display_url = $model->profile_display_url ;
             $account_code = $model->account_code ;
             ?>
-             
-            <article class="bg-white d-flex justify-content-center align-items-center   mt-4 position-relative "
-            style="padding-top: 80px;" >  
-                
-                    <div class="c-avatar d-block position-absolute top-100 start-50 translate-middle"
-                    style="  height: 80px;  width: 80px; ">
-                        <img src="{{ $profile_display_url }}" class="c-avatar" alt="{{ $display_name }} โปรไฟล์"
-                            loading="lazy" style="" /> 
-                <span class="text-center text-success text-bold text-nowrap">{{ $display_name }} </span>
-                           
-                    </div>  
+
+            <article class=" pt-5"  style=" " >   
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-sm-6">
+                            <div class="col-12 text-center">
+                                <div class="text-center">
+                                    <img src="{{ $profile_display_url }}" class="c-avatar mx-auto d-block"  style="  height: 80px;  width: 80px; "
+                                    alt="{{ $display_name }} โปรไฟล์"  loading="lazy" style="" /> 
+                                </div> 
+                                <div> {{ $display_name }}</div>
+                            </div>   
+                        </div> 
+                    </div>
+                </div> 
             </article>
-            <div class="  p-4">  
+              
+            <div class=" mt-2">  
                 <div class="row g-1"> 
-                    <div class="col-12 mt-5"> 
+                    <div class="col-12 "> 
                        @include('profile.contact_profile',['title'=>'ติดต่อ' ,'model'=>$model])   
                     </div>
                     <div class="col-12 "> 
