@@ -36,13 +36,10 @@ class HomeController  extends Controller
           'posts.status'=>'y' ,   
           'status_code'=>'published' ])
           ->orderby('posts.updated_at','desc')->paginate($paginate_num) ;
-      //   return  $model;
-      // });
-     // $Posts =  $model ;
-      // dd($Posts  );
-      
-
-       return view('home/home_index' ,compact('model'));
+          $Account_list = []; 
+          $Account_list = Account::where( 'status','enable')->orderBy('last_active','desc')->take(3)->get();
+       
+       return view('home/home_index' ,compact('model','Account_list'));
     }
 
     public function  about_us(Request $request)

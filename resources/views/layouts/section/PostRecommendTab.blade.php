@@ -6,7 +6,7 @@ use App\helper\helper_lang;
 <article  class=" my-4">
   <div class="container aos-init aos-animate" data-aos="fade-up"> 
 
-<ul class="nav nav-tabs" id="myTab" role="tablist">
+<ul class="nav nav-tabs" id="myTab" role="tablist"> 
   <li class="nav-item" role="presentation">
     <button class="nav-link active" id="worker-tab" data-bs-toggle="tab" data-bs-target="#worker-tab-pane" type="button" role="tab" aria-controls="worker-tab-pane" aria-selected="true">โพสต์ช่าง</button>
   </li>

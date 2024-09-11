@@ -45,10 +45,9 @@ class PostsController  extends Controller
           'posts.posts_type' =>  $posts_type ,
           'status_code'=>'published' ])
           ->orderby('posts.updated_at','desc')->paginate($paginate_num) ;
-      //   return  $model;
-      // }); 
-      // dd($Posts  ); 
-       return view('posts/search_post' ,compact('model' ,'page_title' , 'posts_type' ,'keyword'));
+          $Account_list = []; 
+     
+       return view('posts/search_post' ,compact('model' ,'page_title' , 'posts_type','Account_list' ,'keyword'));
     }
 
     public function  post_project_owner(Request $request)
@@ -68,10 +67,9 @@ class PostsController  extends Controller
           'posts.posts_type' =>  $posts_type ,
           'status_code'=>'published' ])
           ->orderby('posts.updated_at','desc')->paginate($paginate_num) ;
-       // return  $model;
-      // }); 
-      // dd($Posts  ); 
-       return view('posts/search_post' ,compact('model' ,'page_title' , 'posts_type' ,'keyword'));
+          $Account_list = []; 
+
+       return view('posts/search_post' ,compact('model' ,'page_title' , 'posts_type','Account_list' ,'keyword'));
     }
      
 
