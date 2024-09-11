@@ -1,9 +1,10 @@
-<div class="card my-2">
+
+ <div class="card my-2">
     <div class="card-body row justify-content-start">
-        <div class="col-sm-4 my-2"> 
+        <div class="col-sm-6 my-2"> 
         <div class="text-center text-sm-start">
             <div class="h4">{{$title}}</div>  
-        </div> 
+        </div>  
         <ul class="list-inline">
             <li class="list-inline-item">   
                 <a href="tel:{{$model->profile_phone}}">
@@ -44,28 +45,7 @@
             </li> 
         </ul>
         </div>
-        
-            @if(isset($worker_profile['profile_work_history'][0]) )
-            <div class="col-sm-4 my-2"> 
-                @if($worker_profile['profile_work_history'][0])
-                {{$worker_profile['profile_work_history'][0]}} 
-                @else
-                ไม่ระบุ
-                @endif
-            </div>
-            @endif
-
-            @if(isset($worker_profile['profile_project'][0]) )
-            <div class="col-sm-4 my-2"> 
-                @if($worker_profile['profile_project'][0])
-                {{$worker_profile['profile_project'][0]}} 
-                @else
-                ไม่ระบุ
-                @endif
-            </div>
-            @endif 
-        
-            
+         
 
            
     </div>
