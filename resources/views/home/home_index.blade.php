@@ -13,12 +13,12 @@ use App\helper\helper_lang;
         @include('layouts.section.PostRecommendTab',['model'=>$model])
         {{-- @include('layouts.section.Content2Col') --}}
         
-        @include('layouts.section.tag_category') 
+        @include('layouts.section.tag_category')
+        @include('component.Feedback.Feedback') 
         @include('layouts.section.CallToAction') 
         
         <div class="container-fluid p-0">
-            @include('layouts.section.GoogleFindMe') 
-            
+            {{-- @include('layouts.section.GoogleFindMe')  --}}
         </div>
     </main>
 
