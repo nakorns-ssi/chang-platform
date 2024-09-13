@@ -26,32 +26,42 @@ class FeedbackController  extends Controller
          //Session::put('url_before_login', back()); 
         // $this->middleware('AuthBuddyApp');
     } 
+
+    public function  feedback_index(Request $request)
+    {    
+      return view('component/Feedback/Feedback'); 
+    }
  
     public function  feedback_save(Request $request)
     {   
       $page_title = $this->page_title;
-      $post = $request->input('model');
+      $post = $request->input('rating');
       $session_id = session()->getId();
-      if($post['rating']){ 
+      //dd( $post);
+      if($post){
         $tag = 'แนะนำบริการ';
         $model = Feedback::where([ 'tag'=> $tag ,'session_id' => $session_id ])->delete() ;   
-        foreach($post['rating'] as $mete_key => $meta_value ){
-          $mete_key = base64_decode($mete_key) ; 
+        foreach($post as $mete_key => $meta_value ){
+         // $mete_key = base64_decode($mete_key) ; 
+         foreach($meta_value as $key => $value ){
           $dataset =[ 
             "tag" =>  $tag,   
-            "meta_key" => $mete_key,  
-            "meta_value" =>$meta_value,   
+            "meta_key" => $key,  
+            "meta_value" =>$value,   
             "session_id" => $session_id , 
             "updated_at" => Carbon::now()
           ];
+         } 
+          ///dd($dataset); 
           $data_insert[] = $dataset; 
         }
          
         foreach (array_chunk($data_insert,1000) as $t) : 
           $model = Feedback::insert($t); 
         endforeach;
-      }
-      return redirect()->back() ;
+      } 
+      return view('component/Feedback/Rating_thankyou');
+      //return redirect()->back() ;
     }
   
     

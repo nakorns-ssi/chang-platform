@@ -21,6 +21,7 @@ Route::controller(HomeController::class)->group(function () {
 
 use App\Http\Controllers\FeedbackController; 
 Route::controller(FeedbackController::class)->group(function () {  
+    Route::get('/feedback', 'feedback_index');  
     Route::post('/feedback/save', 'feedback_save');  
 });
 
