@@ -30,12 +30,16 @@ Route::controller(QRController::class)->group(function () {
     Route::get('/qr/{id}', 'qr_scan');   
 });
 
+use App\Http\Controllers\Search\SearchController; 
+Route::controller(SearchController::class)->group(function () {  
+    Route::get('search/', 'search');     
+});
+
 use App\Http\Controllers\Posts\PostsController; 
 Route::controller(PostsController::class)->group(function () { 
     Route::get('post/worker', 'post_worker');    
     Route::get('post/project_owner', 'post_project_owner');    
-    Route::get('post/{id}/{slug}', 'view_post');     
-    Route::get('search/', 'search_post');     
+    Route::get('post/{id}/{slug}', 'view_post');      
 });
 
 use App\Http\Controllers\Profile\ProfileController; 

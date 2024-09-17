@@ -11,14 +11,14 @@
       @csrf  
       <div class="card text-center pt-2 ">  
         <small class="text-black-50 px-2">*ระบบจะไม่ระบุตัวตนของลูกค้า</small> 
-        <div class=" rate  mt-2 ">
+        <div class="    mt-2 ">
           @include('component.Feedback.Rating_item',['index'=>0,'rating_item'=>'ใช้งานง่าย'])
           @include('component.Feedback.Rating_item',['index'=>1,'rating_item'=>'ความรวดเร็ว'])
           @include('component.Feedback.Rating_item',['index'=>2,'rating_item'=>'ความน่าเชื่อถือ'])
           @include('component.Feedback.Rating_item',['index'=>3,'rating_item'=>'จะแนะนำเพื่อน'])   
         </div> 
 
-        <div class="rate   px-3 text-start  mt-3"> 
+        <div class="    px-3 text-start  mt-3"> 
           <label for="remark" class="form-label">แนะนำเพิ่มเติม</label>
           <textarea class="form-control" id="remark" name="rating[4][แนะนำเพิ่มเติม]" rows="3"></textarea>
         </div> 
