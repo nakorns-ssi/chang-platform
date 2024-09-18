@@ -7,7 +7,7 @@ use App\helper\util;
 $model_tag = Data_meta::select('meta_value' 
 , DB::raw('count(meta_value) as total')  )
  ->where('meta_value','!=','-') 
- ->where('meta_key','not like','%_other%') 
+ ->whereIn('meta_key',['work_category','work_sub_category','skill']) 
 ->groupBy('meta_value' )->orderBy('meta_value')->get(); 
  //      dd(count($model_tag),count($tmp));
 ?>
