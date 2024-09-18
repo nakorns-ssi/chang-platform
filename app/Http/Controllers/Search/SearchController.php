@@ -30,7 +30,11 @@ class SearchController  extends Controller
     public function  search(Request $request )
     {    
       $page_title = $this->page_title;
-      $keyword = $request->query('q');  
+      $q = $request->query('q');
+      $keyword =   $q;
+      $keyword = str_replace("งาน", "", $keyword);
+      $keyword = str_replace("หาช่าง", "", $keyword);
+      $keyword = str_replace("ช่าง", "", $keyword);
       DB::enableQueryLog();
       
       
@@ -74,7 +78,7 @@ class SearchController  extends Controller
           ->orderby('posts.updated_at','desc')->paginate($paginate_num) ; 
          // dd(DB::getQueryLog());
        
-       return view('search/search',compact('model' ,'Account_list', 'page_title' ,'keyword'));
+       return view('search/search',compact('model' ,'Account_list', 'page_title' ,'keyword' ));
     }
  
      
