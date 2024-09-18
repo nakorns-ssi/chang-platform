@@ -9,7 +9,8 @@ if(isset($_GET['q'])){
 }
 $model_tag = Data_meta::select('meta_value' 
 , DB::raw('count(meta_value) as total')  )
- ->where('meta_value','!=','-') 
+ ->where('meta_value','!=','-')
+ ->where('meta_key','not like','%_other%') 
 ->groupBy('meta_value' )->orderBy('meta_value')->get(); 
 ?>
 <form action="{{url('search/')}}">
