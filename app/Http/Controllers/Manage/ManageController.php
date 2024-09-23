@@ -8,11 +8,14 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
-use Session;
+use Session; 
+use App\helper\util; 
 use App\Models\Account; 
 use App\Models\Upload;
+use App\helper\gcp\helper_upload;
 use App\helper\helper_account;
-use App\Models\chang_prompt\Data_meta; 
+use App\Models\chang_prompt\Data_meta;
+use App\Models\chang_prompt\Posts; 
 
 class ManageController  extends Controller
 { 
@@ -24,7 +27,7 @@ class ManageController  extends Controller
     public function  regis_index(Request $request)
     { 
       $step = $request->query('step');
-      $step_total = 2;
+      $step_total = 3;
       if(!is_numeric($step)){
         $step = 1; 
         session()->forget('manage.regis');
@@ -59,8 +62,11 @@ class ManageController  extends Controller
       $post = $request->input();
       $post_worker_profile = $request->input('profile');
       $post_skills = $request->input('skills');
-      $account_id = session('account')['account_id']; 
-     
+      $post_posts = $request->input('posts');
+      $post_img = $request->file('upload');
+      $account_id = session('account')['account_id'];
+      $account_display_name =  session('account')['profile_display_name'];
+      //dd($post ,$request->file(),$request->file('upload'));
       if($post_worker_profile){ 
           $model =  Account::where('id', $account_id)->first();
           //dd($model  );
@@ -106,7 +112,82 @@ class ManageController  extends Controller
           { 
               $model = Data_meta::insert($t); 
           }
-    }
+      }
+      if($post_posts){
+        $working_area =  $request->input('working_area');
+        $model =  new Posts ;
+        // dd($model , $working_area ,$post , $request->file() );
+        $model->posts_type = 'worker';
+        $model ::unguard();
+        $model->fill($post_posts);
+        $model->account_id = $account_id;
+        $model->created_at = Carbon::now(); 
+        $model->created_by = $account_id;
+        $model->updated_at = Carbon::now(); 
+        $model->updated_by = $account_id;  
+        $model->updated_by_username = $account_display_name;  
+        $model->posts_key = 'temp_'.date('ymd').uniqid(); 
+        if($model->save()){  
+          $model->posts_key =  util::gen_key($model->id) ;
+          $model->save();
+        }
+        if(isset($working_area['district'] )) {
+          foreach($working_area['district'] as $val){ 
+            $data = json_decode($val);   
+            $model->location_district = $data->district;
+            $model->location_amphoe = $data->amphoe;
+            $model->location_province = $data->province;
+            $model->location_zipcode = $data->zipcode;
+            $model->save();  
+          }
+        }
+        $source_file = [];
+      if(isset($post_img) ) {
+        $source_file = $post_img;
+      } 
+     //dd($source_file,$request->file('model')['pic_upload']); 
+      foreach ($source_file as $key => $fileitem) {
+        $ext = pathinfo($fileitem->getClientOriginalName(), PATHINFO_EXTENSION);
+        $imageProperties = getimagesize($fileitem);
+        $mime = $imageProperties['mime'];
+    
+        $file_path = $fileitem->getRealPath();
+        $param = [
+          'filename' =>  'posts_'.$account_id.'_'.uniqid().'_'.time().'_'.$key.'.'.$ext ,
+          'bucketName' => 'fdc-upload',
+          'upload_path' => 'public',  
+        ];
+        //dd($file_path ,$fileitem );
+        $dataset = helper_upload::upload_select_path($param,$file_path);
+       // dd($dataset  );  
+          $tag = 'posts';   
+           $dataset =[   
+            "tag"=>  $tag , 
+            "upload_key"=>'temp_'.date('ymd').uniqid() , 
+            'account_id'=>$account_id,
+            'ref_id'=> $model->posts_key, 
+            'posts_id'=> $model->id, 
+            'content_type' => $mime,
+            "file_name"=>  $dataset["file_name"] ,
+            "folder_name"=> $dataset["folder_name"] ,
+            "url"=>  $dataset["url"],  
+            "created_by"=> $account_id  ,
+            "created_at"=> Carbon::now() ,
+            "updated_by"=> $account_id  ,
+            "updated_at"=> Carbon::now()  ,
+            "updated_by_username"=> $account_display_name  ,
+         ];
+           $model = new Upload ;  
+           $model ::unguard();
+           $model->fill($dataset);  
+           $model->upload_key = 'temp_'.date('ymd').uniqid();
+           if($model->save()){
+              $model->upload_key = date('ymd') . $model->id . substr(time(), 5);
+              $model->save();
+              
+           }
+       }
+      }
 
       if($step_total > $step  ){
         $step++;

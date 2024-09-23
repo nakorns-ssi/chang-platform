@@ -9,17 +9,14 @@
         <?php
         $actionPath = '/manage/regis_update';
         ?>
- <form action="{{ $actionPath }}" method="post" name="frm_n" id="frm_n" class="  ">
+ <form action="{{ $actionPath }}" method="post" name="frm_n" id="frm_n" class="  " enctype="multipart/form-data" >
     @csrf 
-<input type="hidden" id="step" name="step" value="{{$step}}" />
-<input type="hidden" id="step_total" name="step_total" value="{{$step_total}}" />
-<input type="hidden" id="account_id" name="account_id" value="{{$account_id}}" />
+    <input type="hidden" id="step" name="step" value="{{$step}}" />
+    <input type="hidden" id="step_total" name="step_total" value="{{$step_total}}" />
+    <input type="hidden" id="account_id" name="account_id" value="{{$account_id}}" />
         <div class="row justify-content-center">
             <div class="col-md-8  ">
-                <div class="card text-center mb-5 pt-4">
-                     
-    
-        
+                <div class="card text-center mb-3 pt-4">
                         <div class="card-body">
                             @if($step==1)
                                 @include('manage.regis.regis_profile')
@@ -27,10 +24,11 @@
                             @if($step==2)
                                 @include('manage.regis.regis_skills',['model'=>$model_worker_profile])
                             @endif
+                            @if($step==3)
+                                @include('manage.regis.regis_worker_posts',['model'=>$model_worker_profile])
+                            @endif
                              
                         </div>
-                       
-                    
                 </div>
             </div>
         </div>
@@ -44,26 +42,26 @@
             
              ?>
            
-            <a href="{{$link_prevBtn}}" class="btn btn-lg  " style="width: 140px;  ">
+            <a href="{{$link_prevBtn}}" class="btn   " style="width: 100px;  ">
                 @if($step && $step !=1 )
                 ย้อนกลับ
                 @endif
             </a>
            
-            @if($step<$step_total) <button type="submit" class="btn btn-lg btn-warning  " id="nextBtn"
-                 
-                style="width: 140px;">
+            @if($step<$step_total) 
+            <button type="submit" class="btn   btn-warning  " id="nextBtn"
+                style="width: 100px;">
                 ถัดไป <i class="bi bi-caret-right-fill"></i>
                 </button>
             @endif
-            @if($step==$step_total) <button type="submit" class="btn btn-lg btn-warning bg-smeshipping-01" id="nextBtn"
+            @if($step==$step_total) 
+            <button type="submit" class="btn   btn-warning " id="nextBtn"
                 style="width: auto;">
-                ถัดไป <i class="bi bi-caret-right-fill"></i>
+                เสร็จสิ้น <i class="bi bi-caret-right-fill"></i>
                 </button>
             @endif
         </div>
-        
-    </form>
+</form>
 
 
     </section>
