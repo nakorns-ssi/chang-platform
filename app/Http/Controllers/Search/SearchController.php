@@ -32,6 +32,7 @@ class SearchController  extends Controller
       $page_title = $this->page_title;
       $q = $request->query('q');
       $keyword =   $q;
+      $keyword = str_replace("หาช่างทำ", "", $keyword); 
       $keyword = str_replace("งาน", "", $keyword);
       $keyword = str_replace("หาช่าง", "", $keyword);
       $keyword = str_replace("ช่าง", "", $keyword);
