@@ -38,7 +38,7 @@ class SearchController  extends Controller
       $keyword = str_replace("ช่าง", "", $keyword);
       DB::enableQueryLog();
       
-      
+      $Account_list = [];
       $paginate_num = 10; 
         $model = new Posts; 
         $model =  $model->select('posts.*', 
@@ -51,33 +51,39 @@ class SearchController  extends Controller
         foreach($Data_meta as $val){
           $account_id_list[] = $val->account_id;
         }
-        $Account_list = [];
+       
 
         if(count($account_id_list)>0){
           $Account_list = Account::where( 'status','enable') 
           ->WhereIn('id',$account_id_list)->orderBy('last_active','desc')->take(10)->get();
         }
-        
-        // dd($Account_list ,$account_id_list );
-        // if(count($account_id_list)>0){ 
-        //   $model = $model->orWhere(function ($query) use ($account_id_list) {
-        //     $query->WhereIn('posts.account_id',$account_id_list)   ; 
-        //     })  ;
-        // }
-        
-
-        $model = $model->where(function ($query) use ($keyword,$account_id_list) {
-          $query->Where('posts.posts_content', 'like', '%' . $keyword . '%') 
-          ->orWhere('posts.location_province', 'like', '%' . $keyword . '%')  
-          ->orWhere('posts.location_amphoe', 'like', '%' . $keyword . '%')  
-          ->orWhere('posts.location_district', 'like', '%' . $keyword . '%')   
+        $multi_keyword = explode(' ',$keyword);
+        if(count($multi_keyword)>1){
+          
+        }
+       // dd($keyword,$multi_keyword,$q);
+        foreach($multi_keyword as $val){
+          $model = $model->where(function ($query) use ($keyword,$account_id_list,$val) {
+          $query->Where('posts.posts_content', 'like', '%' . $val . '%') 
+          ->orWhere('posts.location_province', 'like', '%' . $val . '%')  
+          ->orWhere('posts.location_amphoe', 'like', '%' . $val . '%')  
+          ->orWhere('posts.location_district', 'like', '%' . $val . '%')   
           ->orWhereIn('posts.account_id',$account_id_list)   ; 
-          })  ;
+          });
+        }
+        // $model = $model->where(function ($query) use ($keyword,$account_id_list) {
+        //   $query->Where('posts.posts_content', 'like', '%' . $keyword . '%') 
+        //   ->orWhere('posts.location_province', 'like', '%' . $keyword . '%')  
+        //   ->orWhere('posts.location_amphoe', 'like', '%' . $keyword . '%')  
+        //   ->orWhere('posts.location_district', 'like', '%' . $keyword . '%')   
+        //   ->orWhereIn('posts.account_id',$account_id_list)   ; 
+        //   });
         $model =  $model->where([
           'posts.status'=>'y' , 
           'status_code'=>'published' ])
           ->orderby('posts.updated_at','desc')->paginate($paginate_num) ; 
          // dd(DB::getQueryLog());
+          $keyword = explode(' ',$q);;
        
        return view('search/search',compact('model' ,'Account_list', 'page_title' ,'keyword' ));
     }

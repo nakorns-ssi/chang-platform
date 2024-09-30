@@ -19,7 +19,7 @@ use App\helper\helper_lang;
               </nav>
         </div>
         <div class="col-6  text-end"> 
-         <div class="d-none">ผลการค้นหา ทั้งหมด {{ count($model) }} รายการ</div>  
+         <div class=" ">ผลการค้นหา ทั้งหมด {{ count($model) }} รายการ</div>  
         </div>
     </div>
     <article id="search_hero" class="   mt-1 text-center">
@@ -31,7 +31,17 @@ use App\helper\helper_lang;
               </div> 
               
             </div>
-             
+            <div class="row justify-content-start">
+              <div class="col-md-6 col-lg-4  text-start py-1 px-5  "> 
+                @foreach($keyword as $word)
+                <span class="badge border text-dark"># {{$word}}</span> 
+                @endforeach
+                @if(count($keyword)>0)
+                <a class="btn text-danger" href="/search" role="button">
+                  <i class="bi bi-trash"></i></a> 
+                @endif
+              </div>  
+            </div>
       
           </div>
         </div>
