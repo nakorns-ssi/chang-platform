@@ -26,6 +26,10 @@
                             @endif
                             @if($step==3)
                                 @include('manage.regis.regis_worker_posts',['model'=>$model_worker_profile])
+                                <div class="d-none">
+                                    @include('manage.regis.regis_profile')
+                                    @include('manage.regis.regis_skills',['model'=>$model_worker_profile])
+                                </div>
                             @endif
                              
                         </div>
