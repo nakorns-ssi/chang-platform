@@ -36,9 +36,14 @@
     <?php
     if(env('APP_ENV')=='production'){
         $LINE_LIFF_ID =env('LINE_LIFF_ID');
-    }else{
+    }
+    if(env('APP_ENV')=='dev'){
         $LINE_LIFF_ID =env('DEV_LINE_LIFF_ID');
-    } 
+    }
+    if(env('APP_ENV')=='QA'){
+        $LINE_LIFF_ID =env('QA_LINE_LIFF_ID');
+    }
+    
 ?>
 <form action="{{route('auth.callback')}}" method="post" name="frm_n"  >
     @csrf
