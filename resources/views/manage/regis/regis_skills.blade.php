@@ -52,14 +52,14 @@
                                     $model['product_other'][0]=null;
                                 }
                                 ?>
-    <div class="     px-1 text-start  my-3 "> 
+    <div class="     px-1 text-start  my-3 d-none"> 
         <div class="row justify-content-center align-items-center">
             <label for="profile_work_history" class="h5">ประวัติการทำงาน</label>
             <textarea class="form-control"   name="skills[profile_work_history][]" 
             rows="3">{{$model['profile_work_history'][0]}}</textarea>
         </div>
     </div>
-    <div class="     px-1 text-start  my-3 "> 
+    <div class="     px-1 text-start  my-3 d-none"> 
         <div class="row justify-content-center align-items-center">
             <label for="profile_project" class="h5">ผลงาน</label>
             <textarea class="form-control"   name="skills[profile_project][]" 
