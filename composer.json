@@ -18,7 +18,7 @@
         "microsoft/microsoft-graph": "^1.103",
         "mpdf/mpdf": "^8.1",
         "mpdf/qrcode": "^1.2",
-        "opcodesio/log-viewer": "^3.10",
+        "opcodesio/log-viewer": "^3.11",
         "simplesoftwareio/simple-qrcode": "^4.2"
     },
     "require-dev": {
