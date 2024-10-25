@@ -33,6 +33,9 @@ Route::controller(WorkerController::class)->group(function () {
     Route::get('/manage/worker/post/edit', 'worker_post_edit'); 
     
     Route::get('/manage/worker/worker_profile', 'worker_profile');     
+    Route::get('/manage/worker/worker_history', 'worker_history');     
+    Route::get('/manage/worker/edit_worker_history/add', 'edit_worker_history');     
+    Route::get('/manage/worker/edit_worker_history/edit', 'edit_worker_history');     
     Route::post('/manage/worker/worker_profile_save', 'worker_profile_save');     
 });
 

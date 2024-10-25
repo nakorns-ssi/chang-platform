@@ -43,6 +43,31 @@ class WorkerController  extends Controller
        return view('manage/worker/worker_profile',compact('model'));
     }
 
+    public function  worker_history(Request $request)
+    {    
+      $model =  null; 
+      $paginate_num = 50; 
+      $account = session('account');
+      $account_id = session('account')['account_id'];  
+      $posts_type = 'worker_history';
+      // $model = Cache::remember('home_posts', $seconds = (15*1), function () use ($posts_type) { 
+        $paginate_num = 4; 
+        $model = new Posts;
+        $model =  $model->select('posts.*', 
+        DB::raw('(select url from upload where status = "y" and upload.posts_id = posts.id  limit 1)  as img_thumbnail_url') ,
+        DB::raw('(select upload_key from upload where status = "y" and upload.posts_id = posts.id limit 1)  as img_upload_key')  
+        ) ;
+        $model =  $model->where([
+          'posts.status'=>'y' ,
+          'posts.posts_type' =>  $posts_type ,
+          'status_code'=>'published' ])
+          ->orderby('posts.updated_at','desc')->paginate($paginate_num) ;
+      // dd($model ); 
+       return view('manage/worker/worker_history',compact('model'));
+    }
+
+    
+
     public function  worker_profile_save(Request $request)
     {    
       $page_title = $this->page_title; 
