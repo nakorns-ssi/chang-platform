@@ -32,11 +32,13 @@ Route::controller(WorkerController::class)->group(function () {
     Route::post('/manage/worker/post/save', 'worker_post_save');   
     Route::get('/manage/worker/post/edit', 'worker_post_edit'); 
     
-    Route::get('/manage/worker/worker_profile', 'worker_profile');     
+    Route::get('/manage/worker/worker_profile', 'worker_profile');         
+    Route::post('/manage/worker/worker_profile_save', 'worker_profile_save'); 
+    
     Route::get('/manage/worker/worker_history', 'worker_history');     
-    Route::get('/manage/worker/edit_worker_history/add', 'edit_worker_history');     
-    Route::get('/manage/worker/edit_worker_history/edit', 'edit_worker_history');     
-    Route::post('/manage/worker/worker_profile_save', 'worker_profile_save');     
+    Route::get('/manage/worker/worker_history/add', 'add_worker_history');     
+    Route::get('/manage/worker/worker_history/edit', 'edit_worker_history');     
+    Route::post('/manage/worker/worker_history/save', 'save_worker_history');     
 });
 
 

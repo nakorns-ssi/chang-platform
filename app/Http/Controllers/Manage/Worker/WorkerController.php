@@ -43,31 +43,6 @@ class WorkerController  extends Controller
        return view('manage/worker/worker_profile',compact('model'));
     }
 
-    public function  worker_history(Request $request)
-    {    
-      $model =  null; 
-      $paginate_num = 50; 
-      $account = session('account');
-      $account_id = session('account')['account_id'];  
-      $posts_type = 'worker_history';
-      // $model = Cache::remember('home_posts', $seconds = (15*1), function () use ($posts_type) { 
-        $paginate_num = 4; 
-        $model = new Posts;
-        $model =  $model->select('posts.*', 
-        DB::raw('(select url from upload where status = "y" and upload.posts_id = posts.id  limit 1)  as img_thumbnail_url') ,
-        DB::raw('(select upload_key from upload where status = "y" and upload.posts_id = posts.id limit 1)  as img_upload_key')  
-        ) ;
-        $model =  $model->where([
-          'posts.status'=>'y' ,
-          'posts.posts_type' =>  $posts_type ,
-          'status_code'=>'published' ])
-          ->orderby('posts.updated_at','desc')->paginate($paginate_num) ;
-      // dd($model ); 
-       return view('manage/worker/worker_history',compact('model'));
-    }
-
-    
-
     public function  worker_profile_save(Request $request)
     {    
       $page_title = $this->page_title; 
@@ -102,10 +77,100 @@ class WorkerController  extends Controller
             $model = Data_meta::insert($t); 
         } 
      
-      //dd('Data_meta saved', $model );
-
+      //dd('Data_meta saved', $model ); 
       return redirect()->back() ;
       
+    }
+
+    public function  worker_history(Request $request)
+    {    
+      $model =  null; 
+      $paginate_num = 50; 
+      $account = session('account');
+      $account_id = session('account')['account_id'];  
+      $posts_type = 'worker_history';
+      // $model = Cache::remember('home_posts', $seconds = (15*1), function () use ($posts_type) { 
+        $paginate_num = 4; 
+        $model = new Posts;
+        $model =  $model->select('posts.*', 
+        DB::raw('(select url from upload where status = "y" and upload.posts_id = posts.id  limit 1)  as img_thumbnail_url') ,
+        DB::raw('(select upload_key from upload where status = "y" and upload.posts_id = posts.id limit 1)  as img_upload_key')  
+        ) ;
+        $model =  $model->where([
+          'posts.status'=>'y' ,
+          'posts.posts_type' =>  $posts_type ,
+          'status_code'=>'published' ])
+          ->orderby('posts.updated_at','desc')->paginate($paginate_num) ;
+      // dd($model ); 
+       return view('manage/worker/worker_history',compact('model'));
+    }
+ 
+
+
+    public function add_worker_history(Request $request)
+    { 
+        $page_title = $this->page_title;
+        $posts_type = 'worker_history'; 
+        $account_id = session('account')['account_id'];  
+        $model  =   new Posts(); 
+        $model->start_date = date('Y-m-d');
+        $model->end_date = date('Y-m-d');
+        return view('manage/worker/worker_history_frm',compact('model','page_title' )); 
+    } 
+ 
+    public function edit_worker_history(Request $request)
+    {  
+        $account_id = session('account')['account_id'];
+        $posts_type = 'worker_history';
+        $id =   $request->query('id'); 
+        $model =  Posts::where( ['status'=>'y','_key'=> $id])->first();
+        // dd($model);
+        return view('manage/worker/worker_history_frm',compact('model'));
+    }
+  
+    public function  save_worker_history(Request $request)
+    {
+        $post =   $request->input('model'); 
+        $post['posts_type'] = 'worker_history';
+        $account_id = session('account')['account_id'];   
+        $account_display_name = session('account')['display_name'];   
+        //print_r($post); die();
+        if ( $post['id']) { //update  
+        $model =  Posts::where('id',"=", $post['id'])->first();
+        $model ::unguard();
+        $model->fill($post);   
+        $model->updated_at = Carbon::now();
+        $model->updated_by =  $account_id; 
+        $model->updated_by_username = $account_display_name; 
+        } else { //create  
+        $model =   new Posts ; 
+        $model ::unguard();
+        $model->fill($post);  
+        $model->customer_code  = 'temp_'.date('ymd').uniqid();  
+        $model->updated_at = Carbon::now();
+        $model->updated_by =  $account_id;
+        $model->updated_by_username = $account_display_name; 
+        $model->created_at =Carbon::now();
+        $model->created_by =  $account_id; 
+          if($model->save()){
+              $model->customer_code  = date('ymd') . $model->id . substr(time(), 5);
+              $model->_key  = util::gen_key($model->id);
+          }
+        }
+ 
+        if($model->save()){ 
+          Session::flash('alert', [
+              'status' => 'success',
+              'text' => 'บันทึกข้อมูลแล้ว!' . '  , ' . date('H:i'),
+      ]); 
+      }else{
+          Session::flash('alert', [
+              'status' => 'error',
+              'text' => 'ข้อมูลไม่ถูกต้อง',
+          ]); 
+      }
+      return back()->withInput();
+        
     }
      
 

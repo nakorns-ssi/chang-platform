@@ -74,7 +74,8 @@
     <script src="{{ asset('OnePage/assets/vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
     <script src="{{ asset('OnePage/assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
     <script src="{{ asset('OnePage/assets/vendor/php-email-form/validate.js') }}"></script>
-
+    <!-- Scripts --> 
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <!-- Template Main JS File -->
     <script src="{{ asset('chang_prompt/js/main.js') }}"></script>
 </body>
