@@ -3,6 +3,10 @@
 @section('description', '')
 @section('keywords', '')
 @section('content')
+<?php 
+ use App\helper\util;
+ use App\helper\helper_lang;  
+ ?> 
     {{-- @include('manage.manage_header') --}}
 
     <header id="header" class="fixed-top">
@@ -23,11 +27,30 @@
                         class="bi bi-plus-lg"></i> เพิ่ม</a>
             </div>
         </div>
-        <div class="row gx-1 gx-lg-4 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-start">
+        <div class="row   justify-content-center">
 
             @foreach ($model as $key => $value)
-                <div class="col-lg-4 col-md-6  my-1 ">
-
+            <?php 
+                $dataJson = json_encode([  
+                    '_key' => $value->posts_key ,  
+                    ]);
+            ?>
+                <div class=" col-sm-8 col-md-8  my-1 ">
+                    <div class="row py-2 px-3  border rounded-4 d-flex aligh-items-center justify-content-between bg-white">
+                        <div class="col-12 py-2 justify-content-between">
+                            <a class=''  href='#'  onclick='edit_item({{ $dataJson }})'
+                              role='button'>
+                                <span class="h6 my-2">
+                                    <i class="bi bi-pencil-square h5"></i> 
+                                    {{util::thai_date_short($value->start_date)}} - {{util::thai_date_short($value->end_date)}}  
+                                </span> 
+                            </a> 
+                        </div> 
+                        <div class="col-12  ps-3">  
+                            <div class="p-2 bg-light rounded-2 ">{!! nl2br($value->posts_content) !!}</div> 
+                        </div>
+                        
+                    </div> 
                 </div>
             @endforeach
 
@@ -46,7 +69,7 @@
         </div>
 
         <!-- Modal -->
-        <div class="modal    " id="myModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        <div class="modal" id="myModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
             aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-xl modal-dialog-scrollable modal-fullscreen ">
                 <div class="modal-content">
@@ -55,8 +78,8 @@
                             aria-label="Close">X</button>
                         <h5 class="modal-title" id="myModal_title">Modal title</h5>
                     </div>
-                    <div class="modal-body bg-light">
-                        กำลังโหลด...
+                    <div class="modal-body bg-light text-center">
+                      <div class="fs-4"> กำลังโหลด...</div> 
                     </div>
                 </div>
             </div>
@@ -123,6 +146,10 @@
             show_modal(config)
         }
 
+        $("#myModal").on("hidden.bs.modal", function () {
+            $("#myModal").find(".modal-body").empty()
+            $("#myModal").find(".modal-body").html('<div class="fs-4"> กำลังโหลด...</div>')
+        });
         function show_modal(config) {
             console.log('show_modal')
             console.log(config)

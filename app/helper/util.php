@@ -18,6 +18,16 @@ class util
         
     }
 
+    public static function thai_date_short($date)
+    {  
+       $time = strtotime($date);
+       $thai_date_return = ''; 
+        $thai_date_return .= date("d", $time);
+        $thai_date_return .= " " . self::$monthTH_brev[date("n", $time)];
+        $thai_date_return .= " " .  substr( (date("Y", $time)+543) ,2,4) ; 
+        return $thai_date_return;
+    }
+
     public static function thai_datetime($date_input)
     { // 19 ธันวาคม 2556 เวลา 10:10:43
         // print_r(date("n", $time));die();

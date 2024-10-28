@@ -3,6 +3,10 @@
 @section('description', '')
 @section('keywords', '')
 @section('content')
+<?php
+use App\helper\util;
+use App\helper\helper_lang;  
+?> 
     {{-- @include('manage.manage_header') --}}
 
     <header id="header" class="fixed-top">
@@ -21,81 +25,96 @@
                     <a href="/manage/worker/worker_history">
                         <div class=" card px-4 p-2 bg-white border rounded-4">
                             <div class="row justifu-content-start align-items-center">
-                                <div class="col-10  ">
+                                <div class="col-10  "> 
                                     <div class="h4 text-nowrap pl-3">
-                                        ประวัติการทำงาน 
-                                    </div> 
-                                    <div class="row justifu-content-between">
-                                        <div class="col-6 col-sm-6 "><i class="bi bi-star-fill text-warning"></i> 4.85/5 </div>
-                                        <div class="col-6 col-sm-6">1853 skills</div> 
+                                        <i class="bi bi-pencil-square h5"></i>  ประวัติการทำงาน 
+                                    </div>  
+                                    <div class="row justifu-content-center">
+                                        @foreach ($work_history as $key => $value)
+                                        <?php 
+                                            $dataJson = json_encode([  
+                                                '_key' => $value->posts_key ,  
+                                                ]);
+                                        ?>
+                                            <div class=" col-sm-8 col-md-8  my-1 ">
+                                                <div class="row py-2 px-3  border rounded-4 d-flex aligh-items-center justify-content-between bg-white">
+                                                    <div class="col-12 py-2 justify-content-between">
+                                                        
+                                                            <span class="h6 my-2"> 
+                                                                {{util::thai_date_short($value->start_date)}} - {{util::thai_date_short($value->end_date)}}  
+                                                            </span>  
+                                                    </div> 
+                                                    <div class="col-12  ps-3">  
+                                                        <div class="p-2 bg-light rounded-2 ">{!! nl2br($value->posts_content) !!}</div> 
+                                                    </div>
+                                                    
+                                                </div> 
+                                            </div>
+                                        @endforeach
                                     </div>
-                                </div>
-                                <div class="col-2 col-sm-2 float-end"> 
-                                    <span  ><i class="bi bi-chevron-right"></i></span> 
-                                </div>
+                                </div> 
                             </div> 
                         </div>
                     </a> 
                 </div>
 
+                   
                 <div class="col-sm-12">
-                    <a href="#">
+                    <a href="/manage/worker/worker_skill">
                         <div class=" card px-4 p-2 bg-white border rounded-4">
                             <div class="row justifu-content-start align-items-center">
-                                <div class="col-10  ">
+                                <div class=" col-sm-6 ">
                                     <div class="h4 text-nowrap pl-3">
-                                        ผลงาน 
-                                    </div> 
-                                    <div class="row justifu-content-between">
-                                        <div class="col-6 col-sm-6 "><i class="bi bi-star-fill text-warning"></i> 4.85/5 </div>
-                                        <div class="col-6 col-sm-6">1853 skills</div> 
-                                    </div>
-                                </div>
-                                <div class="col-2 col-sm-2 float-end"> 
-                                    <span  ><i class="bi bi-chevron-right"></i></span> 
-                                </div>
-                            </div> 
-                        </div>
-                    </a> 
-                </div> 
-
-                <div class="col-sm-6">
-                    <a href="#">
-                        <div class=" card px-4 p-2 bg-white border rounded-4">
-                            <div class="row justifu-content-start align-items-center">
-                                <div class="col-10  ">
+                                        <i class="bi bi-pencil-square h5"></i> ประเภทงาน 
+                                    </div>  
+                                        <div class="col-sm-12 my-2">   
+                                            <div class="d-block p-2   ">
+                                                @foreach ($worker_profile['work_category'] as $key => $item )  
+                                                <span class="badge text-bg-warning fw-light me-1 ">#{{$item}}</span> 
+                                                @endforeach
+                                            </div> 
+                                        </div>
+                                       
+                                </div> 
+                                <div class=" col-sm-6 ">
                                     <div class="h4 text-nowrap pl-3">
-                                        ประเภทงาน 
-                                    </div> 
-                                    <div class="row justifu-content-between">
-                                        <div class="col-6 col-sm-6 "><i class="bi bi-star-fill text-warning"></i> 4.85/5 </div>
-                                        <div class="col-6 col-sm-6">1853 skills</div> 
-                                    </div>
-                                </div>
-                                <div class="col-2 col-sm-2 float-end"> 
-                                    <span  ><i class="bi bi-chevron-right"></i></span> 
-                                </div>
-                            </div> 
-                        </div>
-                    </a> 
-                </div>
-
-                <div class="col-sm-6">
-                    <a href="#">
-                        <div class=" card px-4 p-2 bg-white border rounded-4">
-                            <div class="row justifu-content-start align-items-center">
-                                <div class="col-10  ">
+                                        <i class="bi bi-pencil-square h5"></i> ประเภทงานย่อย 
+                                    </div>  
+                                        <div class="col-sm-12 my-2">   
+                                            <div class="d-block p-2   ">
+                                                @foreach ($worker_profile['work_sub_category'] as $key => $item )  
+                                                <span class="badge text-bg-warning fw-light me-1 ">#{{$item}}</span> 
+                                                @endforeach
+                                            </div> 
+                                        </div>
+                                       
+                                </div> 
+                                <div class=" col-sm-6 ">
                                     <div class="h4 text-nowrap pl-3">
-                                        ทักษะ 
-                                    </div> 
-                                    <div class="row justifu-content-between">
-                                        <div class="col-6 col-sm-6 "><i class="bi bi-star-fill text-warning"></i> 4.85/5 </div>
-                                        <div class="col-6 col-sm-6">1853 skills</div> 
-                                    </div>
+                                        <i class="bi bi-pencil-square h5"></i> ทักษะ 
+                                    </div>  
+                                        <div class="col-sm-12 my-2">   
+                                            <div class="d-block p-2   ">
+                                                @foreach ($worker_profile['skill'] as $key => $item )  
+                                                <span class="badge text-bg-warning fw-light me-1 ">#{{$item}}</span> 
+                                                @endforeach
+                                            </div> 
+                                        </div>
+                                       
                                 </div>
-                                <div class="col-2 col-sm-2 float-end"> 
-                                    <span  ><i class="bi bi-chevron-right"></i></span> 
-                                </div>
+                                <div class=" col-sm-6 ">
+                                    <div class="h4 text-nowrap pl-3">
+                                        <i class="bi bi-pencil-square h5"></i> สินค้า 
+                                    </div>  
+                                        <div class="col-sm-12 my-2">   
+                                            <div class="d-block p-2   ">
+                                                @foreach ($worker_profile['product'] as $key => $item )  
+                                                <span class="badge text-bg-warning fw-light me-1 ">#{{$item}}</span> 
+                                                @endforeach
+                                            </div> 
+                                        </div>
+                                       
+                                </div> 
                             </div> 
                         </div>
                     </a> 

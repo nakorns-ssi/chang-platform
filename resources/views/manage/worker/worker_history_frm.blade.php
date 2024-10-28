@@ -6,7 +6,7 @@
       <div class="row justify-content-center">
           <div class="col-md-8 col-lg-6 ">
             <div class="row">
-                <div class="col-sm-6">
+                <div class="col-6">
                     <div class="mb-3  ">
                         <label for="start_date" class="form-label fs-6 fw-semibold"><i class="bi bi-calendar"></i>
                             วันที่ เริ่มต้น</label>
@@ -14,7 +14,7 @@
                             class="form-control">
                     </div>
                 </div>
-                  <div class="col-sm-6">
+                  <div class="col-6">
                     <div class="mb-3  ">
                         <label for="end_date" class="form-label fs-6 fw-semibold"><i class="bi bi-calendar"></i>
                           วันที่ สิ้นสุด</label>
@@ -43,7 +43,7 @@
   <script>
       $(document).ready(function() {
           console.log('his load ready')
-          $('#ui-datepicker-div').css('clip', 'auto');
+          //$('#ui-datepicker-div').css('clip', 'auto');
           $("#start_date").datepicker({
               dateFormat: 'yy-mm-dd',
               changeMonth: true,

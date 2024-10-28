@@ -39,8 +39,19 @@ class WorkerController  extends Controller
         foreach($Data_meta as $val){
           $model[$val->meta_key][] = $val->meta_value;
         }
-      //dd($model['profile_ability']); 
-       return view('manage/worker/worker_profile',compact('model'));
+      $worker_profile =  $model;
+      $posts_type = 'worker_history';
+      $work_history = new Posts;
+        $work_history =  $work_history->select('posts.*', 
+        DB::raw('(select url from upload where status = "y" and upload.posts_id = posts.id  limit 1)  as img_thumbnail_url') ,
+        DB::raw('(select upload_key from upload where status = "y" and upload.posts_id = posts.id limit 1)  as img_upload_key')  
+        ) ;
+        $work_history =  $work_history->where([
+          'posts.status'=>'y' ,
+          'posts.posts_type' =>  $posts_type   ])
+          ->orderby('posts.updated_at','desc')->limit(4)->get() ;
+      //dd($skill,$work_history); 
+       return view('manage/worker/worker_profile',compact('model','worker_profile','work_history'));
     }
 
     public function  worker_profile_save(Request $request)
@@ -82,6 +93,65 @@ class WorkerController  extends Controller
       
     }
 
+    public function  worker_skill(Request $request)
+    {    
+      $model =  null; 
+      $paginate_num = 50; 
+      $account = session('account');
+      $account_id = session('account')['account_id'];  
+      $posts_type = 'worker_history';
+      // $model = Cache::remember('home_posts', $seconds = (15*1), function () use ($posts_type) { 
+          
+      $model_worker_profile = null;
+      $Data_meta =  Data_meta::where([
+        'tag'=>'worker_profile' ,  
+        'account_id' => $account_id 
+        ])->get();
+
+        foreach($Data_meta as $val){
+          $model_worker_profile[$val->meta_key][] = $val->meta_value;
+        }
+        $model = $model_worker_profile;
+      // dd($model ); 
+       return view('manage/worker/worker_skill',compact('model','model_worker_profile'));
+    }
+
+    public function  worker_skill_save(Request $request)
+    {    
+      $model =  null; 
+      $paginate_num = 50; 
+      $account = session('account');
+      $account_id = session('account')['account_id'];  
+      $post_skills = $request->input('skills');
+      $posts_type = 'worker_profile';
+      if($post_skills){ 
+        $model =  Data_meta::where([
+          'tag'=>'worker_profile' ,  
+          'account_id' => $account_id ])->first(); 
+          foreach($post_skills as $mete_key => $meta_value ){
+            //dd('dataset $meta_value', $mete_key , $meta_value );
+            foreach($meta_value as $val ){
+              $dataset =[ 
+                "tag" => 'worker_profile',   
+                "meta_key" => $mete_key,  
+                "meta_value" =>$val,   
+                "account_id" => $account_id ,   
+              ];
+              $data_insert[] = $dataset;
+            }
+          } 
+          Data_meta::where([ 
+            "tag" => 'worker_profile',   
+            "account_id" => $account_id   
+          ])->delete();
+          foreach (array_chunk($data_insert,1000) as $t)  
+          { 
+              $model = Data_meta::insert($t); 
+          }
+      }
+      return back()->withInput();
+    }
+
     public function  worker_history(Request $request)
     {    
       $model =  null; 
@@ -98,8 +168,7 @@ class WorkerController  extends Controller
         ) ;
         $model =  $model->where([
           'posts.status'=>'y' ,
-          'posts.posts_type' =>  $posts_type ,
-          'status_code'=>'published' ])
+          'posts.posts_type' =>  $posts_type   ])
           ->orderby('posts.updated_at','desc')->paginate($paginate_num) ;
       // dd($model ); 
        return view('manage/worker/worker_history',compact('model'));
@@ -123,7 +192,11 @@ class WorkerController  extends Controller
         $account_id = session('account')['account_id'];
         $posts_type = 'worker_history';
         $id =   $request->query('id'); 
-        $model =  Posts::where( ['status'=>'y','_key'=> $id])->first();
+        $model =  Posts::where( ['status'=>'y','posts_key'=> $id]) ;
+        $model =  $model->where([
+          'account_id'=>$account_id ]) ;
+        $model =   $model->first();
+
         // dd($model);
         return view('manage/worker/worker_history_frm',compact('model'));
     }
@@ -133,7 +206,8 @@ class WorkerController  extends Controller
         $post =   $request->input('model'); 
         $post['posts_type'] = 'worker_history';
         $account_id = session('account')['account_id'];   
-        $account_display_name = session('account')['display_name'];   
+        $account_display_name = session('account')['display_name'];
+        $post['account_id'] = $account_id ;
         //print_r($post); die();
         if ( $post['id']) { //update  
         $model =  Posts::where('id',"=", $post['id'])->first();
@@ -145,16 +219,15 @@ class WorkerController  extends Controller
         } else { //create  
         $model =   new Posts ; 
         $model ::unguard();
-        $model->fill($post);  
-        $model->customer_code  = 'temp_'.date('ymd').uniqid();  
+        $model->fill($post);   
         $model->updated_at = Carbon::now();
         $model->updated_by =  $account_id;
         $model->updated_by_username = $account_display_name; 
         $model->created_at =Carbon::now();
-        $model->created_by =  $account_id; 
-          if($model->save()){
-              $model->customer_code  = date('ymd') . $model->id . substr(time(), 5);
-              $model->_key  = util::gen_key($model->id);
+        $model->created_by =  $account_id;
+        $model->posts_key = 'temp_'.date('ymd').uniqid(); 
+          if($model->save()){ 
+              $model->posts_key  = util::gen_key($model->id);
           }
         }
  
