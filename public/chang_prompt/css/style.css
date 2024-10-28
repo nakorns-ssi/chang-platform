@@ -100,7 +100,7 @@ textarea:focus, input:focus{
   outline: none;
 }
 a {
-  color: var(--bs-primary);
+  color: var(--bg-icon-hover);
   text-decoration: none;
 }
 

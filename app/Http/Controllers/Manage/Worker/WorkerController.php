@@ -148,7 +148,12 @@ class WorkerController  extends Controller
           { 
               $model = Data_meta::insert($t); 
           }
+          Session::flash('alert', [
+            'status' => 'success',
+            'text' => 'บันทึกข้อมูลแล้ว!' . '  , ' . date('H:i'),
+          ]); 
       }
+      
       return back()->withInput();
     }
 

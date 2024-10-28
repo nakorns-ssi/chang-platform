@@ -22,13 +22,15 @@ use App\helper\helper_lang;
 
             <div class="row mt-2 g-2">
                 <div class="col-sm-12">
-                    <a href="/manage/worker/worker_history">
+                   
                         <div class=" card px-4 p-2 bg-white border rounded-4">
                             <div class="row justifu-content-start align-items-center">
                                 <div class="col-10  "> 
+                                    <a href="/manage/worker/worker_history">
                                     <div class="h4 text-nowrap pl-3">
                                         <i class="bi bi-pencil-square h5"></i>  ประวัติการทำงาน 
                                     </div>  
+                                    </a>
                                     <div class="row justifu-content-center">
                                         @foreach ($work_history as $key => $value)
                                         <?php 
@@ -46,26 +48,51 @@ use App\helper\helper_lang;
                                                     </div> 
                                                     <div class="col-12  ps-3">  
                                                         <div class="p-2 bg-light rounded-2 ">{!! nl2br($value->posts_content) !!}</div> 
-                                                    </div>
-                                                    
+                                                    </div> 
                                                 </div> 
                                             </div>
                                         @endforeach
+                                        
                                     </div>
                                 </div> 
                             </div> 
                         </div>
-                    </a> 
+                  
+                </div>
+
+                <div class="col-sm-12">
+                    
+                        
+                        <div class=" card px-4 p-2 bg-white border rounded-4">
+                            <div class="row justifu-content-start align-items-center">
+                                <div class=" col-sm-12 ">
+                                    <a href="/manage/worker/worker_skill">
+                                    <div class="h4 text-nowrap pl-3">
+                                        <i class="bi bi-pencil-square h5"></i>ผลงาน 
+                                    </div> 
+                                </a>
+                                </div>
+                             
+                            </div> 
+                        </div> 
                 </div>
 
                    
                 <div class="col-sm-12">
-                    <a href="/manage/worker/worker_skill">
+                    
+                        
                         <div class=" card px-4 p-2 bg-white border rounded-4">
                             <div class="row justifu-content-start align-items-center">
+                                <div class=" col-sm-12 ">
+                                    <a href="/manage/worker/worker_skill">
+                                    <div class="h4 text-nowrap pl-3">
+                                        <i class="bi bi-pencil-square h5"></i> ความสามารถ 
+                                    </div> 
+                                    </a>
+                                </div>
                                 <div class=" col-sm-6 ">
                                     <div class="h4 text-nowrap pl-3">
-                                        <i class="bi bi-pencil-square h5"></i> ประเภทงาน 
+                                         ประเภทงาน 
                                     </div>  
                                         <div class="col-sm-12 my-2">   
                                             <div class="d-block p-2   ">
@@ -78,7 +105,7 @@ use App\helper\helper_lang;
                                 </div> 
                                 <div class=" col-sm-6 ">
                                     <div class="h4 text-nowrap pl-3">
-                                        <i class="bi bi-pencil-square h5"></i> ประเภทงานย่อย 
+                                         ประเภทงานย่อย 
                                     </div>  
                                         <div class="col-sm-12 my-2">   
                                             <div class="d-block p-2   ">
@@ -91,7 +118,7 @@ use App\helper\helper_lang;
                                 </div> 
                                 <div class=" col-sm-6 ">
                                     <div class="h4 text-nowrap pl-3">
-                                        <i class="bi bi-pencil-square h5"></i> ทักษะ 
+                                         ทักษะ 
                                     </div>  
                                         <div class="col-sm-12 my-2">   
                                             <div class="d-block p-2   ">
@@ -104,7 +131,7 @@ use App\helper\helper_lang;
                                 </div>
                                 <div class=" col-sm-6 ">
                                     <div class="h4 text-nowrap pl-3">
-                                        <i class="bi bi-pencil-square h5"></i> สินค้า 
+                                         สินค้า 
                                     </div>  
                                         <div class="col-sm-12 my-2">   
                                             <div class="d-block p-2   ">
@@ -117,7 +144,7 @@ use App\helper\helper_lang;
                                 </div> 
                             </div> 
                         </div>
-                    </a> 
+                     
                 </div> 
             </div>
 

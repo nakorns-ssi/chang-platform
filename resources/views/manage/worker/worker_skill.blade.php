@@ -85,8 +85,8 @@
                 }
                 ?>
                 <div class=" col-4 col-sm-3 me-1 flex-fill card   bg-primary-subtle ">
-                    <label class="text-nowrap " for="work_category{{$key}}">
-                    <div class="  fs-6  mb-1 p-3"> 
+                    <label class="  " for="work_category{{$key}}">
+                    <div class="     mb-1 p-3"> 
                       <input type="checkbox" id="work_category{{$key}}" 
                       name="skills[work_category][]" value="{{$item}}"
                       {{$checked}} >
@@ -124,15 +124,15 @@
                     }
                 }
                 ?>
-                <div class=" col-4 col-sm-3 me-1 flex-fill card   bg-primary-subtle ">
-                    <label class="text-nowrap " for="work_sub_category{{$key}}">
-                    <div class="  fs-6  mb-1 p-3"> 
+                <div class=" col-4 col-sm-3 me-1 flex-fill card   bg-primary-subtle text-start">
+                    <label class="  " for="work_sub_category{{$key}}">
+                    <div class="  mb-1 p-3"> 
                       <input type="checkbox" id="work_sub_category{{$key}}" 
                       name="skills[work_sub_category][]" value="{{$item}}"
                       {{$checked}} >
-                      {{$item}} 
-                    </div>
-                    </label>
+                      <span> {{$item}} </span>
+                    </div> 
+                    </label> 
                 </div> 
                 @endforeach 
             </div> 
@@ -155,7 +155,7 @@
             ,"ประกอบโครงสร้างเหล็ก" ,"ตัดเหล็กกล้าคาร์บอนด้วยแก๊ส" ,"กลึง"
         ]; 
             ?>
-            <div class="row g-2">
+            <div class="d-flex row g-1">
                 @foreach ($skill as $key => $item)
                 <?php 
                 $checked = '';
@@ -165,19 +165,19 @@
                     }
                 }
                 ?>
-                <div class=" col-4 col-sm-3 flex-fill ">
-                    <label class="w-100" for="skill{{$key}}"> 
-                        <div class="card bg-primary-subtle fs-6  mb-1 p-2">
-                            {{$item}}
-                          <input type="checkbox" id="skill{{$key}}" 
-                          name="skills[skill][]" value="{{$item}}"
-                          {{$checked}}
-                          >
-                        </div>
-                    </label>
+                <div class=" col-4 col-sm-3 me-1 flex-fill card   bg-primary-subtle text-start">
+                    <label class="  " for="skill{{$key}}">
+                    <div class="  mb-1 p-3"> 
+                      <input type="checkbox" id="skill{{$key}}" 
+                      name="skills[skill][]" value="{{$item}}"
+                      {{$checked}} >
+                      <span> {{$item}} </span>
+                    </div> 
+                    </label> 
                 </div> 
                 @endforeach 
-            </div> 
+            </div>
+        
             <div class="row g-2 mt-1">
                 <div class="mb-3 text-start ">
                     <label for="skill_other" class="form-label">ทักษะ อื่นๆ</label>
@@ -195,7 +195,7 @@
             "เหล็กดัด","มุ้งลวด","ประตู" ,"รั้ว","โรงรถ","บ้านนอคดาวน์" 
         ]; 
             ?>
-            <div class="row g-2">
+            <div class="d-flex row g-1">
                 @foreach ($product as $key => $item)
                 <?php 
                 $checked = '';
@@ -204,21 +204,20 @@
                         $checked = 'checked';
                     }
                 }
-                ?>
-                <div class=" col-4 col-sm-3 flex-fill ">
-                    <label class="w-100" for="product{{$key}}"> 
-                        <div class="card bg-primary-subtle fs-6  mb-1 p-2">
-                            {{$item}}
-                          <input type="checkbox" id="product{{$key}}" 
-                          name="skills[product][]" value="{{$item}}"
-                          {{$checked}}
-                          >
-                        </div>
-                    </label>
+                ?> 
+                <div class=" col-4 col-sm-3 me-1 flex-fill card   bg-primary-subtle text-start">
+                    <label class="  " for="product{{$key}}">
+                    <div class="  mb-1 p-3"> 
+                      <input type="checkbox" id="product{{$key}}" 
+                      name="skills[product][]" value="{{$item}}"
+                      {{$checked}} >
+                      <span> {{$item}} </span>
+                    </div> 
+                    </label> 
                 </div> 
                 @endforeach 
             </div> 
-            <div class="row g-2">
+            <div class="row g-2 mt-1">
                 <div class="mb-3 text-start ">
                     <label for="product_other" class="form-label">สินค้า อื่นๆ</label>
                     <input type="text" class="form-control" id="product_other"
