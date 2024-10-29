@@ -93,6 +93,94 @@ class WorkerController  extends Controller
       
     }
 
+    public function  worker_project(Request $request)
+    {    
+      $model =  null; 
+      $paginate_num = 50; 
+      $account = session('account');
+      $account_id = session('account')['account_id'];  
+      $posts_type = 'worker_project';
+      $model = new Posts;
+     // $model =  $model->RightJoin('upload', 'posts.id', '=', 'upload.posts_id') ;
+      $model =  $model->select('posts.*', 
+      DB::raw('(select url from upload where status = "y" and upload.posts_id = posts.id  limit 1)  as img_thumbnail_url') ,
+        DB::raw('(select upload_key from upload where status = "y" and upload.posts_id = posts.id limit 1)  as img_upload_key')   
+      ) ;
+      $model =  $model->where([
+        'posts.status'=>'y' ,  
+        'posts_type'=> $posts_type,
+        'posts.account_id' => $account_id ])
+        ->orderby('updated_at','desc')->paginate($paginate_num) ;
+      // dd($model ); 
+       return view('manage/worker/worker_project',compact('model'));
+    }
+
+    public function  worker_project_save(Request $request)
+    {    
+      $model =  null; 
+      $paginate_num = 50; 
+      $account = session('account');
+      $account_id = session('account')['account_id'];  
+      $post_skills = $request->input('skills');
+      $posts_type = 'worker_project';
+      if($post_skills){ 
+        $model =  Data_meta::where([
+          'tag'=>$posts_type ,  
+          'account_id' => $account_id ])->first(); 
+          foreach($post_skills as $mete_key => $meta_value ){
+            //dd('dataset $meta_value', $mete_key , $meta_value );
+            foreach($meta_value as $val ){
+              $dataset =[ 
+                "tag" => $posts_type,   
+                "meta_key" => $mete_key,  
+                "meta_value" =>$val,   
+                "account_id" => $account_id ,   
+              ];
+              $data_insert[] = $dataset;
+            }
+          } 
+          Data_meta::where([ 
+            "tag" => 'worker_profile',   
+            "account_id" => $account_id   
+          ])->delete();
+          foreach (array_chunk($data_insert,1000) as $t)  
+          { 
+              $model = Data_meta::insert($t); 
+          }
+          Session::flash('alert', [
+            'status' => 'success',
+            'text' => 'บันทึกข้อมูลแล้ว!' . '  , ' . date('H:i'),
+          ]); 
+      }
+      
+      return back()->withInput();
+    }
+
+    public function add_worker_project()
+    { 
+        $page_title = $this->page_title;
+        $posts_type = 'worker_project'; 
+        $account_id = session('account')['account_id'];  
+        $model  =   new Posts(); 
+        $model->start_date = date('Y-m-d');
+        $model->end_date = date('Y-m-d');
+        return view('manage/worker/worker_project_frm',compact('model','page_title' )); 
+    } 
+ 
+    public function edit_worker_project(Request $request)
+    {  
+        $account_id = session('account')['account_id'];
+        $posts_type = 'worker_project';
+        $id =   $request->query('id'); 
+        $model =  Posts::where( ['status'=>'y','posts_key'=> $id]) ;
+        $model =  $model->where([
+          'account_id'=>$account_id ]) ;
+        $model =   $model->first();
+
+        // dd($model);
+        return view('manage/worker/worker_project_frm',compact('model'));
+    }
+
     public function  worker_skill(Request $request)
     {    
       $model =  null; 

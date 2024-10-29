@@ -123,7 +123,11 @@
                     '?id=' + data._key
             }
 
-            function del_item(data) {
+            
+            show_modal(config)
+        }
+
+        function del_item(data) {
                 var config = {
                     title: 'ลบ',
                     url: '/manage/worker/worker_history/del' +
@@ -143,8 +147,6 @@
                 })
 
             }
-            show_modal(config)
-        }
 
         $("#myModal").on("hidden.bs.modal", function () {
             $("#myModal").find(".modal-body").empty()

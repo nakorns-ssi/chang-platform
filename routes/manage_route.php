@@ -37,6 +37,11 @@ Route::controller(WorkerController::class)->group(function () {
     
     Route::get('/manage/worker/worker_skill', 'worker_skill');
     Route::post('/manage/worker/worker_skill_save', 'worker_skill_save');
+
+    Route::get('/manage/worker/worker_project', 'worker_project');
+    Route::get('/manage/worker/worker_project/add', 'add_worker_project');     
+    Route::get('/manage/worker/worker_project/edit', 'edit_worker_project');
+    Route::post('/manage/worker/worker_project_save', 'worker_project_save');
     
     Route::get('/manage/worker/worker_history', 'worker_history');     
     Route::get('/manage/worker/worker_history/add', 'add_worker_history');     

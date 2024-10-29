@@ -66,7 +66,7 @@ use App\helper\helper_lang;
                         <div class=" card px-4 p-2 bg-white border rounded-4">
                             <div class="row justifu-content-start align-items-center">
                                 <div class=" col-sm-12 ">
-                                    <a href="/manage/worker/worker_skill">
+                                    <a href="/manage/worker/worker_project">
                                     <div class="h4 text-nowrap pl-3">
                                         <i class="bi bi-pencil-square h5"></i>ผลงาน 
                                     </div> 
