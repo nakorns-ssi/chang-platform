@@ -61,11 +61,6 @@
                                 }
                                 ?>
     
-   
-     
-
-   
-
     <div class="container text-center mt-2"> 
         <h5>ประเภทงาน</h5>
         <?php 
@@ -84,7 +79,7 @@
                     }
                 }
                 ?>
-                <div class=" col-4 col-sm-3 me-1 flex-fill card   bg-primary-subtle ">
+                <div class=" col-4 col-sm-3 me-1 flex-fill card   bg-primary-subtle text-start">
                     <label class="  " for="work_category{{$key}}">
                     <div class="     mb-1 p-3"> 
                       <input type="checkbox" id="work_category{{$key}}" 
