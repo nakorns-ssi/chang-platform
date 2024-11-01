@@ -37,7 +37,9 @@
                         <div class="card-footer ">
                             <div class="  text-truncate" style="max-width: 150px;">
                                 {{ $value->posts_title }}
+                                
                             </div> 
+                            <span class="fw-light " style="color:#aaaaaa" >{{ $value->img_count }} รูป</span>
                           </div>
                     </div>
                 </a>

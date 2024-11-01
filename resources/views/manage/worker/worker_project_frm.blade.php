@@ -21,9 +21,9 @@
                 <div class="col-md-8 col-lg-6 ">
                     <div class="mb-3  ">
                         <label for="start_date" class="form-label fs-6 fw-semibold"><i class="bi bi-calendar"></i>
-                            หัวข้อ</label>
+                            ชื่อผลงาน *</label>
                         <input type="text" id="posts_title" name="model[posts_title]" placeholder="ผลงาน"
-                            value="{{ $model->posts_title }}" class="form-control">
+                            value="{{ $model->posts_title }}" class="form-control" required >
                     </div>
 
 
@@ -51,12 +51,12 @@
             </div>
         </div>
         <div class="container d-flex justify-content-center">
-            <div class="mb-2 row justify-content-between">
-                <div class="col-12  text-start">
+            <div class="mb-2 row justify-content-center">
+                <div class="col-12 my-2  text-start">
                     ทั้งหมด {{ count($upload) }} รายการ
                 </div>
-                <div class="col-12">
-                    <table class="table w-75 table-sm table-bordered">
+                <div class="col-sm-10">
+                    <table class="table   table-sm table-bordered">
                         <tbody>
                             @foreach ($upload as $key => $value)
                                 <?php $view_img_link = '/upload/img/' . $value->upload_key; ?>

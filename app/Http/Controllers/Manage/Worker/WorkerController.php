@@ -104,7 +104,7 @@ class WorkerController  extends Controller
      // $model =  $model->RightJoin('upload', 'posts.id', '=', 'upload.posts_id') ;
       $model =  $model->select('posts.*', 
       DB::raw('(select url from upload where status = "y" and upload.posts_id = posts.id  limit 1)  as img_thumbnail_url') ,
-        DB::raw('(select upload_key from upload where status = "y" and upload.posts_id = posts.id limit 1)  as img_upload_key')   
+        DB::raw('(select count(id) from upload where status = "y" and upload.posts_id = posts.id )  as img_count')   
       ) ;
       $model =  $model->where([
         'posts.status'=>'y' ,  
@@ -203,7 +203,7 @@ class WorkerController  extends Controller
               $upload->save(); 
            }
        }
-       dd($model->id ,$source_file,$upload);
+       //dd($model->id ,$source_file,$upload);
 
        Session::flash('alert', [
         'status' => 'success',
@@ -220,6 +220,7 @@ class WorkerController  extends Controller
         $model  =   new Posts(); 
         $model->start_date = date('Y-m-d');
         $model->end_date = date('Y-m-d');
+        $model->posts_title = 'ผลงานของฉัน';
         $upload =  [];
         return view('manage/worker/worker_project_frm',compact('model','page_title' ,'upload' )); 
     } 
