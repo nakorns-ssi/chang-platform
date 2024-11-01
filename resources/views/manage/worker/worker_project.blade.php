@@ -13,40 +13,37 @@
         </div>
     </header><!-- End Header -->
 
-    <section class="container  " style="margin-top:25px;">
+    <section class="container-fluid bg-white  " style="margin-top:25px;">
         <div class="mb-2 row justify-content-between">
             <div class="col-6  text-start">
                 ทั้งหมด {{ count($model) }} รายการ
             </div>
             <div class="col-6  text-end">
-                <a class="btn btn-primary" href="#" onclick="add_item()" role="button"><i class="bi bi-plus-lg"></i>
+                <a class="btn btn-primary" href="/manage/worker/worker_project/add" role="button"><i
+                        class="bi bi-plus-lg"></i>
                     เพิ่ม</a>
             </div>
         </div>
-        <div class="row gx-1 gx-lg-4 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-start">
-            @foreach ($model as $key => $value)
-                <div class="col-lg-4 col-md-6  my-1 ">
-                    @include('layouts.section.PostCard', ['mode' => 'edit'])
-                </div>
-            @endforeach
-        </div>
 
-        <div class="row  justify-content-start">
-            <div class=" col-sm-12 col-md-6  my-1  ">
-                <div class="card position-relative  ">
-                    <img class="img-fluid  " src="https://picsum.photos/seed/picsum/800/600"
-                        alt="Notebook" style=" ">
-                    <div class="content" style=" ">
-                        <h3>Heading</h3>
-                        <p>Lorem ipsum dolor sit amet, an his etiam torquatos. Tollit soleat phaedrum te duo, eum cu
-                            recteque expetendis neglegentur. Cu mentitum maiestatis persequeris pro, pri ponderum tractatos
-                            ei.</p>
+        <div class="container">
+            <div class="d-flex align-content-start flex-wrap"> 
+                @foreach ($model as $key => $value)
+                <a href="/manage/worker/worker_project/edit?id={{$value->posts_key}}">
+                    <div class="card my-2 mx-1" style="width: 180px; height: 180px; overflow: hidden;">
+                        <!-- The background image -->
+                        <div class="card__thumbnail">
+                            <img src="{{ $value->img_thumbnail_url }}"> 
+                        </div>
+                        <div class="card-footer ">
+                            <div class="  text-truncate" style="max-width: 150px;">
+                                {{ $value->posts_title }}
+                            </div> 
+                          </div>
                     </div>
-                </div>
+                </a>
+                @endforeach
             </div>
         </div>
-
-
 
         <div class="mt-2 row justify-content-center">
 
@@ -101,9 +98,107 @@
             padding-top: 10px;
             padding-bottom: 0;
         }
-    </style>
 
+        .card__title {
+            /* Just for styling */
+            align-self: flex-end;
+            padding: 0.5rem;
+            color: rgba(255, 255, 255, .90);
+            font-size: 1rem;
+            line-height: 1.1; 
+            background: #433d3d8c;
+            width: 100%;
+        }
+
+        /* Styles for:
+    ** - Using IMG tag inside a container
+    ------------------------------------------ */
+        /* The image container */
+        .card__thumbnail {
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            /* horizontal center */
+            align-items: center;
+            /* vertical center */
+
+            width: 100%;
+            /* Thumbnail dimensions. */
+            height: 100%;
+            /*** Change the height to make the image smaller ***/
+            /* background-color: rgba(0,0,0,.2);  /* for debugging */
+
+        }
+
+        /* Sets the image dimensions */
+        .card__thumbnail>img {
+            /* Tip: use 1:1 ratio images */
+            height: 100%;
+            /* or width when img.width > img.height */
+        }
+
+        /* Styles the title inside the img container */
+        .card__thumbnail>.card__title {
+            /* Just for styling */
+            position: absolute;
+            left: 0;
+            bottom: 0;
+        }
+    </style>
+    <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
     <script>
+        var myDropzone
+        Dropzone.options.myGreatDropzone = { // camelized version of the `id` 
+            dictDefaultMessage: "<i class='bi bi-file-image'></i> รูปภาพ   ( ไม่เกิน 5 รูป)",
+            autoProcessQueue: true,
+            addRemoveLinks: true,
+            paramName: 'model[pic_upload]',
+            uploadMultiple: true,
+            parallelUploads: 10,
+            maxFiles: 5,
+            resizeWidth: 640,
+            resizeQuality: 0.7,
+            acceptedFiles: "image/*",
+            init: function() {
+                myDropzone = this;
+
+                // First change the button to actually tell Dropzone to process the queue.
+                this.on("complete", function() {
+                    console.log('complete')
+                    //  location.href = '/manage/worker/post'
+                    location.reload()
+                });
+
+                this.on("success", function() {
+                    console.log('success')
+                    // location.href = '/manage/worker/post'
+                });
+
+                this.on('error', function(file, response) {
+                    console.log('error')
+                    console.log(response)
+
+                });
+                this.on("sendingmultiple", function(file, xhr, formData) {
+                    console.log('sendingmultiple')
+                    var data = $('#frm_n').serializeArray();
+                    $.each(data, function(key, el) {
+                        formData.append(el.name, el.value);
+                    });
+                    $('#preloader').show()
+                });
+                this.on("successmultiple", function(files, response) {
+                    console.log('successmultiple')
+                    // location.reload() 
+                });
+                this.on("errormultiple", function(files, response) {
+                    console.log('errormultiple')
+                });
+
+            }
+        };
         $(document).ready(function() {
             // get_item_no()
             load_alert()

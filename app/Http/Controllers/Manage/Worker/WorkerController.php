@@ -120,40 +120,96 @@ class WorkerController  extends Controller
       $model =  null; 
       $paginate_num = 50; 
       $account = session('account');
-      $account_id = session('account')['account_id'];  
-      $post_skills = $request->input('skills');
-      $posts_type = 'worker_project';
-      if($post_skills){ 
-        $model =  Data_meta::where([
-          'tag'=>$posts_type ,  
-          'account_id' => $account_id ])->first(); 
-          foreach($post_skills as $mete_key => $meta_value ){
-            //dd('dataset $meta_value', $mete_key , $meta_value );
-            foreach($meta_value as $val ){
-              $dataset =[ 
-                "tag" => $posts_type,   
-                "meta_key" => $mete_key,  
-                "meta_value" =>$val,   
-                "account_id" => $account_id ,   
-              ];
-              $data_insert[] = $dataset;
-            }
-          } 
-          Data_meta::where([ 
-            "tag" => 'worker_profile',   
-            "account_id" => $account_id   
-          ])->delete();
-          foreach (array_chunk($data_insert,1000) as $t)  
-          { 
-              $model = Data_meta::insert($t); 
-          }
-          Session::flash('alert', [
-            'status' => 'success',
-            'text' => 'บันทึกข้อมูลแล้ว!' . '  , ' . date('H:i'),
-          ]); 
+      $account_id = session('account')['account_id']; 
+      $account_display_name = session('account')['display_name']; 
+      $post = $request->input('model'); 
+      $id =  $post['id']; 
+      $post['posts_type']  = 'worker_project';
+    
+       //dd( $id , $model,$request->file('model')   ); 
+      if($id){ //update  
+        $model =  Posts::where('id',$id)->first();
+        //dd($model  );
+        $model ::unguard();
+        $model->fill($post);       
+        $model->updated_at = Carbon::now(); 
+        $model->updated_by = $account_id;  
+        $model->updated_by_username = $account_display_name; 
+        $model->save(); 
+
+       } else{ //create  
+        $model =  new Posts ;
+        // dd($model , $working_area ,$post , $request->file() );
+        $model ::unguard();
+        $model->fill($post);
+        $model->account_id = $account_id;
+        $model->created_at = Carbon::now(); 
+        $model->created_by = $account_id;
+        $model->updated_at = Carbon::now(); 
+        $model->updated_by = $account_id;  
+        $model->updated_by_username = $account_display_name;  
+        $model->posts_key = 'temp_'.date('ymd').uniqid(); 
+        if($model->save()){  
+          $model->posts_key =  util::gen_key($model->id) ;
+          $model->save();
+        }
+        
       }
+
+      $source_file = [];
+      if(isset( $request->file('model')['pic_upload'])){
+        $source_file = $request->file('model')['pic_upload'];
+      }
+
       
-      return back()->withInput();
+     
+      foreach ($source_file as $key => $fileitem) {
+        $ext = pathinfo($fileitem->getClientOriginalName(), PATHINFO_EXTENSION);
+        $imageProperties = getimagesize($fileitem);
+        $mime = $imageProperties['mime'];
+    
+        $file_path = $fileitem->getRealPath();
+        $param = [
+          'filename' =>  'posts_'.$account_id.'_'.uniqid().'_'.time().'_'.$key.'.'.$ext ,
+          'bucketName' => 'fdc-upload',
+          'upload_path' => 'public',  
+        ];
+        //dd($file_path ,$fileitem );
+        $dataset = helper_upload::upload_select_path($param,$file_path);
+       // dd($dataset  );  
+          $tag = 'posts';   
+           $dataset =[   
+            "tag"=>  $tag , 
+            "upload_key"=>'temp_'.date('ymd').uniqid() , 
+            'account_id'=>$account_id,
+            'ref_id'=> $model->posts_key, 
+            'posts_id'=> $model->id, 
+            'content_type' => $mime,
+            "file_name"=>  $dataset["file_name"] ,
+            "folder_name"=> $dataset["folder_name"] ,
+            "url"=>  $dataset["url"],  
+            "created_by"=> $account_id  ,
+            "created_at"=> Carbon::now() ,
+            "updated_by"=> $account_id  ,
+            "updated_at"=> Carbon::now()  ,
+            "updated_by_username"=> $account_display_name  ,
+         ];
+           $upload =   new Upload ;  
+           $upload ::unguard();
+           $upload->fill($dataset);  
+           $upload->upload_key = 'temp_'.date('ymd').uniqid();
+           if($upload->save()){
+              $upload->upload_key = date('ymd') . $upload->id . substr(time(), 5);
+              $upload->save(); 
+           }
+       }
+       dd($model->id ,$source_file,$upload);
+
+       Session::flash('alert', [
+        'status' => 'success',
+        'text' => 'บันทึกข้อมูลแล้ว!' . '  , ' . date('H:i'),
+      ]); 
+      return redirect('/manage/worker/worker_project' ) ; 
     }
 
     public function add_worker_project()
@@ -164,7 +220,8 @@ class WorkerController  extends Controller
         $model  =   new Posts(); 
         $model->start_date = date('Y-m-d');
         $model->end_date = date('Y-m-d');
-        return view('manage/worker/worker_project_frm',compact('model','page_title' )); 
+        $upload =  [];
+        return view('manage/worker/worker_project_frm',compact('model','page_title' ,'upload' )); 
     } 
  
     public function edit_worker_project(Request $request)
@@ -177,8 +234,9 @@ class WorkerController  extends Controller
           'account_id'=>$account_id ]) ;
         $model =   $model->first();
 
+        $upload =  Upload::where( ['status'=>'y','posts_id'=> $model->id])->get();  
         // dd($model);
-        return view('manage/worker/worker_project_frm',compact('model'));
+        return view('manage/worker/worker_project_frm',compact('model','upload'));
     }
 
     public function  worker_skill(Request $request)

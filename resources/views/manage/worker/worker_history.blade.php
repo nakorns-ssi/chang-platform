@@ -3,10 +3,10 @@
 @section('description', '')
 @section('keywords', '')
 @section('content')
-<?php 
- use App\helper\util;
- use App\helper\helper_lang;  
- ?> 
+    <?php
+    use App\helper\util;
+    use App\helper\helper_lang;
+    ?>
     {{-- @include('manage.manage_header') --}}
 
     <header id="header" class="fixed-top">
@@ -23,39 +23,55 @@
                 ทั้งหมด {{ count($model) }} รายการ
             </div>
             <div class="col-6  text-end">
-                <a class="btn btn-primary" href="#" onclick="add_item()" role="button"><i
-                        class="bi bi-plus-lg"></i> เพิ่ม</a>
+                <a class="btn btn-primary" href="#" onclick="add_item()" role="button"><i class="bi bi-plus-lg"></i>
+                    เพิ่ม</a>
             </div>
         </div>
         <div class="row   justify-content-center">
 
             @foreach ($model as $key => $value)
-            <?php 
-                $dataJson = json_encode([  
-                    '_key' => $value->posts_key ,  
-                    ]);
-            ?>
+                <?php
+                $dataJson = json_encode([
+                    '_key' => $value->posts_key,
+                ]);
+                ?>
                 <div class=" col-sm-8 col-md-8  my-1 ">
                     <div class="row py-2 px-3  border rounded-4 d-flex aligh-items-center justify-content-between bg-white">
-                        <div class="col-12 py-2 justify-content-between">
-                            <a class=''  href='#'  onclick='edit_item({{ $dataJson }})'
-                              role='button'>
-                                <span class="h6 my-2">
-                                    <i class="bi bi-pencil-square h5"></i> 
-                                    {{util::thai_date_short($value->start_date)}} - {{util::thai_date_short($value->end_date)}}  
-                                </span> 
-                            </a> 
-                        </div> 
-                        <div class="col-12  ps-3">  
-                            <div class="p-2 bg-light rounded-2 ">{!! nl2br($value->posts_content) !!}</div> 
+                        <div class="col-12 px-0 py-0 ">
+                            <div class="row justify-content-between align-items-center">
+                                <div class="col-auto">
+                                    <a class='' href='#' onclick='edit_item({{ $dataJson }})'
+                                        role='button'>
+                                        <span class="h6 my-2">
+                                            <i class="bi bi-pencil-square h5"></i>
+                                            {{ util::thai_date_short($value->start_date) }} -
+                                            {{ util::thai_date_short($value->end_date) }}
+                                        </span>
+                                    </a>
+                                </div>
+                                <div class="col-auto px-0 text-end">
+                                    <div class="dropdown-center">
+                                        <button class="btn  " type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <i class="bi bi-three-dots-vertical fs-5"></i>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item text-center text-danger" href="#"
+                                                    onclick="del_item({{$dataJson}})"><i class="bi bi-trash3"></i> ลบรายการนี้</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div> 
                         </div>
-                        
-                    </div> 
+                        <div class="col-12  ps-3">
+                            <div class="p-1 bg-light rounded-2 ">{!! nl2br($value->posts_content) !!}</div>
+                        </div>
+
+                    </div>
                 </div>
             @endforeach
 
         </div>
-     
+
 
         <div class="mt-2 row justify-content-center">
 
@@ -73,13 +89,13 @@
             aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-xl modal-dialog-scrollable modal-fullscreen ">
                 <div class="modal-content">
-                    <div class="modal-header  " style=" background-color: var(--bs-primary);"> 
+                    <div class="modal-header  " style=" background-color: var(--bs-primary);">
                         <button type="button" class="btn border border-dark " data-bs-dismiss="modal"
                             aria-label="Close">X</button>
                         <h5 class="modal-title" id="myModal_title">Modal title</h5>
                     </div>
                     <div class="modal-body bg-light text-center">
-                      <div class="fs-4"> กำลังโหลด...</div> 
+                        <div class="fs-4"> กำลังโหลด...</div>
                     </div>
                 </div>
             </div>
@@ -102,7 +118,7 @@
             load_alert()
 
             $(":input").attr("autocomplete", "off");
-         
+
         }) // load page
 
         function add_item() {
@@ -123,35 +139,36 @@
                     '?id=' + data._key
             }
 
-            
+
             show_modal(config)
         }
 
         function del_item(data) {
-                var config = {
-                    title: 'ลบ',
-                    url: '/manage/worker/worker_history/del' +
-                        '?id=' + data._key
-                }
-                Swal.fire({
-                    title: 'Are you sure?',
-                    text: data.title,
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes, delete it!'
-                }).then((result) => {
-                    if (result.value) {
-                        location.href = config.url
-                    }
-                })
-
+            var config = {
+                title: 'ลบ',
+                url: '/manage/worker/worker_history/del' +
+                    '?id=' + data._key
             }
+            Swal.fire({
+                title: 'ต้องการลบรายการนี้?',
+                text: data.title,
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.value) {
+                    location.href = config.url
+                }
+            })
 
-        $("#myModal").on("hidden.bs.modal", function () {
+        }
+
+        $("#myModal").on("hidden.bs.modal", function() {
             $("#myModal").find(".modal-body").empty()
             $("#myModal").find(".modal-body").html('<div class="fs-4"> กำลังโหลด...</div>')
         });
+
         function show_modal(config) {
             console.log('show_modal')
             console.log(config)
@@ -163,7 +180,7 @@
             });
             myModal.show()
         }
- 
+
         function load_alert() {
             if (!$('#alert_status').val()) return
             let status = $('#alert_status').val()
