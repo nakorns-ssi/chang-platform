@@ -36,32 +36,8 @@
                     <div class="col-12 "> 
                        @include('profile.contact_profile',['title'=>'ติดต่อ' ,'model'=>$model])   
                     </div>
-                    <div class="col-12 "> 
-                        @include('profile.profile_work',['title'=>'ประวัติการทำงาน' ,'model'=>$worker_profile['profile_work_history']])   
-                    </div>
-                    <div class="col-12 "> 
-                        @include('profile.profile_work',['title'=>'ผลงาน' ,'model'=>$worker_profile['profile_project']])   
-                    </div>
-                    <div class="col-12 ">
-                    @if(isset($worker_profile['work_category']))
-                        @include('profile.skills_profile',['title'=>'ประเภทงาน' ,'model'=>$worker_profile['work_category']])   
-                    @endif
-                    </div>
-                    <div class="col-12 ">
-                     @if(isset($worker_profile['work_sub_category'])) 
-                        @include('profile.skills_profile',['title'=>'ประเภทงานย่อย' ,'model'=>$worker_profile['work_sub_category']]) 
-                     @endif  
-                    </div>
-                    <div class="col-12 ">
-                        @if(isset($worker_profile['skill']))
-                            @include('profile.skills_profile',['title'=>'ทักษะ' ,'model'=>$worker_profile['skill']])
-                        @endif 
-                    </div>
-                    <div class="col-12 ">
-                        @if(isset($worker_profile['product']))
-                             @include('profile.skills_profile',['title'=>'สินค้า' ,'model'=>$worker_profile['product']])   
-                        @endif 
-                    </div> 
+                    @include('layouts.section.WorkProfile_view', ['account_id' => $account_id, 'mode' => 'edit'])
+                   
                     <!-- col end --> 
                     <div class="col-12">
                         @include('layouts.section.PostRecommendTab',['model'=>$posts]) 

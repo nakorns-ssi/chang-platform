@@ -51,7 +51,7 @@ class WorkerController  extends Controller
           'posts.posts_type' =>  $posts_type   ])
           ->orderby('posts.updated_at','desc')->limit(4)->get() ;
       //dd($skill,$work_history); 
-       return view('manage/worker/worker_profile',compact('model','worker_profile','work_history'));
+       return view('manage/worker/worker_profile',compact('model', 'account_id' ,'worker_profile','work_history'));
     }
 
     public function  worker_profile_save(Request $request)

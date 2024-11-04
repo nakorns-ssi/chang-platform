@@ -58,9 +58,9 @@ class ProfileController  extends Controller
         foreach($Data_meta as $val){
           $worker_profile[$val->meta_key][] = $val->meta_value;
         }
-
+       $account_id =  $model->id;
        //dd($worker_profile);
-       return view('profile/profile_index',compact('model','posts','worker_profile','page_title'));
+       return view('profile/profile_index',compact('model','posts' ,'account_id', 'page_title'));
     }
  
      
