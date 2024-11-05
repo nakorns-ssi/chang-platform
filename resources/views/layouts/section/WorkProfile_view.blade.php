@@ -156,9 +156,11 @@ $work_project = $work_project
                             </div>
                             <div class="col-sm-12 my-2">
                                 <div class="d-block p-2   ">
+                                    @if(isset($worker_profile['work_category']))
                                     @foreach ($worker_profile['work_category'] as $key => $item)
                                         <span class="badge text-bg-warning fw-light me-1 ">#{{ $item }}</span>
                                     @endforeach
+                                    @endif
                                 </div>
                             </div>
 
@@ -169,9 +171,11 @@ $work_project = $work_project
                             </div>
                             <div class="col-sm-12 my-2">
                                 <div class="d-block p-2   ">
+                                    @if(isset($worker_profile['work_sub_category']))
                                     @foreach ($worker_profile['work_sub_category'] as $key => $item)
                                         <span class="badge text-bg-warning fw-light me-1 ">#{{ $item }}</span>
                                     @endforeach
+                                    @endif
                                 </div>
                             </div>
 
@@ -182,9 +186,11 @@ $work_project = $work_project
                             </div>
                             <div class="col-sm-12 my-2">
                                 <div class="d-block p-2   ">
+                                    @if(isset($worker_profile['skill']))
                                     @foreach ($worker_profile['skill'] as $key => $item)
                                         <span class="badge text-bg-warning fw-light me-1 ">#{{ $item }}</span>
                                     @endforeach
+                                    @endif
                                 </div>
                             </div>
 
@@ -195,9 +201,11 @@ $work_project = $work_project
                             </div>
                             <div class="col-sm-12 my-2">
                                 <div class="d-block p-2   ">
+                                    @if(isset($worker_profile['product']))
                                     @foreach ($worker_profile['product'] as $key => $item)
                                         <span class="badge text-bg-warning fw-light me-1 ">#{{ $item }}</span>
                                     @endforeach
+                                    @endif
                                 </div>
                             </div>
 
