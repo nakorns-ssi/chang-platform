@@ -118,6 +118,9 @@ h3 {
   font-family: "chang-font", sans-serif;
 }
 
+.swal2-title {
+  font-family: inherit;
+}
 
 /*--------------------------------------------------------------
 # Back to top button

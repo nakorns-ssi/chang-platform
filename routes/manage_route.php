@@ -46,6 +46,7 @@ Route::controller(WorkerController::class)->group(function () {
     Route::get('/manage/worker/worker_history', 'worker_history');     
     Route::get('/manage/worker/worker_history/add', 'add_worker_history');     
     Route::get('/manage/worker/worker_history/edit', 'edit_worker_history');     
+    Route::get('/manage/worker/worker_history/del', 'del_worker_history');     
     Route::post('/manage/worker/worker_history/save', 'save_worker_history');     
 });
 

@@ -44,7 +44,8 @@ Route::controller(PostsController::class)->group(function () {
 
 use App\Http\Controllers\Profile\ProfileController; 
 Route::controller(ProfileController::class)->group(function () {  
-    Route::get('profile/{id}/{slug}', 'profile_index');      
+    Route::get('profile/{id}/{slug}', 'profile_index');     
+    Route::get('/worker_project/{id}', 'worker_project_view'); 
 });
 
 @include base_path('routes/auth_route.php');   

@@ -323,6 +323,7 @@ class WorkerController  extends Controller
           'posts.posts_type' =>  $posts_type   ])
           ->orderby('posts.updated_at','desc')->paginate($paginate_num) ;
       // dd($model ); 
+      
        return view('manage/worker/worker_history',compact('model'));
     }
  
@@ -351,6 +352,28 @@ class WorkerController  extends Controller
 
         // dd($model);
         return view('manage/worker/worker_history_frm',compact('model'));
+    }
+
+    public function del_worker_history(Request $request)
+    {  
+        $account_id = session('account')['account_id'];
+        $posts_type = 'worker_history';
+        $id =   $request->query('id'); 
+        $model =  Posts::where( ['status'=>'y','posts_key'=> $id ])
+        ->update([ 'status'=>'d']) ; 
+        if($model){ 
+          Session::flash('alert', [
+              'status' => 'success',
+              'text' => 'บันทึกข้อมูลแล้ว!' . '  , ' . date('H:i'),
+      ]); 
+      }else{
+          Session::flash('alert', [
+              'status' => 'error',
+              'text' => 'ข้อมูลไม่ถูกต้อง',
+          ]); 
+      }
+        return redirect('/manage/worker/worker_history' ) ; 
+        // dd($model); 
     }
   
     public function  save_worker_history(Request $request)

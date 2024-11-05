@@ -36,7 +36,7 @@
                     <div class="col-12 "> 
                        @include('profile.contact_profile',['title'=>'ติดต่อ' ,'model'=>$model])   
                     </div>
-                    @include('layouts.section.WorkProfile_view', ['account_id' => $account_id, 'mode' => 'edit'])
+                    @include('layouts.section.WorkProfile_view', ['account_id' => $account_id])
                    
                     <!-- col end --> 
                     <div class="col-12">

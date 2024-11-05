@@ -96,7 +96,7 @@
                     // First change the button to actually tell Dropzone to process the queue.
                     this.on("complete", function() {
                         console.log('complete')
-                        //  location.href = '/manage/worker/worker_project'
+                          location.href = '/manage/worker/worker_project'
                         // location.reload() 
                     });
 

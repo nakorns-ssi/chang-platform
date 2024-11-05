@@ -137,9 +137,7 @@
                 title: 'แก้ไข',
                 url: '/manage/worker/worker_history/edit' +
                     '?id=' + data._key
-            }
-
-
+            } 
             show_modal(config)
         }
 
@@ -155,7 +153,8 @@
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
+                confirmButtonText: 'ตกลง, ลบ!',
+                cancelButtonText: 'ยกเลิก'
             }).then((result) => {
                 if (result.value) {
                     location.href = config.url
