@@ -13,6 +13,7 @@
             $display_name = $model->display_name ;
             $profile_display_url = $model->profile_display_url ;
             $account_code = $model->account_code ;
+            $url_qrcode = url()->current();
             ?>
 
             <article class=" pt-5  "  style=" " >   
@@ -20,7 +21,10 @@
                    
                     <div class="row justify-content-center ">
                         <div class="col-sm-10 col-md-8  border border-dark rounded-4"  style=" background: var(--bs-primary); ">
-                            <div class="float-end"><a  href="#" onclick="show_qr_profile({{$model->account_code}})" class="text-dark fs-1"><i class="bi bi-qr-code"></i>  </a></div>
+                            <div class="float-end">
+                                <a  href="#" onclick="show_QR_code()" class="text-dark fs-1"><i class="bi bi-qr-code"></i></a>
+                                @include('layouts.section.QR_code', ['url' => $url_qrcode]) 
+                            </div>
                             <div class="row    ">
                                 <div class="col-sm-4">
                                     <div class="my-3 px-3 text-center">
@@ -80,11 +84,7 @@
                             <div class="float-end mb-2"> 
                                 @include('layouts.section.btnShare', ['content_share' => $display_name]) 
                             </div>
-                        </div>
-                        <div class="row justify-content-center mt-2 d-none">
-                            <div class="col-sm-10 col-md-8 text-end">  
-                            @include('layouts.section.btnShare', ['content_share' => $display_name])
-                        </div>
+                        </div> 
                     </div>
                     
                     </div>
