@@ -37,9 +37,9 @@ $result = $writer->write($qrCode );
 }
 </script>
 
-<div class="modal fade" id="myModal_qrcode" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+<div class="modal  " id="myModal_qrcode" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl modal-dialog-scrollable">
+        <div class="modal-dialog   modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header text-white"  style=" background-color: var(--bs-primary);">
                     <h5 class="modal-title" id="myModal_title">คิวอาร์โค้ดของฉัน</h5>
@@ -47,9 +47,10 @@ $result = $writer->write($qrCode );
                 </div>
                 <div class="modal-body bg-light">
                     <div class=" row justify-content-center"> 
-                        <img class="img-fluid rounded"
+                        <div class="col-sm-6 text-center">
+                            <img class="img-fluid rounded"
                             src="data:image/png;base64, {!! base64_encode( $result->getString()) !!} ">
-                        
+                        </div> 
                     </div> 
                 </div>
 
