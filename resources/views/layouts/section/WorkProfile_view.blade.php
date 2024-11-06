@@ -42,10 +42,8 @@ $work_project = $work_project
     ->limit(4)
     ->get();
 ?>
-
-<section class="  ">
-    <div class="container ">
-
+ 
+    <div class="container "> 
         <div class="row mt-2 g-2">
             <div class="col-sm-12">
                 <div class=" card px-4 p-2 bg-white border rounded-4">
@@ -53,12 +51,12 @@ $work_project = $work_project
                         <div class="col-10  ">
                             @if ($mode == 'edit')
                                 <a href="/manage/worker/worker_history">
-                                    <div class="h4 text-nowrap pl-3">
+                                    <div class="h4 text-nowrap py-2 ">
                                         <i class="bi bi-pencil-square h5"></i> ประวัติการทำงาน
                                     </div>
                                 </a>
                             @else
-                                <div class="h4 text-nowrap pl-3">
+                                <div class="h4 text-nowrap py-2 ">
                                     ประวัติการทำงาน
                                 </div>
                             @endif
@@ -97,12 +95,12 @@ $work_project = $work_project
                         <div class=" col-sm-12 ">
                             @if ($mode == 'edit')
                                 <a href="/manage/worker/worker_project">
-                                    <div class="h4 text-nowrap pl-3">
+                                    <div class="h4 text-nowrap py-2 ">
                                         <i class="bi bi-pencil-square h5"></i> ผลงาน
                                     </div>
                                 </a>
                             @else
-                                <div class="h4 text-nowrap pl-3">
+                                <div class="h4 text-nowrap py-2 ">
                                     ผลงาน
                                 </div>
                             @endif
@@ -140,12 +138,12 @@ $work_project = $work_project
                         <div class=" col-sm-12 ">
                             @if ($mode == 'edit')
                                 <a href="/manage/worker/worker_skill">
-                                    <div class="h4 text-nowrap pl-3">
+                                    <div class="h4 text-nowrap py-2 ">
                                         <i class="bi bi-pencil-square h5"></i> ความสามารถ
                                     </div>
                                 </a>
                             @else
-                                <div class="h4 text-nowrap pl-3">
+                                <div class="h4 text-nowrap py-2 ">
                                     ความสามารถ
                                 </div>
                             @endif
@@ -213,12 +211,9 @@ $work_project = $work_project
                     </div>
                 </div>
             </div>
-        </div>
-
-
+        </div> 
     </div>
-
-</section>
+ 
 
 <style>
     h3 {

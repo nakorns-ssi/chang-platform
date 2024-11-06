@@ -240,6 +240,32 @@ class WorkerController  extends Controller
         return view('manage/worker/worker_project_frm',compact('model','upload'));
     }
 
+    public function del_worker_project(Request $request)
+    {  
+        $account_id = session('account')['account_id'];
+        $posts_type = 'worker_project';
+        $id =   $request->query('id'); 
+        $model =  Posts::where( ['status'=>'y','posts_key'=> $id  ])
+        ->update([
+           'status'=>'d' ,
+           "updated_by"=> $account_id  ,
+           "updated_at"=> Carbon::now()  ,
+        ]) ; 
+        if($model){ 
+          Session::flash('alert', [
+              'status' => 'success',
+              'text' => 'บันทึกข้อมูลแล้ว!' . '  , ' . date('H:i'),
+      ]); 
+      }else{
+          Session::flash('alert', [
+              'status' => 'error',
+              'text' => 'ข้อมูลไม่ถูกต้อง',
+          ]); 
+      }
+        return redirect('/manage/worker/worker_project' ) ; 
+        // dd($model); 
+    }
+
     public function  worker_skill(Request $request)
     {    
       $model =  null; 
@@ -359,8 +385,12 @@ class WorkerController  extends Controller
         $account_id = session('account')['account_id'];
         $posts_type = 'worker_history';
         $id =   $request->query('id'); 
-        $model =  Posts::where( ['status'=>'y','posts_key'=> $id ])
-        ->update([ 'status'=>'d']) ; 
+        $model =  Posts::where( ['status'=>'y','posts_key'=> $id ]) 
+        ->update([
+          'status'=>'d' ,
+          "updated_by"=> $account_id  ,
+          "updated_at"=> Carbon::now()  ,
+       ]) ; 
         if($model){ 
           Session::flash('alert', [
               'status' => 'success',

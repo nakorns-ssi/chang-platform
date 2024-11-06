@@ -3,14 +3,20 @@
 @section('description', '')
 @section('keywords', '')
 @section('content')
-
+<?php
+    $dataJson = json_encode([
+        '_key' => $model->posts_key,
+    ]);
+ ?>
     <header id="header" class="fixed-top">
         <div class="container d-flex align-items-center justify-content-between">
             <a class="btn btn-sm  btn-outline-dark" href="/manage/worker/worker_project"><i class="bi bi-caret-left-fill"></i>
                 ย้อนกลับ</a>
-            <div class=" h5">ผลงาน </div>
+            <div class=" btn"><a class="dropdown-item text-center  " href="#"
+                onclick="del_item({{$dataJson}})"><i class="bi bi-trash3"></i> ลบรายการนี้</a> </div>
         </div>
     </header><!-- End Header -->
+
     <section class="container  card " style="margin-top:25px;">
         <?php
         $actionPath = '/manage/worker/worker_project_save';
@@ -66,7 +72,7 @@
                                             <img src="{{ $view_img_link }}" width="150px" class="rounded" loading="lazy">
                                         </a>
                                     </td>
-                                    <td class="align-middle"> <button type="button" class="btn btn-sm btn-danger"
+                                    <td class="align-middle text-center"> <button type="button" class="btn btn-sm btn-danger"
                                             onclick="del_upload('{{ $value->upload_key }}')">ลบ</button></td>
                                 </tr>
                             @endforeach
@@ -183,6 +189,28 @@
             })
 
         })
+    
+        function del_item(data) {
+            var config = {
+                title: 'ลบ',
+                url: '/manage/worker/worker_project/del' +
+                    '?id=' + data._key
+            }
+            Swal.fire({
+                title: 'ต้องการลบรายการนี้?',
+                text: data.title,
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'ตกลง, ลบ!',
+                cancelButtonText: 'ยกเลิก'
+            }).then((result) => {
+                if (result.value) {
+                    location.href = config.url
+                }
+            })
+
+        }
     </script>
 
 @endsection

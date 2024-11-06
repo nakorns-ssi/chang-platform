@@ -15,7 +15,12 @@
             <div class=" h5">โปรไฟล์ช่าง </div>
         </div>
     </header><!-- End Header -->
-    @include('layouts.section.WorkProfile_view', ['account_id' => $account_id, 'mode' => 'edit'])
+    <article    style="padding-top: 60px;padding-bottom: 60px;" > 
+
+        @include('layouts.section.WorkProfile_view', 
+        ['account_id' => $account_id, 'mode' => 'edit'])
+
+    </article>
 
  
 
