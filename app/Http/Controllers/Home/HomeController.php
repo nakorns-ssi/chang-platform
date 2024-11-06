@@ -32,6 +32,8 @@ class HomeController  extends Controller
         DB::raw('(select url from upload where status = "y" and upload.posts_id = posts.id  limit 1)  as img_thumbnail_url') ,
         DB::raw('(select upload_key from upload where status = "y" and upload.posts_id = posts.id limit 1)  as img_upload_key')  
         ) ;
+        $model = $model->orWhere('posts.posts_type', 'worker');
+        $model = $model->orWhere('posts.posts_type', 'project_owner');
         $model =  $model->where([
           'posts.status'=>'y' ,   
           'status_code'=>'published' ])
