@@ -345,6 +345,7 @@ class WorkerController  extends Controller
         DB::raw('(select upload_key from upload where status = "y" and upload.posts_id = posts.id limit 1)  as img_upload_key')  
         ) ;
         $model =  $model->where([
+          'posts.account_id'=> $account_id ,
           'posts.status'=>'y' ,
           'posts.posts_type' =>  $posts_type   ])
           ->orderby('posts.updated_at','desc')->paginate($paginate_num) ;
