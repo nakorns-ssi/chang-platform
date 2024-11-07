@@ -28,7 +28,7 @@ class ProfileController  extends Controller
     } 
  
     public function  profile_index(Request $request , $id ,$slug)
-    {    
+    {
       $page_title = $this->page_title;
       $paginate_num = 6;
      // $post = $request->query('model');

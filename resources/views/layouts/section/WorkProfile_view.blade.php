@@ -50,7 +50,7 @@ $work_project = $work_project
             <div class="col-sm-12">
                 <div class=" card px-4 p-2 bg-white border rounded-4">
                     <div class="row justifu-content-start align-items-center">
-                        <div class="col-10  ">
+                        <div class="col-12  ">
                             @if ($mode == 'edit')
                                 <a href="/manage/worker/worker_history">
                                     <div class="h4 text-nowrap py-2 ">
@@ -69,7 +69,7 @@ $work_project = $work_project
                                         '_key' => $value->posts_key,
                                     ]);
                                     ?>
-                                    <div class=" col-sm-8 col-md-8  my-1 ">
+                                    <div class=" col-sm-10  my-1 ">
                                         <div
                                             class="row py-2 px-3  border rounded-4 d-flex aligh-items-center justify-content-between bg-white">
                                             <div class="col-12 py-2 justify-content-between">
