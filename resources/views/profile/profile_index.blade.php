@@ -78,6 +78,19 @@
                                             </li> 
                                         </ul>
                                         @endif
+                                        @if($model->location_province)
+                                        <ul class="list-inline">
+                                            <li class="list-inline-item">    
+                                                    <h6 class="d-inline text-dark  fw-normal" style="" ><i class="bi bi-geo-alt-fill" style='font-size: larger '></i>  
+                                                        @if($model->location_province)
+                                                        {{$model->location_amphoe}}, {{$model->location_province}} 
+                                                        @else
+                                                        ไม่ระบุ
+                                                        @endif
+                                                    </h6> 
+                                            </li> 
+                                        </ul>
+                                        @endif
                                     </div>   
                                 </div> 
                             </div> 

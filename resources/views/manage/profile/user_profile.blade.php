@@ -99,6 +99,11 @@
                                                 placeholder="ระบุ">
                                         </div>
                                     </div>
+                                    <div class="col-md-12">
+                                        <div class="mb-3 ">
+                                            @include('manage.profile._location_frm')
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="container text-center mt-2"> 
