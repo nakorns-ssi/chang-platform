@@ -58,7 +58,9 @@ Route::controller(Project_ownerController::class)->group(function () {
     Route::get('/manage/project_owner/post', 'project_owner_post');        
     Route::get('/manage/project_owner/post/add', 'project_owner_post_add');      
     Route::post('/manage/project_owner/post/save', 'project_owner_post_save');   
-    Route::get('/manage/project_owner/post/edit', 'project_owner_post_edit');       
+    Route::get('/manage/project_owner/post/edit', 'project_owner_post_edit'); 
+    Route::get('/manage/project_owner/company_profile', 'company_profile');      
+    Route::post('/manage/project_owner/company_profile/save', 'company_profile_save');      
  
 });
 

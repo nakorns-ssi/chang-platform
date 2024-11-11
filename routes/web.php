@@ -51,3 +51,4 @@ Route::controller(ProfileController::class)->group(function () {
 @include base_path('routes/auth_route.php');   
 @include base_path('routes/upload_route.php'); 
 @include base_path('routes/manage_route.php'); 
+@include base_path('routes/report_route.php'); 

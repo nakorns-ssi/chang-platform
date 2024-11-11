@@ -15,6 +15,8 @@ use App\Models\chang_prompt\Posts;
 use App\Models\chang_prompt\Data_meta; 
 use App\Models\Upload; 
 use App\Models\Account; 
+use App\helper\helper_account; 
+
 class Project_ownerController  extends Controller
 { 
     protected $page_title = 'สำหรับผู้ว่าจ้าง';
@@ -24,6 +26,68 @@ class Project_ownerController  extends Controller
          //Session::put('url_before_login', back()); 
          $this->middleware('AuthManage');
     } 
+
+    public function  company_profile(Request $request)
+    {    
+      $page_title = $this->page_title;
+      $paginate_num = 5;
+      $account_code =  session('account')['account_code']; 
+      DB::enableQueryLog(); 
+      $model =  Account::where([
+        'status'=>'enable' ,   
+        'account_code' => $account_code ])->first() ;
+      //dd(DB::getQueryLog());  
+    //  dd($account_code ,$model);
+       return view('manage/project_owner/company_profile',compact('model','page_title'));
+    }
+
+    public function  company_profile_save(Request $request)
+    {      
+      $model =  [];
+      $model_group =  [];  
+      $post = $request->input('model');
+      $account_id =  session('account')['account_id'];
+      $account_display_name =  session('account')['profile_display_name']; 
+      
+       //dd($post ,$account_id  );
+      if($account_id){   
+        $model =  Account::where('id', $account_id)->first();
+        //dd($model  );
+        $model ::unguard();
+        $model->fill($post);     
+        $model->updated_at = Carbon::now();
+        $model->updated_by = session('account')['account_id'];
+        $model->updated_by_username = session('account')['display_name']; 
+        $model->location_district = null;
+        $model->location_amphoe = null;
+        $model->location_province = null;
+        $model->location_zipcode = null;
+        
+        if($model->save()){ 
+          helper_account::update_session_profile($model);
+
+          $working_area =  $request->input('working_area'); 
+          if(isset($working_area['district'] )) {
+            foreach($working_area['district'] as $val){ 
+              $data = json_decode($val);   
+              $model->location_district = $data->district;
+              $model->location_amphoe = $data->amphoe;
+              $model->location_province = $data->province;
+              $model->location_zipcode = $data->zipcode;
+              $model->save();  
+            }
+          }
+          Session::flash('alert', [
+            'status' => 'success',
+            'text' => 'บันทึกแล้ว!',
+          ]);
+        }
+        
+      } 
+       
+       
+      return redirect()->back() ;
+    }
 
     public function  project_owner_profile(Request $request)
     {    

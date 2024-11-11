@@ -70,7 +70,7 @@
                         <div class="card">
                             <div class="card-body"> 
                                 
-                                <div class="text-start text-sm-center">
+                                <div class="text-start  ">
                                
                                 <div class="text-start text-sm-center">
                                     <!-- Product price--> 

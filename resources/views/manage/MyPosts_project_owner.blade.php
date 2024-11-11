@@ -44,6 +44,18 @@
                         <span class="col-12  fw-light icon-menu-label py-2" >ดูโพสต์ทั้งหมด</span> 
                     </span> 
                     </a>   
+                </div>
+                <div class="col  aos-init aos-animate   " data-aos="zoom-in" data-aos-delay="100">
+                    <a href="/manage/project_owner/company_profile"  onclick="do_loading()" >
+                    <span class=" row  text-dark">
+                        <div class="col-12 d-flex justify-content-center py-2">
+                            <div class="icon icon-menu position-relative"> 
+                                <i class="bi bi-file-text  position-absolute top-50 start-50 translate-middle"></i>
+                            </div>
+                        </div> 
+                        <span class="col-12  fw-light icon-menu-label py-2" >โปรไฟล์นิติบุคคล</span> 
+                    </span> 
+                    </a>   
                 </div> 
                  
                 
