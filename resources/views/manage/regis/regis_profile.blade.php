@@ -27,10 +27,18 @@
             </div>
             <div class="col-md-6">
                 <div class="mb-3">
-                    <label for="profile_full_name" class="form-label">ชื่อ-สกุล </label>
+                    <label for="profile_full_name" class="form-label">ชื่อ </label>
                     <input type="text" class="form-control" id="profile_full_name"
                         value="{{ $model->profile_full_name }}" name="profile[profile_full_name]"
                         placeholder="ระบุ"  >
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label for="profile_last_name" class="form-label">นามสกุล </label>
+                    <input type="text" class="form-control" id="profile_last_name"
+                        value="{{ $model->profile_last_name }}" name="model[profile_last_name]"
+                        placeholder="ระบุ" required>
                 </div>
             </div>
 
