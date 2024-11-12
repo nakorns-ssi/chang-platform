@@ -26,22 +26,11 @@ class HomeController  extends Controller
     {   
      // Cache::flush();
      // $model = Cache::remember('home_posts', $seconds = (15*1), function () {
-        $paginate_num = 10; 
-        $model = new Posts; 
-        $model =  $model->select('posts.*', 
-        DB::raw('(select url from upload where status = "y" and upload.posts_id = posts.id  limit 1)  as img_thumbnail_url') ,
-        DB::raw('(select upload_key from upload where status = "y" and upload.posts_id = posts.id limit 1)  as img_upload_key')  
-        ) ;
-        $model = $model->orWhere('posts.posts_type', 'worker');
-        $model = $model->orWhere('posts.posts_type', 'project_owner');
-        $model =  $model->where([
-          'posts.status'=>'y' ,   
-          'status_code'=>'published' ])
-          ->orderby('posts.updated_at','desc')->paginate($paginate_num) ;
+        
           $Account_list = []; 
           $Account_list = Account::where( 'status','enable')->orderBy('last_active','desc')->take(10)->get();
        
-       return view('home/home_index' ,compact('model','Account_list'));
+       return view('home/home_index' ,compact( 'Account_list'));
     }
 
     public function  about_us(Request $request)

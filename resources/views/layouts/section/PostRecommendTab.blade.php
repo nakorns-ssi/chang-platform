@@ -1,7 +1,33 @@
 <!-- ======= Post  Recommend Section ======= -->
 <?php 
 use App\helper\util; 
-use App\helper\helper_lang; 
+use App\helper\helper_lang;
+use App\Models\chang_prompt\Posts;
+use Illuminate\Support\Facades\DB; 
+
+$paginate_num = 10; 
+$model_worker = new Posts; 
+$model_worker =  $model_worker->select('posts.*', 
+DB::raw('(select url from upload where status = "y" and upload.posts_id = posts.id  limit 1)  as img_thumbnail_url') ,
+DB::raw('(select upload_key from upload where status = "y" and upload.posts_id = posts.id limit 1)  as img_upload_key')  
+) ; 
+$model_worker = $model_worker->whereIn('posts.posts_type', ['worker']);
+$model_worker =  $model_worker->where([
+  'posts.status'=>'y' ,   
+  'status_code'=>'published' ])
+  ->orderBy('updated_at','desc')->limit(10)->get() ;
+  //////////////
+$model_project_owner = new Posts; 
+$model_project_owner =  $model_project_owner->select('posts.*', 
+DB::raw('(select url from upload where status = "y" and upload.posts_id = posts.id  limit 1)  as img_thumbnail_url') ,
+DB::raw('(select upload_key from upload where status = "y" and upload.posts_id = posts.id limit 1)  as img_upload_key')  
+) ; 
+$model_project_owner = $model_project_owner->whereIn('posts.posts_type', ['project_owner']);
+$model_project_owner =  $model_project_owner->where([
+  'posts.status'=>'y' ,   
+  'status_code'=>'published' ])
+  ->orderBy('updated_at','desc')->limit(10)->get() ;
+
 ?>
 <article  class=" my-4">
   <div class="py-3 px-3">
@@ -25,7 +51,7 @@ use App\helper\helper_lang;
     <div class="container aos-init aos-animate" data-aos="fade-up"> 
  
       <div class="row gx-2 gx-lg-4 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-start">
-        @foreach($model as $key => $value)
+        @foreach($model_worker as $key => $value)
         <?php if($value->posts_type != 'worker') continue; ?>
         <?php $url_slug = url("/post/{$value->posts_key}"."/".util::slugify($value->posts_content) );  ?>
         <div class="col-lg-4 col-6 my-1 d-flex align-items-stretch aos-init aos-animate" data-aos="zoom-in" data-aos-delay="100">
@@ -44,7 +70,7 @@ use App\helper\helper_lang;
     
     <div class="container aos-init aos-animate pt-2" data-aos="fade-up">  
       <div class="row gx-2 gx-lg-4 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-start">
-        @foreach($model as $key => $value)
+        @foreach($model_project_owner as $key => $value)
         <?php if($value->posts_type != 'project_owner') continue; ?>
         <?php $url_slug = url("/post/{$value->posts_key}"."/".util::slugify($value->posts_content) );  ?>
         <div class="col-lg-4 col-6 my-1 d-flex align-items-stretch aos-init aos-animate" data-aos="zoom-in" data-aos-delay="100">

@@ -10,7 +10,7 @@ use App\helper\helper_lang;
 ?>
     <main class="content" style="margin-top:80px">
         @include('layouts.section.SearchHero')
-        @include('layouts.section.PostRecommendTab',['model'=>$model])
+        @include('layouts.section.PostRecommendTab')
         {{-- @include('layouts.section.Content2Col') --}}
         
         @include('layouts.section.tag_category')
