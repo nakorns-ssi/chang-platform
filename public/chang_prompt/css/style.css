@@ -100,7 +100,7 @@ textarea:focus, input:focus{
   outline: none;
 }
 a {
-  color: var(--bs-primary);
+  color: var(--bg-icon-hover);
   text-decoration: none;
 }
 
@@ -118,6 +118,9 @@ h3 {
   font-family: "chang-font", sans-serif;
 }
 
+.swal2-title {
+  font-family: inherit;
+}
 
 /*--------------------------------------------------------------
 # Back to top button

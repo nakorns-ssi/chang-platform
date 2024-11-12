@@ -56,11 +56,12 @@
       </div>
     </div>
     <div class="social-links text-center text-md-right pt-3 pt-md-0 pe-4">
-      <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-      <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-      <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+      {{-- <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a> --}}
+      <a href="https://www.facebook.com/profile.php?id=61558587123168&mibextid=ZbWKwL" target="_blank" class="facebook"><i class="bx bxl-facebook"></i></a>
+      <a href="https://lin.ee/hOLk9Gp" target="_blank" class="facebook"><i class='fab fa-line  '></i></a>
+      {{-- <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
       <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-      <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+      <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a> --}}
     </div>
   </div>
 </footer><!-- End Footer -->

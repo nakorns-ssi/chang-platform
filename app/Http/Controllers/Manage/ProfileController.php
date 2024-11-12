@@ -46,6 +46,7 @@ class ProfileController  extends Controller
       $post = $request->input('model');
       $account_id =  session('account')['account_id'];
       $account_display_name =  session('account')['profile_display_name']; 
+      
        //dd($post ,$account_id  );
       if($account_id){   
         $model =  Account::where('id', $account_id)->first();
@@ -55,9 +56,25 @@ class ProfileController  extends Controller
         $model->updated_at = Carbon::now();
         $model->updated_by = session('account')['account_id'];
         $model->updated_by_username = session('account')['display_name']; 
+        $model->location_district = null;
+        $model->location_amphoe = null;
+        $model->location_province = null;
+        $model->location_zipcode = null;
         
         if($model->save()){ 
           helper_account::update_session_profile($model);
+
+          $working_area =  $request->input('working_area'); 
+          if(isset($working_area['district'] )) {
+            foreach($working_area['district'] as $val){ 
+              $data = json_decode($val);   
+              $model->location_district = $data->district;
+              $model->location_amphoe = $data->amphoe;
+              $model->location_province = $data->province;
+              $model->location_zipcode = $data->zipcode;
+              $model->save();  
+            }
+          }
           Session::flash('alert', [
             'status' => 'success',
             'text' => 'บันทึกแล้ว!',

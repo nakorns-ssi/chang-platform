@@ -76,7 +76,7 @@
 
                                     <div class="col-md-6">
                                         <div class="mb-3">
-                                            <label for="profile_phone" class="form-label">เบอร์โทรมือถือ</label>
+                                            <label for="profile_phone" class="form-label">หมายเลขโทรศัพท์มือถือ</label>
                                             <input type="text" class="form-control" id="profile_phone"
                                                 value="{{ $model->profile_phone }}" name="model[profile_phone]"
                                                 placeholder="ระบุ" minlength="10" maxlength="10"
@@ -97,6 +97,11 @@
                                             <input type="text" class="form-control" id="add_line_id"
                                                 value="{{ $model->add_line_id }}" name="model[add_line_id]"
                                                 placeholder="ระบุ">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="mb-3 ">
+                                            @include('manage.profile._location_frm')
                                         </div>
                                     </div>
                                 </div>

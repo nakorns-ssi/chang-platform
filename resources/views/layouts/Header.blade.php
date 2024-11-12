@@ -38,8 +38,8 @@
              <nav id="navbar" class="navbar">
                  <ul>
                   <li><a class="nav-link scrollto active" href="/">ประกาศทั้งหมด</a></li>
-                  <li><a class="nav-link scrollto " href="/post/worker">โพสต์ช่าง</a></li>
-                  <li><a class="nav-link scrollto" href="/post/project_owner">โพสต์ผู้ว่าจ้าง</a></li> 
+                  <li><a class="nav-link scrollto " href="/post/worker">หางาน</a></li>
+                  <li><a class="nav-link scrollto" href="/post/project_owner">หาช่าง</a></li> 
                   <li>
                     @if (session()->has('account')) 
                     <div class=" d-sm-block">

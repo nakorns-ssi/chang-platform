@@ -4,7 +4,10 @@
         $route_web = explode('/', $url_current)[5];
     } else {
         $route_web = null;
-    } 
+    }  
+    $profile_display_name = session('account')['profile_display_name'];
+    $account_code = session('account')['account_code'];
+    $profile_link = url('/profile/'.$account_code."/".$profile_display_name);
     ?>
     <!-- ======= Header ======= -->
      <header id="header" class="fixed-top">
@@ -17,7 +20,7 @@
           <nav id="navbar" class="navbar">
             <ul>
               
-              <li><a class="nav-link scrollto" href="#notification"><span><i class="bi bi-bell" style="font-size: larger;"></i> แจ้งเตือน</span></a></li> 
+              <li><a class="nav-link scrollto" href="{{$profile_link}}"><span><i class="bi bi-person-badge" style="font-size: larger;"></i> หน้าโปรไฟล์</span></a></li> 
               <li><a class="nav-link scrollto " href="#history"><span><i class="bi bi-file-earmark-text" style="font-size: larger;"></i> ประวัติการใช้งาน </span></a></li>
            
               <li><a class="nav-link scrollto  " href="/auth/logout"><span><i class="bi bi-box-arrow-right" style="font-size: larger;"></i> ออกจากระบบ</span></a></li>
