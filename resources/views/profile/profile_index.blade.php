@@ -102,8 +102,11 @@
                     
                     </div>
                     <div class="row justify-content-center ">
-                        <div class="col-sm-10 col-md-8 "> 
-                            
+                        <div class="col-sm-10 col-md-8 ">  
+                            {{-- @include('profile.contact_profile',['title'=>'ติดต่อ' ,'model'=>$model]) --}}
+                            @include('layouts.section.CompanyProfile_view', ['account_id' => $account_id])
+                         </div>
+                        <div class="col-sm-10 col-md-8 ">  
                            {{-- @include('profile.contact_profile',['title'=>'ติดต่อ' ,'model'=>$model]) --}}
                            @include('layouts.section.WorkProfile_view', ['account_id' => $account_id])
                         </div>

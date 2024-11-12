@@ -53,7 +53,7 @@
                                 <i class="bi bi-file-text  position-absolute top-50 start-50 translate-middle"></i>
                             </div>
                         </div> 
-                        <span class="col-12  fw-light icon-menu-label py-2" >โปรไฟล์นิติบุคคล</span> 
+                        <span class="col-12  fw-light icon-menu-label py-2" >ข้อมูลนิติบุคคล</span> 
                     </span> 
                     </a>   
                 </div> 

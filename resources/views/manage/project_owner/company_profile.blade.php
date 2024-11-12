@@ -12,7 +12,7 @@
     <header id="header" class="fixed-top">
         <div class="container d-flex align-items-center justify-content-between">
             <a class="btn  btn-sm btn-outline-dark" href="/manage"><i class="bi bi-caret-left-fill"></i> ย้อนกลับ</a>
-            <div class=" h5">โปรไฟล์นิติบุคคล </div>
+            <div class=" h5">นิติบุคคล </div>
         </div>
     </header><!-- End Header -->
     <article    style="padding-top: 80px;padding-bottom: 60px;" > 
@@ -22,20 +22,22 @@
             ?>
             <form action="{{ $actionPath }}" method="post" name="frm_n" id="frm_n" class="  ">
                 @csrf
-            <div class="row justify-content-center align-items-center">
-                <div class="col-md-6"> 
+            <div class="row justify-content-start align-items-center">
+                <div class="col-sm-6 col-md-4"> 
                     <div class=" mb-3">
-                        <label for="company_name" class="form-label">เลขนิติบุคคล *</label>
+                        <label for="company_name" class="form-label">ข้อมูลนิติบุคคล *</label>
                         <div class="input-group">
                             <input type="text" class="form-control" 
                             id="company_tax_id" value="{{ $model->company_tax_id }}" name="model[company_tax_id]"
                              placeholder="ระบุ" required > 
-                            <button type="button" class="input-group-text btn  " 
+                            <button type="button" class="input-group-text btn d-none " 
                              style="background: var(--bs-primary);" ><i class="bi bi-search"></i></button>
                         </div> 
                       </div>
                 </div>
-                <div class="col-md-6">
+            </div>
+            <div class="row justify-content-start align-items-center">
+                <div class="col-sm-8 ">
                     <div class="mb-3">
                         <label for="company_name" class="form-label">ชื่อนิติบุคคล *</label>
                         <input type="text" class="form-control" id="company_name"
@@ -43,7 +45,7 @@
                             name="model[company_name]" placeholder="ระบุ" required>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-sm-8 ">
                     <div class="mb-3">
                         <label for="company_address1" class="form-label">ที่ตั้ง </label>
                         <input type="text" class="form-control" id="company_address1"
@@ -53,7 +55,7 @@
                 </div>
                  
                 
-                <div class="col-md-6">
+                <div class="col-sm-8 ">
                     <div class="mb-3">
                         <label for="company_remark" class="form-label">Website / อื่นๆ  </label> 
                             <textarea class="form-control" id="company_remark" name="model[company_remark]" 
