@@ -27,12 +27,12 @@ $model = Account::where([  'id' => $account_id ])->first();
                                                 class="row   px-3    d-flex aligh-items-center justify-content-between bg-white">
                                                 <div class="col-auto    "> 
                                                     <ul class="list-inline" style="list-style-type:circle">
-                                                        <li class="list-inline"><span class="fw-light">เลขนิติบุคคล:</span> 
+                                                        <li class="list-inline"><span class="fw-light">Tax ID:</span> 
                                                            <a href="https://data.creden.co/company/general/{{ $model->company_tax_id }}" target="_blank">
                                                                 <span class="border-bottom  ">{{ $model->company_tax_id }}</span>
                                                             </a>  
                                                         </li>
-                                                        <li class="list-inline"><span class="fw-light">ชื่อนิติบุคคล:</span> {{ $model->company_name }}</li>
+                                                        <li class="list-inline"><span class="fw-light">ชื่อบริษัท:</span> {{ $model->company_name }}</li>
                                                         <li class="list-inline"><span class="fw-light">ที่อยู่:</span> {{ $model->company_address1 }}</li>
                                                       </ul>
                                                    

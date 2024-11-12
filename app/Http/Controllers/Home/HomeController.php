@@ -26,7 +26,7 @@ class HomeController  extends Controller
     {   
      // Cache::flush();
      // $model = Cache::remember('home_posts', $seconds = (15*1), function () {
-        $paginate_num = 4; 
+        $paginate_num = 10; 
         $model = new Posts; 
         $model =  $model->select('posts.*', 
         DB::raw('(select url from upload where status = "y" and upload.posts_id = posts.id  limit 1)  as img_thumbnail_url') ,
@@ -39,7 +39,7 @@ class HomeController  extends Controller
           'status_code'=>'published' ])
           ->orderby('posts.updated_at','desc')->paginate($paginate_num) ;
           $Account_list = []; 
-          $Account_list = Account::where( 'status','enable')->orderBy('last_active','desc')->take(3)->get();
+          $Account_list = Account::where( 'status','enable')->orderBy('last_active','desc')->take(10)->get();
        
        return view('home/home_index' ,compact('model','Account_list'));
     }

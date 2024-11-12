@@ -12,6 +12,7 @@
             $link = '/';
             $display_name = $model->display_name ;
             $profile_display_url = $model->profile_display_url ;
+            $profile_display_name = $model->profile_display_name ;
             $account_code = $model->account_code ;
             $url_qrcode = url()->current();
             ?>
@@ -30,9 +31,9 @@
                                     <div class="my-3 px-3 text-center">
                                         <div class="text-center">
                                             <img src="{{ $profile_display_url }}" class="c-avatar mx-auto d-block"  style="  height: 80px;  width: 80px; "
-                                            alt="{{ $display_name }} โปรไฟล์"  loading="lazy" style="" /> 
+                                            alt="{{ $profile_display_name }} โปรไฟล์"  loading="lazy" style="" /> 
                                         </div> 
-                                        <div> {{ $display_name }}</div>
+                                        <div> {{ $profile_display_name }}</div>
                                     </div>   
                                 </div>
                                 <div class="col-sm-8  ">

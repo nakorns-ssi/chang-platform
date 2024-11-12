@@ -25,7 +25,7 @@
             <div class="row justify-content-start align-items-center">
                 <div class="col-sm-6 col-md-4"> 
                     <div class=" mb-3">
-                        <label for="company_name" class="form-label">ข้อมูลนิติบุคคล *</label>
+                        <label for="company_name" class="form-label">Tax ID *</label>
                         <div class="input-group">
                             <input type="text" class="form-control" 
                             id="company_tax_id" value="{{ $model->company_tax_id }}" name="model[company_tax_id]"
@@ -39,7 +39,7 @@
             <div class="row justify-content-start align-items-center">
                 <div class="col-sm-8 ">
                     <div class="mb-3">
-                        <label for="company_name" class="form-label">ชื่อนิติบุคคล *</label>
+                        <label for="company_name" class="form-label">ชื่อบริษัท *</label>
                         <input type="text" class="form-control" id="company_name"
                             value="{{ $model->company_name }}"
                             name="model[company_name]" placeholder="ระบุ" required>
@@ -47,7 +47,7 @@
                 </div>
                 <div class="col-sm-8 ">
                     <div class="mb-3">
-                        <label for="company_address1" class="form-label">ที่ตั้ง </label>
+                        <label for="company_address1" class="form-label">ที่อยู่ </label>
                         <input type="text" class="form-control" id="company_address1"
                             value="{{ $model->company_address1 }}" name="model[company_address1]"
                             placeholder="ระบุ" required>
