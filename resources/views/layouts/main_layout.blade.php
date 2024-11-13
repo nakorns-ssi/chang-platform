@@ -23,7 +23,7 @@
     <meta property="twitter:domain" content="{{$_SERVER['HTTP_HOST']}}">
     <meta property="twitter:url" content="{{url()->current()}}">
     <meta name="twitter:title" content="@yield('title') - {{env('APP_NAME')}}">
-    <meta name="twitter:description" content="ช่างเหล็ก แพลตฟอร์ม ช่างหางาน …งานหาช่าง ช่างเหล็ก แพลตฟอร์มช่วยได้ ">
+    <meta name="twitter:description" content="ช่างเหล็ก แพลตฟอร์ม ช่างหางาน …งานหาช่าง ช่างเหล็ก แพลตฟอร์มช่วยได้">
     <meta name="twitter:image" content="@yield('OG_image')">
 
     <!-- Favicons -->
