@@ -1,20 +1,23 @@
+<?php 
+use Illuminate\Support\Str;
+use App\helper\util; 
+$Product_image_url = []; 
+$link = '/';
+$btn_share_title =   mb_substr($model->posts_content,0,100)  ;
+$btn_share_text =   mb_substr($model->posts_content,0,100)  ;
+$btn_share_url =   url()->current();
+$OG_image = $upload[0];
+?>
 @extends('layouts.main_layout')
 @section('title', $page_title)
-@section('description', "")
-@section('keywords', "")
+@section('description', mb_substr($model->posts_content,0,100))
+@section('OG_image', $OG_image->url)
+@section('keywords', "ช่างเหล็ก แพลตฟอร์ม ช่างหางาน …งานหาช่าง ช่างเหล็ก แพลตฟอร์มช่วยได้")
 @section('content') 
 @include('layouts.Header') 
     <main class="content bg-light" style="margin-top:80px"> 
         <div class="container py-2">
-            <?php 
-            use Illuminate\Support\Str;
-            use App\helper\util; 
-            $Product_image_url = []; 
-            $link = '/';
-            $btn_share_title =   mb_substr($model->posts_content,0,100)  ;
-            $btn_share_text =   mb_substr($model->posts_content,0,100)  ;
-            $btn_share_url =   url()->current();
-            ?>
+         
             
             <div class="container pb-5">  
                 <div class="row"> 
