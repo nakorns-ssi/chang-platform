@@ -11,7 +11,21 @@
     <meta content="{{env('APP_NAME')}} ช่างหางาน …งานหาช่าง ช่างเหล็ก แพลตฟอร์มช่วยได้ @yield('description')" name="description">
     <meta content="ช่างหางาน งานหาช่าง ช่างเหล็ก ช่างเชื่อม เหล็ก โครงสร้าง @yield('keywords')" name="keywords">
   
+     <!-- Facebook Meta Tags -->
+    <meta property="og:url" content="{{url()->current()}}">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="@yield('title') - {{env('APP_NAME')}}">
+    <meta property="og:description" content="@yield('description')">
+    <meta property="og:image" content="@yield('OG_image')">
     
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:domain" content="{{$_SERVER['HTTP_HOST']}}">
+    <meta property="twitter:url" content="{{url()->current()}}">
+    <meta name="twitter:title" content="@yield('title') - {{env('APP_NAME')}}">
+    <meta name="twitter:description" content="ช่างเหล็ก แพลตฟอร์ม ช่างหางาน …งานหาช่าง ช่างเหล็ก แพลตฟอร์มช่วยได้ ">
+    <meta name="twitter:image" content="@yield('OG_image')">
+
     <!-- Favicons -->
     
     <link href="{{ asset('chang_prompt/img/chang_prompt_logo.svg') }}" rel="icon">
